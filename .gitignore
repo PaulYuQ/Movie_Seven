@@ -1,6 +1,12 @@
 # Compiled class file
 *.class
 
+#忽略target文件
+target/ 
+
+#忽略out文件
+out/
+
 # Log file
 *.log
 
