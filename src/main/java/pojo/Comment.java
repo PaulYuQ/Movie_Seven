@@ -105,8 +105,12 @@ public class Comment {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Comment comment = (Comment) o;
         return Objects.equals(comment_id, comment.comment_id) &&
                 Objects.equals(movie_id, comment.movie_id) &&
