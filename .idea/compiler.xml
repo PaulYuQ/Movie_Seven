@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="seven_movies" />
+        <module name="seven_movie" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
