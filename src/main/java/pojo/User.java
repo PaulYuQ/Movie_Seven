@@ -8,7 +8,7 @@ package pojo;
  */
 public class User{
     //自增
-    private int id ;
+    private int id;
     //user_id
     private String user_id;
     //user_psw
