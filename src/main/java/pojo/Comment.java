@@ -13,12 +13,32 @@ import java.util.Objects;
 public class Comment {
 
     //成员变量
-    private Integer comment_id;//comment---comment_id  字段(评论id)
-    private Integer movie_id;//movie---movie_id  字段(电影id)
-    private Integer parent_id;//comment---parent_id  字段(评论的父评论)
-    private Integer user_id;//user---user_id  字段(用户id)
-    private String name;//user---name  字段(用户姓名)
-    private String content;//comment---content  字段(评论内容)
+    /**
+     * comment---comment_id  字段(评论id)
+     */
+    private Integer comment_id;
+
+    /**
+     * movie---movie_id  字段(电影id)
+     */
+    private Integer movie_id;
+
+    /**
+     * comment---parent_id  字段(评论的父评论)
+     */
+    private Integer parent_id;
+    /**
+     * //user---user_id  字段(用户id)
+     */
+    private Integer user_id;
+    /**
+     * //user---name  字段(用户姓名)
+     */
+    private String name;
+    /**
+     * comment---content  字段(评论内容)
+     */
+    private String content;
     private Date date;//comment---date 字段(评论日期)
     private List<Comment> child;//(评论的子评论)
 
