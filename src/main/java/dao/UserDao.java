@@ -8,6 +8,5 @@ import java.util.List;
  * @Version 1.0
  */
 public interface UserDao {
-    List getCommentInfo();
 }
 

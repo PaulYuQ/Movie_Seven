@@ -18,10 +18,14 @@ import java.util.List;
  */
 public class CommentServiceImpl implements CommentService {
 
-    //创建CommentDao层对象
+    /**
+     * 创建CommentDao层对象
+     */
     private CommentDao commentDao = null;
 
-    //初始化CommentDaoImpl对象
+    /**
+     * 初始化CommentDaoImpl对象
+     */
     public CommentServiceImpl() {
         commentDao = BeanFactory.getInstance("CommentDao", CommentDaoImpl.class);
     }
