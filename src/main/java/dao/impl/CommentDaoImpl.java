@@ -9,6 +9,8 @@ import util.DBUtil;
 import java.sql.SQLException;
 import java.util.*;
 
+import static javafx.scene.input.KeyCode.L;
+
 /**
  * @Author Miss kun
  * @Date 2020/9/13 18:54
@@ -59,66 +61,47 @@ public class CommentDaoImpl implements CommentDao {
             System.out.println("该电影还没有人评论！！");
            return  null;
         }else{
-            Map<Integer,Comment> map = new HashMap<>();
-            List<Comment> result = new ArrayList<>();//用于存放最终的comment集合
+            Map<Integer,Comment> map = new HashMap(100,0.75f);
+            //用于存放最终的comment集合
+            List<Comment> result = new ArrayList<>();
             for (Comment comment : all ){
-                if (comment.getParent_id() == null){//判断父节点是否为空
+                //判断父节点是否为空
+                if (comment.getParent_id() == null){
                     result.add(comment);
                 }else{
-                    //存放父节点不为空,comment
-                    map.put(comment.getComment_id(),comment);//key : comment_id ,value:comment
+                    //存放父节点不为空,comment, key : comment_id ,value:comment
+                    map.put(comment.getComment_id(),comment);
                 }
             }
             //遍历那些父节点为空的 comment
             for (Comment comm : result){
-                //遍历map集合，查找parent_id 和 comment_id 相同的
                 comm.setChild(new ArrayList<Comment>());
+
                 Set<Integer> keys = map.keySet();
                 Iterator<Integer> it = keys.iterator();
+                //遍历map集合，查找parent_id 和 comment_id 相同的
                 while (it.hasNext()){
                     Integer i = it.next();
                     Comment comment = map.get(i);
-                    if (comm.getComment_id() == comment.getParent_id()){
+                    if (comm.getComment_id().equals(comment.getParent_id())){
                         comm.getChild().add(comment);
                         it.remove();
+                    }else {
+                        System.out.println("没有改父节点");
                     }
                 }
-                /*for (Integer i : keys){
-                    Comment comment = map.get(i);
-                    if (comm.getComment_id() == comment.getParent_id()){
-                        comm.getChild().add(comment);
-                    }else {
-                        System.out.println("没有改父节点！！");//有一个逻辑判断（要是没有这个父节点的评论）
-                    }
-                }*/
             }
             return  result;
         }
     }
 
-/*    public List<Comment> getComments(Long newsId) {
-        List<Comment> all = new ArrayList<>();
-        Map<Long, Comment> map = new HashMap<>();
-        List<Comment> result = new ArrayList<>();
-        for (Comment c : all) {
-            if (c.getParent_id() == null) {
-                result.add(c);
-            }
-            //存放父节点不为空,comment
-            map.put(c.commentId, c);
-        }
-        for (Comment c : all) {
-            if (c.parentId != null) {
-                //
-                Comment parent = map.get(c.parentId);
-                if (parent.child == null) {
-                    parent.child = new ArrayList<>();
-                }
-                parent.child.add(c);
-            }
-        }
-        return result;
-    }*/
+    @Override
+    public Integer getCount(Integer movie_id) {
+        String sql = "select COUNT(*) from comments AS a ,user b where a.user_id=b.user_id AND a.movie_id=?";
+
+        return null;
+    }
+
 
 }
 
