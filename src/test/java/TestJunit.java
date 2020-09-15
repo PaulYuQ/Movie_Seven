@@ -1,17 +1,12 @@
-import dao.MovieDao;
 import dao.impl.HistoryDaoImpl;
-import dao.impl.ShowHistoryDaoImpl;
 import factory.BeanFactory;
-import org.apache.commons.dbutils.QueryRunner;
 import org.junit.Test;
 import pojo.Histories;
 import pojo.ShowHistory;
-import service.MovieService;
-import service.ShowHistoryService;
+import service.HistoryService;
 import service.impl.HistoryServiceImpl;
 import util.DBUtil;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -36,8 +31,7 @@ public class TestJunit{
     }
 
 
-    MovieService movie=BeanFactory.getInstance("HistoryService",MovieService.class);
-    ShowHistoryService show=BeanFactory.getInstance("ShowHistoryService",ShowHistoryService.class);
+    HistoryService movie=BeanFactory.getInstance("HistoryService", HistoryService.class);
 
     /**
      * create by: sky
@@ -62,7 +56,7 @@ public class TestJunit{
      */
     @Test
     public void deleteTest(){
-        int i=movie.movieDelete(1);
+        int i=movie.movieDelete(7);
         System.out.println(i);
     }
 
@@ -78,8 +72,7 @@ public class TestJunit{
     public void updateTest(){
         Histories histories=new Histories(22,33,44);
         histories.setHistory_id(2);
-        Object o=histories;
-        int i=movie.movieUpdate(o);
+        int i=movie.movieUpdate(histories);
         System.out.println(i);
     }
 
@@ -92,8 +85,7 @@ public class TestJunit{
      */
     @Test
     public void findTest(){
-        Object o=movie.movieFindById(2);
-        Histories histories=(Histories)o;
+        Histories histories=movie.movieFindById(2);
         System.out.println(histories.toString());
     }
 
@@ -120,10 +112,9 @@ public class TestJunit{
      */
     @Test
     public void listTest(){
-        List<Object> o=movie.movieList(1,3);
-        for(Object obj:o){
-            Histories histories=(Histories)obj;
-            System.out.println(histories.toString());
+        List<Histories> histories=movie.movieList(1,3);
+        for(Histories hs:histories){
+            System.out.println(hs.toString());
         }
     }
 
@@ -137,8 +128,8 @@ public class TestJunit{
      */
     @Test
     public void showNumberTest(){
-        show.historyNumber(15);
-        System.out.println(show.historyNumber(15));
+        movie.historyNumber(15);
+        System.out.println(movie.historyNumber(15));
     }
 
     /**
@@ -150,10 +141,9 @@ public class TestJunit{
      */
     @Test
     public void showTest(){
-        List<Object> o=show.historyList(15,1,2);
-        for(Object obj:o){
-            ShowHistory showHistory=(ShowHistory)obj;
-            System.out.println(showHistory.toString());
+        List<ShowHistory> showHistories=movie.historyList(15,1,3);
+        for(ShowHistory sh:showHistories){
+            System.out.println(sh.toString());
         }
     }
 }
