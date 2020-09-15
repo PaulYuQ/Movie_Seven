@@ -1,5 +1,7 @@
 package dao;
 
+import pojo.User;
+
 import java.util.List;
 
 /**
@@ -8,5 +10,7 @@ import java.util.List;
  * @Version 1.0
  */
 public interface UserDao {
+    boolean dologin(String name,String pwd);
+
 }
 

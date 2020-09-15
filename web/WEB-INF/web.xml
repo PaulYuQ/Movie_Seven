@@ -5,4 +5,13 @@
          version="4.0">
     <response-character-encoding>utf-8</response-character-encoding>
     <request-character-encoding>utf-8</request-character-encoding>
+
+    <servlet>
+        <servlet-name>ImageCode</servlet-name>
+        <servlet-class>controller.login.ImageCodeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImageCode</servlet-name>
+        <url-pattern>/code</url-pattern>
+    </servlet-mapping>
 </web-app>
