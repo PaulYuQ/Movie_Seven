@@ -78,6 +78,8 @@ public class AdminServlet extends HttpServlet {
     private void queryall(HttpServletRequest req, HttpServletResponse resp) {
         List<Admin> allAdmin = adminService.findAllAdmin();
 
+
+
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) {
