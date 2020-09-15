@@ -14,6 +14,9 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
+  <link href="css/bootstrap-table.min.css" rel="stylesheet">
+
+
   <style>
     img{
 
@@ -153,83 +156,34 @@ position:absolute;
       <div class="card mb-4 wow fadeIn">
 
 
-        <table class="table table-hover" id="table">
+        <table class="table table-hover" id="table1" >
           <!-- Table head -->
-          <thead class="blue-grey lighten-4">
-          <tr >
-            <th style="font-weight: bold">ID</th>
-            <th style="font-weight: bold">用户名</th>
-            <th style="font-weight: bold">密码</th>
-            <th style="font-weight: bold">电话号码</th>
-            <th style="font-weight: bold">操作</th>
-          </tr>
-          </thead>
-          <!-- Table head -->
+<!--          <thead class="blue-grey lighten-4">-->
+<!--          <tr >-->
+<!--            <th style="font-weight: bold">ID</th>-->
+<!--            <th style="font-weight: bold">用户名</th>-->
+<!--            <th style="font-weight: bold">密码</th>-->
+<!--            <th style="font-weight: bold">电话号码</th>-->
+<!--            <th style="font-weight: bold">权限控制</th>-->
+<!--            <th style="font-weight: bold">操作</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          &lt;!&ndash; Table head &ndash;&gt;-->
 
-          <!-- Table body -->
-          <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>宋敏超</td>
-            <td>123456</td>
-            <td>15570087485</td>
-            <td>
-              <img src="img/svg/xiugai.svg" style="width: 30px;height: 30px;margin-right: 20px">
-              <img src="img/svg/delete.svg" style="width: 30px;height: 30px">
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>廖晨威</td>
-            <td>123456</td>
-            <td>15570087485</td>
-            <td>
-              <img src="img/svg/xiugai.svg" style="width: 30px;height: 30px;margin-right: 20px">
-              <img src="img/svg/delete.svg" style="width: 30px;height: 30px">
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>刘少雄</td>
-            <td>123456</td>
-            <td>15570087485</td>
-            <td>
-              <img src="img/svg/xiugai.svg" style="width: 30px;height: 30px;margin-right: 20px">
-              <img src="img/svg/delete.svg" style="width: 30px;height: 30px">
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>刘少雄</td>
-            <td>123456</td>
-            <td>15570087485</td>
-            <td>
-              <img src="img/svg/xiugai.svg" style="width: 30px;height: 30px;margin-right: 20px">
-              <img src="img/svg/delete.svg" style="width: 30px;height: 30px">
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>刘少雄</td>
-            <td>123456</td>
-            <td>15570087485</td>
-            <td>
-              <img src="img/svg/xiugai.svg" style="width: 30px;height: 30px;margin-right: 20px">
-              <img src="img/svg/delete.svg" style="width: 30px;height: 30px">
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>刘少雄</td>
-            <td>123456</td>
-            <td>15570087485</td>
-            <td>
-              <img src="img/svg/xiugai.svg" style="width: 30px;height: 30px;margin-right: 20px">
-              <img src="img/svg/delete.svg" style="width: 30px;height: 30px">
-            </td>
-          </tr>
+<!--          &lt;!&ndash; Table body &ndash;&gt;-->
+<!--          <tbody id="tbody">-->
+<!--          <tr>-->
+<!--            <th scope="row">3</th>-->
+<!--            <td>刘少雄</td>-->
+<!--            <td>123456</td>-->
+<!--            <td>15570087485</td>-->
+<!--            <td>-->
+<!--              <img src="img/svg/xiugai.svg" style="width: 30px;height: 30px;margin-right: 20px">-->
+<!--              <img src="img/svg/delete.svg" style="width: 30px;height: 30px">-->
+<!--            </td>-->
+<!--          </tr>-->
 
-          </tbody>
+<!--          </tbody>-->
 
           <!-- Table body -->
         </table>
@@ -249,39 +203,6 @@ position:absolute;
     </div>
   </main>
 
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-          <h4 class="modal-title" id="myModalLabel">新增</h4>
-        </div>
-        <div class="modal-body">
-
-          <div class="form-group">
-            <label for="txt_departmentname">部门名称</label>
-            <input type="text" name="txt_departmentname" class="form-control" id="txt_departmentname" placeholder="部门名称">
-          </div>
-          <div class="form-group">
-            <label for="txt_parentdepartment">上级部门</label>
-            <input type="text" name="txt_parentdepartment" class="form-control" id="txt_parentdepartment" placeholder="上级部门">
-          </div>
-          <div class="form-group">
-            <label for="txt_departmentlevel">部门级别</label>
-            <input type="text" name="txt_departmentlevel" class="form-control" id="txt_departmentlevel" placeholder="部门级别">
-          </div>
-          <div class="form-group">
-            <label for="txt_statu">描述</label>
-            <input type="text" name="txt_statu" class="form-control" id="txt_statu" placeholder="状态">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
-          <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
   <!-- Bootstrap tooltips -->
@@ -291,16 +212,70 @@ position:absolute;
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!--  &lt;!&ndash; MDB core JavaScript &ndash;&gt;-->
   <script type="text/javascript" src="js/mdb.min.js"></script>
-  <!-- Initializations -->
+  <script src="js/tableExport.js"></script>
+  <script src="js/bootstrap-table.js"></script>
+  <script src="js/bootstrap-table-export.js"></script>  <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization
     new WOW().init();
+
+
 
     function exit() {
       if (window.confirm("确认吗?")) {
         window.location = "login.html";
       }
     }
+
+
+    function getTableJson() {
+      $.post("queryall.admin",{},function (data) {
+          console.log(data);
+          var a=JSON.parse(data);
+        $('#table1').bootstrapTable({
+          data: a,
+          columns: [{
+            field: 'id',
+            title: 'ID'
+          }, {
+            field: 'name',
+            title: '用户名'
+          }, {
+            field: 'password',
+            title: '密码'
+          }, {
+            field: 'phone',
+            title: '电话'
+          }, {
+            field: 'control',
+            title: '权限'
+          } ]
+        });
+          var str="";
+        // $.each(data, function (index, obj) {
+        //   str += "<tr>" +
+        //           "<td>" + obj.id + "</td>"
+        //           + "<td>" + obj.name+ "</td>"
+        //           + "<td>" + obj.password + "<td>" +
+        //           + "<td>" + obj.phone + "<td>" +
+        //           + "<td>" + obj.control + "<td>" +
+        //           "<a href=\"javascript:void(0);\" onclick='doDel("+ obj.id + ",this)'> <img src=\"img/svg/delete.svg\" style=\"width: 30px;height: 30px\"></a>" +
+        //           "<a href=\"javascript:void(0);\" value='编辑' onclick='doEdit("
+        //           + obj.id + ",this)'> <img src=\"img/svg/xiugai.svg\" style=\"width: 30px;height: 30px;margin-right: 20px\"></a>" +
+        //
+        //           "</td>" +
+        //
+        //           + "</tr>";
+        //   console.log(str);
+        //
+        // });//数据显示到表格中
+        // $("#tbody").empty();
+        // $("#tbody").append(str);
+      },"json")
+    }
+
+    $(document).ready(getTableJson());
+
 
   </script>
 

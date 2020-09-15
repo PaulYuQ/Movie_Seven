@@ -1,5 +1,8 @@
 package controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import factory.BeanFactory;
 import pojo.Admin;
 import service.AdminService;
@@ -75,11 +78,13 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
-    private void queryall(HttpServletRequest req, HttpServletResponse resp) {
+    private void queryall(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<Admin> allAdmin = adminService.findAllAdmin();
-
-
-
+        if(allAdmin!=null) {
+            JSONArray jsonArray=JSONArray.parseArray(JSON.toJSONString(allAdmin));
+            System.out.println(jsonArray.toString());
+            resp.getWriter().print(jsonArray.toString());
+        }
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) {
