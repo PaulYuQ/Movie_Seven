@@ -1,5 +1,8 @@
 package service;
 
+import pojo.Histories;
+import pojo.ShowHistory;
+
 import java.util.List;
 
 /**
@@ -7,7 +10,32 @@ import java.util.List;
  * @date ：Created in 2020/9/14 14:31
  * @version: 1.0
  */
-public interface MovieService {
+public interface HistoryService {
+
+    /**
+     * create by: sky
+     * create time: 8:52 2020/9/15
+     * 查询结果行数
+     * @Param: id 用户id
+     * @return long
+     */
+    public long historyNumber(int id);
+
+
+    /**
+     * create by: sky
+     * create time: 8:53 2020/9/15
+     * 查询结果分页展示
+     * @Param: id 用户id
+     * @Param: page 当前页数
+     * @Param: row  一页的行数
+     * @return java.util.List<java.lang.Object>
+     */
+    public List<ShowHistory> historyList(int id, int page, int row);
+
+
+
+
     /**
      * create by: sky
      * create time: 20:19 2020/9/14
@@ -15,7 +43,7 @@ public interface MovieService {
      * @Param: o 实体类对象
      * @return int
      */
-    public int movieAdd(Object o);
+    public int movieAdd(Histories histories);
 
 
     /**
@@ -35,7 +63,7 @@ public interface MovieService {
      * @Param: o 实体类对象
      * @return int
      */
-    public int movieUpdate(Object o);
+    public int movieUpdate(Histories histories);
 
 
     /**
@@ -45,7 +73,7 @@ public interface MovieService {
      * @Param: i
      * @return java.lang.Object
      */
-    public Object movieFindById(int i);
+    public Histories movieFindById(int i);
 
 
     /**
@@ -66,5 +94,5 @@ public interface MovieService {
      * @Param: row   一页展示的行数
      * @return java.util.List<java.lang.Object>
      */
-    public List<Object> movieList(int page, int row);
+    public List<Histories> movieList(int page, int row);
 }

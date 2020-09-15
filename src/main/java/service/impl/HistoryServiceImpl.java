@@ -1,9 +1,10 @@
 package service.impl;
 
-import dao.MovieDao;
+import dao.HistoryDao;
 import factory.BeanFactory;
+import pojo.Histories;
 import pojo.ShowHistory;
-import service.MovieService;
+import service.HistoryService;
 
 import java.util.List;
 
@@ -12,15 +13,24 @@ import java.util.List;
  * @date ：Created in 2020/9/14 14:24
  * @version: 1.0
  */
-public class HistoryServiceImpl implements MovieService {
-    MovieDao movieDao;
+public class HistoryServiceImpl implements HistoryService {
+    HistoryDao movieDao;
     public HistoryServiceImpl() {
-        movieDao= BeanFactory.getInstance("HistoryDao",MovieDao.class);
+        movieDao= BeanFactory.getInstance("HistoryDao", HistoryDao.class);
     }
 
     @Override
-    public int movieAdd(Object o) {
-        return movieDao.movieAdd(o);
+    public long historyNumber(int id) {
+        return movieDao.historyNumber(id);
+    }
+
+    @Override
+    public List<ShowHistory> historyList(int id, int page, int row) {
+        return movieDao.historyList(id,page,row);
+    }
+    @Override
+    public int movieAdd(Histories histories) {
+        return movieDao.movieAdd(histories);
     }
 
     @Override
@@ -29,12 +39,12 @@ public class HistoryServiceImpl implements MovieService {
     }
 
     @Override
-    public int movieUpdate(Object o) {
-        return movieDao.movieUpdate(o);
+    public int movieUpdate(Histories histories) {
+        return movieDao.movieUpdate(histories);
     }
 
     @Override
-    public Object movieFindById(int i) {
+    public Histories movieFindById(int i) {
         return movieDao.movieFindById(i);
     }
 
@@ -44,7 +54,7 @@ public class HistoryServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Object> movieList(int page, int row) {
+    public List<Histories> movieList(int page, int row) {
         return movieDao.movieList(page, row);
     }
 
