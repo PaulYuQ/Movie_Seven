@@ -14,11 +14,13 @@ import java.io.IOException;
  */
 @WebServlet(name = "MovieServlet",urlPatterns = {"*.do"})
 public class MovieServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
