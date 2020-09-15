@@ -42,8 +42,20 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
+    public User findByName(String name){
+        String sql = "select *from users where name =?";
+        User user = null;
+        try{
+            user = qr.query(sql,new BeanHandler<>(User.class),name);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     @Override
-    public boolean doRegister(String name, String pwd, String phone) {
+    public boolean addUser(String name, String pwd, String phone) {
         int res = 0;
         String sql = "insert into users(name,password,phone) values(?,?,?)";
         try {

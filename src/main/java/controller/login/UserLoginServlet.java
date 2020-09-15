@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 @WebServlet(name = "UserLoginServlet",urlPatterns = {"/login.users","/register.users"})
@@ -38,19 +39,22 @@ public class UserLoginServlet extends HttpServlet {
         }
     }
     public void doRegister(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        resp.setHeader("Content-Type", "text/html;charset=utf-8");
+        PrintWriter out = resp.getWriter();
         String name = req.getParameter("name");
         String pwd = req.getParameter("password");
         String pwd1 = req.getParameter("password1");
         String phone = req.getParameter("phone");
         String scode=(String)req.getSession().getAttribute("scode");
+
         String code=req.getParameter("code");
             if (pwd.equals(pwd1)&&code.equalsIgnoreCase(scode)){
-                if (userLoginService.doRegister(name,pwd,phone)){
-                resp.getWriter().print("<script>alert('注册成功')</script>");
-                req.getRequestDispatcher("register.jsp").forward(req,resp);
-            }else{
-                resp.getWriter().print("<script>alert('用户名已被占用')</script>");
-                req.getRequestDispatcher("register.jsp").forward(req,resp);
+                if (userLoginService.findByName(name)==null){
+                    userLoginService.addUser(name,pwd,phone);
+                    out.print("<script>alert('注册成功'); window.location='register.jsp' </script>");
+                } else{
+                resp.getWriter().print("<script>alert('用户名已被占用');window.location='register.jsp'</script>");
             }
         }else if (!pwd.equals(pwd1)){
             req.setAttribute("msg","两次输入的密码不一致");

@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface UserDao {
     boolean dologin(String name,String pwd);
-    boolean doRegister(String name,String pwd,String phone);
+    boolean addUser(String name,String pwd,String phone);
+    User findByName(String name);
+
 }
 
