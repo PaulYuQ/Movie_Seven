@@ -5,9 +5,9 @@ import factory.BeanFactory;
 import pojo.User;
 import service.UserLoginService;
 
-public class LoginServiceImpl implements UserLoginService {
+public class UserLoginServiceImpl implements UserLoginService {
     private UserDaoImpl userDao;
-    public LoginServiceImpl(){
+    public UserLoginServiceImpl(){
         userDao= BeanFactory.getInstance("UserDao",UserDaoImpl.class);
     }
     @Override

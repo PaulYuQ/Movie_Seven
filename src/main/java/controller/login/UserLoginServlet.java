@@ -3,7 +3,7 @@ package controller.login;
 
 import factory.BeanFactory;
 import service.UserLoginService;
-import service.impl.LoginServiceImpl;
+import service.impl.UserLoginServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 public class UserLoginServlet extends HttpServlet {
     private UserLoginService userLoginService;
     public UserLoginServlet(){
-        userLoginService = BeanFactory.getInstance("UserLoginService", LoginServiceImpl.class);
+        userLoginService = BeanFactory.getInstance("UserLoginService", UserLoginServiceImpl.class);
     }
 
     public void doLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
