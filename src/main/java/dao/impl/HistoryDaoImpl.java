@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.MovieDao;
+import dao.HistoryDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -15,10 +15,9 @@ import java.util.List;
 /**
  * @author ：sky
  * @date ：Created in 2020/9/14 14:28
- * 对Histories表进行操作
  * @version: 1.0
  */
-public class HistoryDaoImpl implements MovieDao {
+public class HistoryDaoImpl implements HistoryDao {
 
     QueryRunner queryRunner = null;
 
@@ -29,28 +28,59 @@ public class HistoryDaoImpl implements MovieDao {
      * @return
      * @Param:
      */
+
     public HistoryDaoImpl() {
         queryRunner = new QueryRunner(DBUtil.getDataSource());
     }
 
+
+
     /**
      * create by: sky
-     * create time: 15:49 2020/9/14
-     * 返回查询出来的用户的浏览历史
-     * 用户的历史记录
-     * @return java.util.List<pojo.ShowHistory>
+     * create time: 8:45 2020/9/15
+     * 单个用户的浏览历史记录行数
      * @Param: id
+     * @return long
      */
-    public List<ShowHistory> findHistoryById(String id) {
-        String mysqlFind = "SELECT movies.name,movies.image_url,movies.actor,histories.progress,histories.history_id " +
-                "FROM histories,movies WHERE  histories.movie_id=movies.movie_id";
+    @Override
+    public long historyNumber(int id){
+        String mysqlNumber="SELECT count(*) FROM histories,movies WHERE " +
+                "histories.movie_id=movies.movie_id AND histories.user_id=?";
         try {
-            return queryRunner.query(mysqlFind, new BeanListHandler<ShowHistory>(ShowHistory.class), id);
+            return (long)queryRunner.query(mysqlNumber,new ScalarHandler<>(),id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return 0;
+        }
+    }
+
+
+    /**
+     * create by: sky
+     * create time: 8:48 2020/9/15
+     *
+     * @Param: id
+     * @Param: page :当前页数
+     * @Param: row :一页展示的行数
+     * @return java.util.List<java.lang.Object>
+     */
+    @Override
+    public List<ShowHistory> historyList(int id,int page,int row) {
+        String mysqlFind = "SELECT movies.type,movies.name,movies.image_url,movies.actor,histories.progress,histories.history_id " +
+                "FROM histories,movies WHERE  histories.movie_id=movies.movie_id AND histories.user_id=? LIMIT ?,?";
+        int number=(page-1)*row;
+        try {
+            return queryRunner.query(mysqlFind, new BeanListHandler<ShowHistory>(ShowHistory.class), id,number,row);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
         }
     }
+
+    /**
+     *表的增删改查
+     */
+
 
     /**
      * create by: sky
@@ -61,8 +91,7 @@ public class HistoryDaoImpl implements MovieDao {
      * @Param: histories
      */
     @Override
-    public int movieAdd(Object o) {
-        Histories histories=(Histories)o;
+    public int movieAdd(Histories histories) {
         String mysqlAdd = "INSERT INTO histories(user_id,movie_id,progress) VALUES (?,?,?)";
         try {
             return queryRunner.update(mysqlAdd, histories.getUser_id(), histories.getMovie_id(), histories.getProgress());
@@ -100,9 +129,8 @@ public class HistoryDaoImpl implements MovieDao {
      * @return int
      */
     @Override
-    public int movieUpdate(Object o){
+    public int movieUpdate(Histories histories){
         String mysqlUpdate="UPDATE histories SET user_id=?,movie_id=?,progress=? WHERE history_id=?";
-        Histories histories=(Histories)o;
         try {
             return queryRunner.update(mysqlUpdate, histories.getUser_id(),histories.getMovie_id()
                     ,histories.getProgress(),histories.getHistory_id());
@@ -121,10 +149,10 @@ public class HistoryDaoImpl implements MovieDao {
      * @return pojo.Histories
      */
     @Override
-    public Object movieFindById(int id){
+    public Histories movieFindById(int id){
         String mysqlFind="SELECT * FROM histories WHERE history_id=?";
         try {
-            return queryRunner.query(mysqlFind,new BeanHandler<Object>(Histories.class),id);
+            return queryRunner.query(mysqlFind,new BeanHandler<Histories>(Histories.class),id);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
@@ -159,11 +187,11 @@ public class HistoryDaoImpl implements MovieDao {
      * @return java.util.List<pojo.Histories>
      */
     @Override
-    public List<Object> movieList(int page,int row){
+    public List<Histories> movieList(int page,int row){
         String mysqlList="SELECT * FROM histories LIMIT ?,?";
         int number=(page-1)*row;
         try {
-            return queryRunner.query(mysqlList,new BeanListHandler<Object>(Histories.class), number,row);
+            return queryRunner.query(mysqlList,new BeanListHandler<Histories>(Histories.class), number,row);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
