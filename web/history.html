@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览历史</title>
+    <script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="static/js/history.js"></script>
+    <script>$(document).ready(doload())</script>
+</head>
+<body>
+<input type="button" value="全选" onclick="doChooseAll()">
+<input type="button" value="反选" onclick="doChooseReverse()">
+<input type="button" value="删除" onclick="doDelete()">
+<input type="button" value="清空" onclick="doEmpty()">
+<p></p>
+<table border="2px" id="history">
+    <thead>
+    <tr>
+        <td>选择</td>
+        <td>电影类型</td>
+        <td>电影名</td>
+        <td>电影图片</td>
+        <td>人员</td>
+        <td>观看时间</td>
+        <td>全部删除</td>
+    </tr>
+    </thead>
+    <tbody id="historyBody">
+
+    </tbody>
+</table>
+</body>
+</html>

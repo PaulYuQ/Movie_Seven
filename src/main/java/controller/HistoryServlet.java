@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Author Miss kun
- * @Date 2020/9/12 15:23
- * @Version 1.0
+ * @author ：sky
+ * @date ：Created in 2020/9/14 14:26
+ * @version: 1.0
  */
-@WebServlet(name = "MovieServlet",urlPatterns = {"*.do"})
-public class MovieServlet extends HttpServlet {
+@WebServlet(name = "HistorysServlet")
+public class HistoryServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
-
+        this.doGet(request, response);
     }
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
