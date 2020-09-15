@@ -33,3 +33,9 @@ a:hover{
     font-size: 17px;
     color: #5FB3F6;
 }
+.a_log{
+    display: block;
+    text-align: right;
+    font-size: 17px;
+    color: #000000;
+}

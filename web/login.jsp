@@ -28,7 +28,7 @@
 <div class="container">
     <div  class="row  row-center" >
         <div class="col-center">
-            <form action="login.do" method="post">
+            <form action="${pageContext.request.contextPath}/login.users" method="post">
                 <div style=" padding: 28px;border-radius: 8px;border-color: #c059a3;border-width: 2px  ">
                     <div style="height: 80px;">
                         <h3 style="text-align: center;color: #000000; font-size: 35px;">会员登录</h3>
@@ -48,8 +48,8 @@
                     <div class="submit " style="margin-top: 15px">
                         <button style="border-radius:10px; background-color: #75a0ff;color: white" onclick="login()" class="btn btn-lg  btn-login btn-block">登录</button>
                     </div>
-                    <div class="form-group">
-                        <a class="a_reg" href="register.jsp">还未拥有账号？注册</a>
+                    <div class="form-group" style="margin-top: 10px">
+                        <a class="a_reg" href="${pageContext.request.contextPath}/register.jsp">还未拥有账号？注册</a>
                     </div>
                 </div>
             </form>

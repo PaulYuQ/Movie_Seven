@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface UserDao {
     boolean dologin(String name,String pwd);
-
+    boolean doRegister(String name,String pwd,String phone);
 }
 

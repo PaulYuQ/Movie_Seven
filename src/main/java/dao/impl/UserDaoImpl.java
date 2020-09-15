@@ -41,4 +41,17 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
+
+    @Override
+    public boolean doRegister(String name, String pwd, String phone) {
+        int res = 0;
+        String sql = "insert into users(name,password,phone) values(?,?,?)";
+        try {
+            res = qr.update(sql,new Object[]{name,pwd,phone});
+            if (res>0)return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
