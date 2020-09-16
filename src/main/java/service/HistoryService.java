@@ -24,6 +24,15 @@ public interface HistoryService {
 
     /**
      * create by: sky
+     * create time: 15:45 2020/9/16
+     * 通过用户id进行删除操作
+     * @Param: id
+     * @return int
+     */
+    public int historyDelete(int id);
+
+    /**
+     * create by: sky
      * create time: 8:53 2020/9/15
      * 查询结果分页展示
      * @Param: id 用户id
@@ -50,7 +59,7 @@ public interface HistoryService {
      * create by: sky
      * create time: 20:21 2020/9/14
      * 表的删除
-     * @Param: id 删除时根据id删除
+     * @Param: id 删除时根据历史记录id删除
      * @return int
      */
     public int movieDelete(int id);

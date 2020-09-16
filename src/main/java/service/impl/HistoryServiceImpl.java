@@ -25,6 +25,11 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     @Override
+    public int historyDelete(int id) {
+        return movieDao.historyDelete(id);
+    }
+
+    @Override
     public List<ShowHistory> historyList(int id, int page, int row) {
         return movieDao.historyList(id,page,row);
     }

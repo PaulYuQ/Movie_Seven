@@ -78,6 +78,24 @@ public class HistoryDaoImpl implements HistoryDao {
     }
 
     /**
+     * create by: sky
+     * create time: 15:42 2020/9/16
+     * 通过用户id删除这个人的所有历史记录
+     * 返回值大于0证明增加成功
+     * @Param: id  用户id
+     * @return int
+     */
+    @Override
+    public int historyDelete(int id){
+        String mysqlDelete="DELETE FROM histories WHERE user_id=?";
+        try {
+            return queryRunner.update(mysqlDelete,id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return 0;
+        }
+    }
+    /**
      *表的增删改查
      */
 
@@ -113,7 +131,7 @@ public class HistoryDaoImpl implements HistoryDao {
     public int movieDelete(int id){
         String mysqlDelete="DELETE FROM histories WHERE history_id=?";
         try {
-            return queryRunner.update(mysqlDelete,new Object[]{id});
+            return queryRunner.update(mysqlDelete,id);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return 0;
