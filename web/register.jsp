@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>注册页面</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/me.css">
     <style>
@@ -60,11 +60,9 @@
         </div>
     </div>
 </div>
-</div>
 
-
-<script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/jquery-3.2.1.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     function changecode(){
         //得到图片元素
