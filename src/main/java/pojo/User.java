@@ -8,7 +8,7 @@ package pojo;
  */
 public class User{
     //自增
-    private int id;
+    private int user_id;
     private String name;
     private String password;
     private String phone;
@@ -23,11 +23,11 @@ public class User{
     }
 
     public int getId() {
-        return id;
+        return user_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.user_id = id;
     }
 
     public String getName() {
@@ -57,7 +57,7 @@ public class User{
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + user_id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +

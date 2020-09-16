@@ -52,7 +52,7 @@
                             Java <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">jmeter</a></li>
+                            <li><a href="${pageContext.request.contextPath}/collection.jsp?id=${user.getId}">jmeter</a></li>
                             <li><a href="#">EJB</a></li>
                             <li><a href="#">Jasper Report</a></li>
                             <li class="divider"></li>

@@ -2,6 +2,7 @@ package controller.login;
 
 
 import factory.BeanFactory;
+import pojo.User;
 import service.UserLoginService;
 import service.impl.UserLoginServiceImpl;
 
@@ -28,7 +29,9 @@ public class UserLoginServlet extends HttpServlet {
         String code=req.getParameter("code");
         if (userLoginService.login(name,pwd)){
             if (code.equalsIgnoreCase(scode)){
-                resp.sendRedirect("welcome.jsp");
+                User user = userLoginService.findByName(name);
+                req.getSession().setAttribute("user",user);
+                resp.sendRedirect("index.jsp");
             }else {
                 req.setAttribute("msg","验证码错误！");
                 req.getRequestDispatcher("login.jsp").forward(req, resp);
