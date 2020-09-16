@@ -18,8 +18,8 @@ public class TestJunit{
     //测试工厂类
     @Test
     public void testFactory(){
-        HistoryServiceImpl userService = BeanFactory.getInstance("UserService", HistoryServiceImpl.class);
-        HistoryDaoImpl userDao = BeanFactory.getInstance("UserDao", HistoryDaoImpl.class);
+        HistoryServiceImpl userService = BeanFactory.getInstance("HistoryService", HistoryServiceImpl.class);
+        HistoryDaoImpl userDao = BeanFactory.getInstance("HistoryDao", HistoryDaoImpl.class);
         System.out.println(userService);
         System.out.println(userDao);
     }
