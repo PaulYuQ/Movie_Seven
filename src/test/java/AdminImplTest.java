@@ -20,7 +20,7 @@ public class AdminImplTest {
     @Test
     public void testFindAdmin(){
         AdminDaoImpl adminDao=new AdminDaoImpl();
-        Admin admin = adminDao.findAdminById(1);
+        Admin admin = adminDao.findAdminById(16);
         System.out.println(admin);
     }
     @Test
@@ -40,6 +40,11 @@ public class AdminImplTest {
     @Test
     public void testInsertAdmin(){
         AdminDaoImpl adminDao=new AdminDaoImpl();
+        for(int i=20;i>0;i--)
+        {
+            System.out.println(adminDao.addAdmin(new Admin("df"+i,"123456"+i,"16352147890")));
+
+        }
         System.out.println(adminDao.addAdmin(new Admin("df","123456","16352147890")));
         System.out.println(adminDao.addAdmin(new Admin("lsx","123456")));
 

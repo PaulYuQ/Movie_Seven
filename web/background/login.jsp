@@ -1,4 +1,5 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+
 <html lang="en">
 <head>
 <!-- Required meta tags -->
@@ -37,7 +38,7 @@
 		<h1>登录</h1>
 		
 		<!-- Loging form -->
-			  <form action="login.admin" method="post">
+			  <form action="login.admin" method="post" >
 				<div class="form-group">
 				  <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="用户名">
 				  
@@ -67,7 +68,10 @@
 	</div>
 	</div>
 </div>
+<script>
 
+
+</script>
 
 
 
