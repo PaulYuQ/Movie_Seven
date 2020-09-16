@@ -16,19 +16,20 @@ public class User{
     public User() {
     }
 
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
     public User(String name, String password, String phone) {
         this.name = name;
         this.password = password;
         this.phone = phone;
     }
 
-    public int getId() {
-        return user_id;
-    }
-
-    public void setId(int id) {
-        this.user_id = id;
-    }
 
     public String getName() {
         return name;

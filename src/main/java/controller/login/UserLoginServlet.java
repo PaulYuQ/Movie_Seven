@@ -30,6 +30,7 @@ public class UserLoginServlet extends HttpServlet {
         if (userLoginService.login(name,pwd)){
             if (code.equalsIgnoreCase(scode)){
                 User user = userLoginService.findByName(name);
+                System.out.println(user.toString());
                 req.getSession().setAttribute("user",user);
                 resp.sendRedirect("index.jsp");
             }else {
