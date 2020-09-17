@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8">
 <title>HTML注册登录页面模板</title>
-<link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/users.css">
+<link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/users.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
             <div class="form sign-in">
                 <h2>欢迎回来</h2>
                 <label>
-                    <span>用户名</span>
+                    <span >用户名</span>
                     <input type="text" name="name" />
                 </label>
                 <label>
@@ -67,14 +67,17 @@
                         <span>电话号码</span>
                         <input type="tel" name="phone"/>
                     </label>
+                    <label>
+                        <span style="color: red">${msg1}</span>
+                    </label>
                     <button type="submit" class="submit">注 册</button>
                 </div>
             </div>
         </form>
     </div>
 
-    <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/script.js"></script>
+    <script src="static/js/jquery-3.2.1.js"></script>
+    <script src="static/js/script.js"></script>
     <script type="text/javascript">
         function changecode(){
             //得到图片元素

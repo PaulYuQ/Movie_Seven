@@ -33,14 +33,14 @@ public class UserLoginServlet extends HttpServlet {
             if (code.equalsIgnoreCase(scode)){
                 User user = userLoginService.findByName(name);
                 req.getSession().setAttribute("user",user);
-                resp.sendRedirect("https://kuyun.tv/");
+                resp.sendRedirect("index.jsp");
             }else {
                 req.setAttribute("msg","验证码错误！");
-                req.getRequestDispatcher("login.jsp").forward(req, resp);
+                req.getRequestDispatcher("loginAndRegister.jsp").forward(req, resp);
             }
         }else {
             req.setAttribute("msg","用户名或密码错误");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("loginAndRegister.jsp").forward(req, resp);
         }
     }
     public void doRegister(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
@@ -57,13 +57,13 @@ public class UserLoginServlet extends HttpServlet {
             if (pwd.equals(pwd1)){
                 if (userLoginService.findByName(name)==null){
                     userLoginService.addUser(name,pwd,phone);
-                    out.print("<script>alert('注册成功'); window.location='/TEST/index.jsp' </script>");
+                    out.print("<script>alert('注册成功'); window.location='loginAndRegister.jsp' </script>");
                 } else{
-                resp.getWriter().print("<script>alert('用户名已被占用');window.location='register.jsp'</script>");
+                resp.getWriter().print("<script>alert('用户名已被占用');window.location='loginAndRegister.jsp'</script>");
             }
         }else if (!pwd.equals(pwd1)){
-            req.setAttribute("msg","两次输入的密码不一致");
-            req.getRequestDispatcher("register.jsp").forward(req,resp);
+            req.setAttribute("msg1","两次输入的密码不一致");
+            req.getRequestDispatcher("loginAndRegister.jsp").forward(req,resp);
         }
     }
 
@@ -73,7 +73,7 @@ public class UserLoginServlet extends HttpServlet {
     }
     public void doLogout(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
             req.getSession().removeAttribute("user");
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("loginAndRegister.jsp");
     }
     public void doUpdate(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
         User user = userLoginService.findByName("name");
