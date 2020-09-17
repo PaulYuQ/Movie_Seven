@@ -43,6 +43,11 @@
           <element id="library" level="project" name="Maven: commons-dbutils:commons-dbutils:1.7" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.73" />
         </element>
+        <element id="directory" name="WEB-INF">
+          <element id="directory" name="lib">
+            <element id="library" level="project" name="ValidateCode (2)" />
+          </element>
+        </element>
       </element>
       <element id="javaee-facet-resources" facet="seven_movie - 副本/web/Web" />
     </root>
