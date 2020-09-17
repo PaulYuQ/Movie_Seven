@@ -13,6 +13,8 @@ public interface UserDao {
     boolean dologin(String name,String pwd);
     boolean addUser(String name,String pwd,String phone);
     User findByName(String name);
-
+    int updateUser(User user);
+    User findById(int id);
+    int deleteByName(String name);
 }
 

@@ -11,7 +11,7 @@
     <title>个人中心页面</title>
 
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/me.css">
+    <link rel="stylesheet" href="/static/css/users.css">
 </head>
 <body>
 <div class="container">

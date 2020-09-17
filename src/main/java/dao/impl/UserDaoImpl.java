@@ -55,6 +55,41 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public int updateUser(User user) {
+        String sql = "update users set password=?,phone=? where name =?";
+        try {
+            return qr.update(sql,new Object[]{user.getPassword(),user.getPhone(),user.getName()});
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public User findById(int id) {
+        String sql = "select *from users where name =?";
+        User user = null;
+        try{
+            user = qr.query(sql,new BeanHandler<>(User.class),id);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public int deleteByName(String name) {
+        String sql = "delete from users where name=?";
+        try {
+            return qr.update(sql,new Object[]{name});
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
     public boolean addUser(String name, String pwd, String phone) {
         int res = 0;
         String sql = "insert into users(name,password,phone) values(?,?,?)";
@@ -66,4 +101,5 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
+
 }

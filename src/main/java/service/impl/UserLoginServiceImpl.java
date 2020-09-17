@@ -24,4 +24,20 @@ public class UserLoginServiceImpl implements UserLoginService {
     public User findByName(String name) {
         return userDao.findByName(name);
     }
+
+    @Override
+    public int updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+    @Override
+    public User findById(int id) {
+        return userDao.findById(id);
+    }
+
+    @Override
+    public int deleteByName(String name) {
+
+        return userDao.deleteByName(name);
+    }
 }

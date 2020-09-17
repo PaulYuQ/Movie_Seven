@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet(name = "UserLoginServlet",urlPatterns = {"/login.users","/register.users"})
+@WebServlet(name = "UserLoginServlet",urlPatterns = {"*.users"})
 public class UserLoginServlet extends HttpServlet {
     private UserLoginService userLoginService;
     public UserLoginServlet(){
@@ -30,7 +30,6 @@ public class UserLoginServlet extends HttpServlet {
         if (userLoginService.login(name,pwd)){
             if (code.equalsIgnoreCase(scode)){
                 User user = userLoginService.findByName(name);
-                System.out.println(user.toString());
                 req.getSession().setAttribute("user",user);
                 resp.sendRedirect("index.jsp");
             }else {
@@ -73,6 +72,28 @@ public class UserLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.doGet(req,resp);
     }
+    public void doLogout(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+            req.getSession().removeAttribute("user");
+            resp.sendRedirect("index.jsp");
+    }
+    public void doUpdate(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+        User user = userLoginService.findByName("name");
+        req.setAttribute("user",user);
+        req.getRequestDispatcher("info.jsp").forward(req,resp);
+    }
+    public void doModify(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        resp.setHeader("Content-Type", "text/html;charset=utf-8");
+        User user;
+        String name = req.getParameter("name");
+        String pwd = req.getParameter("password");
+        String phone = req.getParameter("phone");
+        user=new User(name,pwd,phone);
+        if (userLoginService.updateUser(user)>0){
+            req.getSession().setAttribute("user",user);
+            resp.getWriter().print("<script>alert('修改成功'); window.location='update.users' </script>");
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -81,6 +102,12 @@ public class UserLoginServlet extends HttpServlet {
             doLogin(req,resp);
         }else if (path.contains("register.users")){
             doRegister(req,resp);
+        }else if (path.contains("logout.users")){
+            doLogout(req,resp);
+        }else if (path.contains("update.users")){
+            doUpdate(req,resp);
+        }else if (path.contains("modify.users")){
+            doModify(req,resp);
         }
     }
 }

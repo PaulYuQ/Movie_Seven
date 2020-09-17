@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>注册页面</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/me.css">
+    <link rel="stylesheet" href="/static/css/users.css">
     <style>
         .row-center{
             text-align:center;
@@ -50,7 +50,7 @@
                     </div>
                     <span style="color: red">${msg}</span>
                     <div class="submit " style="margin-top: 15px">
-                        <button style="border-radius:10px; background-color: #75a0ff;color: white" onclick="login()" class="btn btn-lg  btn-login btn-block">注册</button>
+                        <button style="border-radius:10px; background-color: #75a0ff;color: white" onclick="login()" class="btn btn-lg  btn-block">注册</button>
                     </div>
                     <div class="form-group" style="margin-top: 10px">
                         <a class="a_log" href="${pageContext.request.contextPath}/login.jsp">去登录</a>

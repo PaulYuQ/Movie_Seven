@@ -39,3 +39,16 @@ a:hover{
     font-size: 17px;
     color: #000000;
 }
+.row-info{
+    margin-top: 200px;
+    text-align: center;
+}
+.info-center{
+    display:inline-block;
+    float:none;
+    text-align:left;
+    width: 1000px;
+}
+.checked-2{
+    margin-top: 50px;
+}
