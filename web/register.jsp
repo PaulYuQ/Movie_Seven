@@ -29,7 +29,7 @@
             <form action="${pageContext.request.contextPath}/register.users" method="post">
                 <div style=" padding: 28px;border-radius: 8px;border-color: #c059a3;border-width: 2px  ">
                     <div style="height: 80px;">
-                        <h3 style="text-align: center;color: #000000; font-size: 35px;">会员注册</h3>
+                        <h3 style="text-align: center;color: #000000; font-size: 30px;">007影院会员注册</h3>
                     </div>
                     <div  class="form-group">
                         <input name="name" class="form-control " placeholder="请输入您的用户名">

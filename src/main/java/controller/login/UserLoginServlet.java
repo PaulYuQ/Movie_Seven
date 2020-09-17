@@ -1,6 +1,8 @@
 package controller.login;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import factory.BeanFactory;
 import pojo.User;
 import service.UserLoginService;
@@ -31,7 +33,7 @@ public class UserLoginServlet extends HttpServlet {
             if (code.equalsIgnoreCase(scode)){
                 User user = userLoginService.findByName(name);
                 req.getSession().setAttribute("user",user);
-                resp.sendRedirect("index.jsp");
+                resp.sendRedirect("https://kuyun.tv/");
             }else {
                 req.setAttribute("msg","验证码错误！");
                 req.getRequestDispatcher("login.jsp").forward(req, resp);
@@ -49,21 +51,18 @@ public class UserLoginServlet extends HttpServlet {
         String pwd = req.getParameter("password");
         String pwd1 = req.getParameter("password1");
         String phone = req.getParameter("phone");
-        String scode=(String)req.getSession().getAttribute("scode");
+    /*    String scode=(String)req.getSession().getAttribute("scode");
 
-        String code=req.getParameter("code");
-            if (pwd.equals(pwd1)&&code.equalsIgnoreCase(scode)){
+        String code=req.getParameter("code");*/
+            if (pwd.equals(pwd1)){
                 if (userLoginService.findByName(name)==null){
                     userLoginService.addUser(name,pwd,phone);
-                    out.print("<script>alert('注册成功'); window.location='register.jsp' </script>");
+                    out.print("<script>alert('注册成功'); window.location='/TEST/index.jsp' </script>");
                 } else{
                 resp.getWriter().print("<script>alert('用户名已被占用');window.location='register.jsp'</script>");
             }
         }else if (!pwd.equals(pwd1)){
             req.setAttribute("msg","两次输入的密码不一致");
-            req.getRequestDispatcher("register.jsp").forward(req,resp);
-        }else if (!code.equalsIgnoreCase(scode)){
-            req.setAttribute("msg","验证码错误");
             req.getRequestDispatcher("register.jsp").forward(req,resp);
         }
     }
@@ -91,8 +90,20 @@ public class UserLoginServlet extends HttpServlet {
         user=new User(name,pwd,phone);
         if (userLoginService.updateUser(user)>0){
             req.getSession().setAttribute("user",user);
-            resp.getWriter().print("<script>alert('修改成功'); window.location='update.users' </script>");
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("result",1);
+            resp.getWriter().print(jsonObject.toJSONString());
         }
+    }
+    public void doDelete(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+       String name = req.getParameter("name");
+        int res = userLoginService.deleteByName(name);
+        if (res>0){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("result",res);
+            resp.getWriter().print(jsonObject.toJSONString());
+        }
+
     }
 
     @Override
@@ -108,6 +119,8 @@ public class UserLoginServlet extends HttpServlet {
             doUpdate(req,resp);
         }else if (path.contains("modify.users")){
             doModify(req,resp);
+        }else if (path.contains("delete.users")){
+            doDelete(req,resp);
         }
     }
 }
