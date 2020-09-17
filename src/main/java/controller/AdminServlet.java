@@ -67,7 +67,6 @@ public class AdminServlet extends HttpServlet {
     private void queryPage(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String page=req.getParameter("page");
         String pageAmount=req.getParameter("pageAmount");
-        System.out.println(page+"|"+pageAmount);
         List<Admin> allAdmin = adminService.findPageAdmin(Integer.parseInt(page),Integer.parseInt(pageAmount));
         if(allAdmin!=null) {
             JSONArray jsonArray=JSONArray.parseArray(JSON.toJSONString(allAdmin));
@@ -142,7 +141,7 @@ public class AdminServlet extends HttpServlet {
         String id=req.getParameter("id");
         int i = adminService.deleteAdmin(Integer.parseInt(id));
         if(i==1){
-            req.getRequestDispatcher("queryall.admin").forward(req,resp);
+            resp.getWriter().print("true");
         }else {
             resp.getWriter().print("false");
         }

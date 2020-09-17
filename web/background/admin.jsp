@@ -11,7 +11,7 @@
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+<%--  <link href="css/mdb.min.css" rel="stylesheet">--%>
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/pagination.css">
@@ -23,6 +23,17 @@
     img{
 
     }
+    .table>tbody>tr>td{
+      border:0px;
+    }
+    th{
+      font-weight: normal;
+    }
+    .navbar-collapse{
+      background: white;
+    }
+
+
 
     .map-container{
 overflow:hidden;
@@ -169,21 +180,21 @@ position:absolute;
       </div>
 
       <!-- 用户表体 -->
-      <div class="card mb-4 wow fadeIn">
+      <div class="card mb-4 wow fadeIn" >
 
 
         <table class="table table-hover" id="table1"  >
           <thead class="blue-grey lighten-4">
-          <tr >
-            <th style="font-weight: bold">ID</th>
-            <th style="font-weight: bold">用户名</th>
-            <th style="font-weight: bold">密码</th>
-            <th style="font-weight: bold">电话号码</th>
-            <th style="font-weight: bold">权限</th>
+          <tr style="background: #007bff">
+            <th style="color: white">ID</th>
+            <th style="color: white">用户名</th>
+            <th style="color: white">密码</th>
+            <th style="color: white">电话号码</th>
+            <th style="color: white">权限</th>
             <%
               if(request.getSession().getAttribute("control")!=null&&request.getSession().getAttribute("control").equals(1))
               {
-               out.println("<th style=\"font-weight: bold\">操作</th>");}
+               out.println("<th style=\"color: white\">操作</th>");}
             %>
 
           </tr>
@@ -299,7 +310,7 @@ position:absolute;
   <script type="text/javascript">
     // Animations initialization
 
-
+    let pageAmount=7;
     new WOW().init();
 
     var s=${control};
@@ -320,7 +331,7 @@ position:absolute;
          element: '#pages', // 元素
          type: 1, // 样式类型，可选[1,2]
          pageIndex: 1, // 初始页码
-         pageSize: 6, // 每页数量
+         pageSize: pageAmount, // 每页数量
          pageCount: 5, // 页码数量
          total: data, // 数据总条数
          jumper: false, // 显示输入框跳转
@@ -343,7 +354,7 @@ position:absolute;
 
     function getPage(num) {
       $("#search").val("");
-      $.post("querypage.admin",{"page":num,"pageAmount":6},function (data) {
+      $.post("querypage.admin",{"page":num,"pageAmount":pageAmount},function (data) {
         show(data)
       },"json")
     }
@@ -356,7 +367,7 @@ position:absolute;
       $.post("insert.admin",da,function (data) {
         if(data=='true') {
           alert("添加成功");
-          getTableJson();
+         getEndpage();
         }
         else alert("添加失败");
       });
@@ -386,8 +397,8 @@ position:absolute;
           element: '#pages', // 元素
           type: 1, // 样式类型，可选[1,2]
           pageIndex: 1, // 初始页码
-          pageSize: 6, // 每页数量
-          pageCount: 5, // 页码数量
+          pageSize: 8, // 每页数量
+          pageCount: pageAmount, // 页码数量
           total: 1, // 数据总条数
           jumper: false, // 显示输入框跳转
           singlePageHide: false, // 只有一页时不显示分页
@@ -408,8 +419,8 @@ position:absolute;
       if (window.confirm("确认删除该行数据吗?")) {
         $.post("delete.admin",{"id":id},function (data) {
           if(!data){alert("删除失败");return;}
-          show(data)
-        },"json")
+          getEndpage();
+        });
       }
 
     }
