@@ -19,8 +19,13 @@ public class AdminServiceImpl implements AdminService {
         adminDao= BeanFactory.getInstance("AdminDao",AdminDao.class);
     }
     @Override
-    public List<Admin> findAllAdmin() {
-        return adminDao.findAllAdmin();
+    public int findAllCount() {
+        return adminDao.findAllCount();
+    }
+
+    @Override
+    public List<Admin> findPageAdmin(int page, int pageAmount) {
+        return adminDao.findPageAdmin(page,pageAmount);
     }
 
     @Override

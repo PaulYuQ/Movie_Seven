@@ -4,9 +4,11 @@ import dao.AdminDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import pojo.Admin;
 import util.DBUtil;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,8 +27,21 @@ public class AdminDaoImpl implements AdminDao {
 
 
     @Override
-    public List<Admin> findAllAdmin() {
-        String sql="select admin_id as id,name,password,phone,control from admins";
+    public int  findAllCount() {
+
+        String sql="select count(*) from admins";
+        try {
+          Long count=(Long) qr.query(sql, new ScalarHandler());
+          return (int)(count+0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Admin> findPageAdmin(int page, int pageAmount) {
+        String sql="select admin_id as id,name,password,phone,control from admins limit "+(page-1)*pageAmount+","+pageAmount;
         List<Admin> adminList = null;
         try {
             adminList = qr.query(sql, new BeanListHandler<Admin>(Admin.class));

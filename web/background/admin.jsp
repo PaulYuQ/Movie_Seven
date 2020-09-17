@@ -14,6 +14,8 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/pagination.css">
+
 
 
 
@@ -143,6 +145,13 @@ position:absolute;
           <h4 class="mb-2 mb-sm-0 pt-1">
             <a href="#" target="_blank">管理员表</a>
           </h4>
+            <button class="btn btn-primary"  onclick="getEndpage()">显示全部管理员</button>
+
+            <%
+                if(request.getSession().getAttribute("control")!=null&&request.getSession().getAttribute("control").equals(1))
+                {
+                    out.println("          <button type=\"button\" class=\"btn btn-primary\" style=\"margin-left: 30px;\" data-toggle=\"modal\" data-target=\"#myModal\">增加管理员</button>");}
+            %>
 
 
 
@@ -163,7 +172,7 @@ position:absolute;
       <div class="card mb-4 wow fadeIn">
 
 
-        <table class="table table-hover" id="table1" >
+        <table class="table table-hover" id="table1"  >
           <thead class="blue-grey lighten-4">
           <tr >
             <th style="font-weight: bold">ID</th>
@@ -187,21 +196,14 @@ position:absolute;
         </table>
 
 
-        <div align="center" style="padding-bottom: 20px">
-          <button class="btn btn-primary"  onclick="getTableJson()">显示全部管理员</button>
-
-          <%
-            if(request.getSession().getAttribute("control")!=null&&request.getSession().getAttribute("control").equals(1))
-            {
-              out.println("          <button type=\"button\" class=\"btn btn-primary\" style=\"margin-left: 30px;\" data-toggle=\"modal\" data-target=\"#myModal\">增加管理员</button>");}
-          %>
 
 
 
 
+            <div id="pages">
 
+            </div>
 
-        </div>
 
       </div>
     </div>
@@ -292,9 +294,12 @@ position:absolute;
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!--  &lt;!&ndash; MDB core JavaScript &ndash;&gt;-->
   <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script src="js/pagination.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization
+
+
     new WOW().init();
 
     var s=${control};
@@ -307,14 +312,43 @@ position:absolute;
         window.location.replace("login.jsp");
       }
     }
+  let page;
+
+    function getEndpage() {
+      $.post("queryallcount.admin",{},function (data) {
+       page=new Pagination({
+         element: '#pages', // 元素
+         type: 1, // 样式类型，可选[1,2]
+         pageIndex: 1, // 初始页码
+         pageSize: 6, // 每页数量
+         pageCount: 5, // 页码数量
+         total: data, // 数据总条数
+         jumper: false, // 显示输入框跳转
+         singlePageHide: false, // 只有一页时不显示分页
+         prevText: '上一页', // 上一页文字
+         nextText: '下一页', // 下一页文字
+         disabled: true, // 是否显示禁用
+         currentChange: function(index) {
+           // 页码改变时回调
+           console.log(index);
+           getPage(index);
+         }
+       });
+        getPage(1);
+
+      })
+    }
 
 
-    function getTableJson() {
+
+    function getPage(num) {
       $("#search").val("");
-      $.post("queryall.admin",{},function (data) {
-       show(data)
+      $.post("querypage.admin",{"page":num,"pageAmount":6},function (data) {
+        show(data)
       },"json")
     }
+
+
 
     function addAdmin() {
       var da={"name":$("#txt_name").val(),"password":$("#txt_password").val(),"phone":$("#txt_phone").val()};
@@ -325,7 +359,6 @@ position:absolute;
           getTableJson();
         }
         else alert("添加失败");
-
       });
     }
 
@@ -334,7 +367,7 @@ position:absolute;
       $.post("update.admin",da,function (data) {
         if(data=='true') {
           alert("修改成功");
-          getTableJson();
+          getEndpage();
         }
         else alert("修改失败");
 
@@ -349,9 +382,27 @@ position:absolute;
       $.post("queryone.admin",{"myid":num},function (data) {
         console.log(data);
         show(data);
+        page=new Pagination({
+          element: '#pages', // 元素
+          type: 1, // 样式类型，可选[1,2]
+          pageIndex: 1, // 初始页码
+          pageSize: 6, // 每页数量
+          pageCount: 5, // 页码数量
+          total: 1, // 数据总条数
+          jumper: false, // 显示输入框跳转
+          singlePageHide: false, // 只有一页时不显示分页
+          prevText: '上一页', // 上一页文字
+          nextText: '下一页', // 下一页文字
+          disabled: true, // 是否显示禁用
+          currentChange: function(index) {
+            // 页码改变时回调
+            console.log(index);
+            getPage(index);
+          }
+        });
     },"json");}
 
-    $(document).ready(getTableJson());
+
 
     function doDel(id,element) {
       if (window.confirm("确认删除该行数据吗?")) {
@@ -389,10 +440,10 @@ position:absolute;
                 + "<td>" + obj.phone + "</td>"
                 + "<td>" + obj.control + "</td>" ;
         if(s==1){
-          str=str+"<td> <a href=\"javascript:void(0);\" onclick='doDel("+ obj.id + ",this)'> <img src=\"img/svg/delete.svg\" style=\"width: 30px;height: 30px\"></a>" +
+          str=str+"<td> <a href=\"javascript:void(0);\" onclick='doDel("+ obj.id + ",this)'> <img src=\"img/svg/delete.svg\" style=\"width: 30px;height: 30px;margin-right: 20px\"></a>" +
                 "<a href=\"javascript:void(0);\" value='编辑' " +
                   "onclick='doEdit("
-                + obj.id +",this)'> <img src=\"img/svg/xiugai.svg\" style=\"width: 30px;height: 30px;margin-right: 20px\"></a>" +
+                + obj.id +",this)'> <img src=\"img/svg/xiugai.svg\" style=\"width: 30px;height: 30px;\"></a>" +
                 "</td>"
                 ;
         }
@@ -404,6 +455,9 @@ position:absolute;
       $("#tbody").append(str);
     }
 
+
+
+    $(document).ready(getEndpage());
 
   </script>
 

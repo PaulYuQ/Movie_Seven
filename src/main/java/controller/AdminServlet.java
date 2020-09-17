@@ -2,7 +2,6 @@ package controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import factory.BeanFactory;
 import pojo.Admin;
 import service.AdminService;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
@@ -44,37 +42,66 @@ public class AdminServlet extends HttpServlet {
             register(req, resp);
         } else if (serlvetPath.contains("update.admin")) {
             update(req, resp);
-        } else if (serlvetPath.contains("modify.admin")) {
-            modifySuccess(req, resp);
         } else if (serlvetPath.contains("delete.admin")) {
             delete(req, resp);
-        } else if (serlvetPath.contains("queryall.admin")) {
-            queryall(req, resp);
+            //查询总行数
+        } else if (serlvetPath.contains("queryallcount.admin")) {
+            queryAllCount(req, resp);
         } else if (serlvetPath.contains("login.admin")) {
             login(req, resp);
+            //根据ID查询某个用户
         } else if (serlvetPath.contains("queryone.admin")) {
-            queryone(req, resp);
+            queryOne(req, resp);
+            //查询某页的集合
+        }else if (serlvetPath.contains("querypage.admin")) {
+            queryPage(req, resp);
         }
     }
 
-    private void queryone(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    /**
+     * 查询某页的内容
+     * @param req
+     * @param resp
+     * @throws IOException
+     */
+    private void queryPage(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String page=req.getParameter("page");
+        String pageAmount=req.getParameter("pageAmount");
+        System.out.println(page+"|"+pageAmount);
+        List<Admin> allAdmin = adminService.findPageAdmin(Integer.parseInt(page),Integer.parseInt(pageAmount));
+        if(allAdmin!=null) {
+            JSONArray jsonArray=JSONArray.parseArray(JSON.toJSONString(allAdmin));
+            resp.getWriter().print(jsonArray.toString());
+            System.out.println(jsonArray.toString());
+        }
+    }
+
+    /**
+     * 查询某个管理员
+     * @param req
+     * @param resp
+     * @throws IOException
+     */
+    private void queryOne(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String id=req.getParameter("myid");
         Admin admin = adminService.findAdminById(Integer.parseInt(id));
-        System.out.println(admin);
         ArrayList<Admin> admins=new ArrayList<>();
         admins.add(admin);
         if(admin!=null) {
             String s = JSON.toJSONString(admins);
-            System.out.println(s);
             resp.getWriter().print(s);
         }
     }
 
+    /**
+     * 登录使用
+     * @param req
+     * @param resp
+     */
     private void login(HttpServletRequest req, HttpServletResponse resp) {
         String name=req.getParameter("username");
         String password=req.getParameter("password");
         Admin admin=adminService.findAdminByNamePassword(name,password);
-        System.out.println(admin);
         if(admin!=null){
             try {
                 req.getSession().setAttribute("name",admin.getName());
@@ -93,15 +120,24 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
-    private void queryall(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        List<Admin> allAdmin = adminService.findAllAdmin();
-        if(allAdmin!=null) {
-            JSONArray jsonArray=JSONArray.parseArray(JSON.toJSONString(allAdmin));
-            System.out.println(jsonArray.toString());
-            resp.getWriter().print(jsonArray.toString());
-        }
+    /**
+     * 查询总页数
+     * @param req
+     * @param resp
+     * @throws IOException
+     */
+    private void queryAllCount(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+       int pages= adminService.findAllCount();
+       resp.getWriter().print(pages);
     }
 
+    /**
+     * 删除某个管理员
+     * @param req
+     * @param resp
+     * @throws IOException
+     * @throws ServletException
+     */
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String id=req.getParameter("id");
         int i = adminService.deleteAdmin(Integer.parseInt(id));
@@ -112,16 +148,17 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
-    private void modifySuccess(HttpServletRequest req, HttpServletResponse resp) {
-    }
-
+    /**
+     * 更新某个管理员
+     * @param req
+     * @param resp
+     */
     private void update(HttpServletRequest req, HttpServletResponse resp) {
         String id=req.getParameter("id");
         String name=req.getParameter("name");
         String password=req.getParameter("password");
         String phone=req.getParameter("phone");
         String control=req.getParameter("control");
-        System.out.println(id+"|"+name+"|"+password+phone+control);
         int i = adminService.updateAdmin(new Admin(Integer.parseInt(id), name, password, phone, Integer.parseInt(control)));
         if(i==1){
             try {
@@ -140,6 +177,11 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
+    /**
+     * 注册管理员
+     * @param req
+     * @param resp
+     */
     private void register(HttpServletRequest req, HttpServletResponse resp) {
         String name=req.getParameter("name");
         String password=req.getParameter("password");

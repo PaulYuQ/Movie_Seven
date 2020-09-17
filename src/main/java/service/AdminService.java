@@ -14,7 +14,13 @@ public interface AdminService {
      * 查找所有管理员
      * @return
      */
-    List<Admin> findAllAdmin();
+    int findAllCount();
+
+    /**
+     * 查找所有管理员
+     * @return
+     */
+    List<Admin> findPageAdmin(int page,int pageAmount);
 
     /**
      * 根据id查询到管理员

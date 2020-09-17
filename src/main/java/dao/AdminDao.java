@@ -11,10 +11,19 @@ import java.util.List;
  */
 public interface AdminDao {
     /**
-     * 获取所有的管理员对象
+     * 返回总行数
+     * @param
      * @return
      */
-    List<Admin> findAllAdmin();
+    int findAllCount();
+
+    /**
+     * 获取某页的管理员集合
+     * @param page：第几页
+     * @param pageAmount：一页放几个
+     * @return
+     */
+    List<Admin> findPageAdmin(int page,int pageAmount);
 
     /**
      * 根据ID查找管理员
@@ -53,6 +62,8 @@ public interface AdminDao {
      * @return
      */
     Admin findAdminByNamePassowrd(String name,String password);
+
+
 
 
 

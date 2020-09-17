@@ -13,7 +13,14 @@ public class AdminImplTest {
     @Test
     public void testFindAll(){
         AdminDaoImpl adminDao=new AdminDaoImpl();
-        List<Admin> allAdmin = adminDao.findAllAdmin();
+        int page = adminDao.findAllCount();
+        System.out.println(page);
+    }
+
+    @Test
+    public void testFindPage(){
+        AdminDaoImpl adminDao=new AdminDaoImpl();
+        List<Admin> allAdmin = adminDao.findPageAdmin(2,2);
         System.out.println(allAdmin);
     }
 
