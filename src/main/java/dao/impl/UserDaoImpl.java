@@ -4,6 +4,7 @@ import dao.UserDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import pojo.User;
 import util.DBUtil;
 
@@ -90,6 +91,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public long calCount() {
+        String sql ="select count(*) from users";
+        long res =0;
+        try {
+            res = qr.query(sql,new ScalarHandler<>());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    @Override
     public boolean addUser(String name, String pwd, String phone) {
         int res = 0;
         String sql = "insert into users(name,password,phone) values(?,?,?)";
@@ -100,6 +113,30 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        String sql = "select *from users";
+        List<User> users = null;
+        try {
+            users = qr.query(sql,new BeanListHandler<>(User.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    @Override
+    public List<User> findPageUsers(Integer page,Integer pageAmount) {
+        List<User> users =null;
+        String sql ="select *from users limit ?,?";
+        try {
+            users = qr.query(sql,new BeanListHandler<>(User.class),new Object[]{(page-1)*pageAmount,pageAmount});
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
 }

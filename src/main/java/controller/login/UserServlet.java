@@ -2,11 +2,13 @@ package controller.login;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.mysql.cj.xdevapi.JsonArray;
 import factory.BeanFactory;
 import pojo.User;
-import service.UserLoginService;
-import service.impl.UserLoginServiceImpl;
+import service.UserService;
+import service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,13 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 
-@WebServlet(name = "UserLoginServlet",urlPatterns = {"*.users"})
-public class UserLoginServlet extends HttpServlet {
-    private UserLoginService userLoginService;
-    public UserLoginServlet(){
-        userLoginService = BeanFactory.getInstance("UserLoginService", UserLoginServiceImpl.class);
+@WebServlet(name = "UserServlet",urlPatterns = {"*.users"})
+public class UserServlet extends HttpServlet {
+    private UserService userService;
+    public UserServlet(){
+        userService = BeanFactory.getInstance("UserLoginService", UserServiceImpl.class);
     }
 
     public void doLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,9 +32,9 @@ public class UserLoginServlet extends HttpServlet {
         String pwd = req.getParameter("password");
         String scode=(String)req.getSession().getAttribute("scode");
         String code=req.getParameter("code");
-        if (userLoginService.login(name,pwd)){
+        if (userService.login(name,pwd)){
             if (code.equalsIgnoreCase(scode)){
-                User user = userLoginService.findByName(name);
+                User user = userService.findByName(name);
                 req.getSession().setAttribute("user",user);
                 resp.sendRedirect("index.jsp");
             }else {
@@ -55,8 +58,8 @@ public class UserLoginServlet extends HttpServlet {
 
         String code=req.getParameter("code");*/
             if (pwd.equals(pwd1)){
-                if (userLoginService.findByName(name)==null){
-                    userLoginService.addUser(name,pwd,phone);
+                if (userService.findByName(name)==null){
+                    userService.addUser(name,pwd,phone);
                     out.print("<script>alert('注册成功'); window.location='loginAndRegister.jsp' </script>");
                 } else{
                 resp.getWriter().print("<script>alert('用户名已被占用');window.location='loginAndRegister.jsp'</script>");
@@ -76,7 +79,7 @@ public class UserLoginServlet extends HttpServlet {
             resp.sendRedirect("loginAndRegister.jsp");
     }
     public void doUpdate(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
-        User user = userLoginService.findByName("name");
+        User user = userService.findByName("name");
         req.setAttribute("user",user);
         req.getRequestDispatcher("info.jsp").forward(req,resp);
     }
@@ -88,7 +91,7 @@ public class UserLoginServlet extends HttpServlet {
         String pwd = req.getParameter("password");
         String phone = req.getParameter("phone");
         user=new User(name,pwd,phone);
-        if (userLoginService.updateUser(user)>0){
+        if (userService.updateUser(user)>0){
             req.getSession().setAttribute("user",user);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("result",1);
@@ -97,7 +100,7 @@ public class UserLoginServlet extends HttpServlet {
     }
     public void doDelete(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
        String name = req.getParameter("name");
-        int res = userLoginService.deleteByName(name);
+        int res = userService.deleteByName(name);
         if (res>0){
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("result",res);
@@ -105,6 +108,28 @@ public class UserLoginServlet extends HttpServlet {
         }
 
     }
+
+
+
+    public void calCount(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        resp.setHeader("Content-Type", "text/html;charset=utf-8");
+        long count = userService.calCount();
+        JSONObject json = new JSONObject();
+        json.put("count",count);
+        resp.getWriter().print(json.toJSONString());
+
+    }
+    public void queryPage(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        resp.setHeader("Content-Type", "text/html;charset=utf-8");
+        Integer page = Integer.parseInt(req.getParameter("page"));
+        Integer pageAmount = Integer.parseInt(req.getParameter("pageAmount"));
+        List<User> users =userService.findPageUsers(page,pageAmount);
+        JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(users));
+        resp.getWriter().print(jsonArray.toString());
+    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -121,6 +146,10 @@ public class UserLoginServlet extends HttpServlet {
             doModify(req,resp);
         }else if (path.contains("delete.users")){
             doDelete(req,resp);
+        }else if (path.contains("queryUsers.users")){
+            calCount(req,resp);
+        }else if (path.contains("queryPage.users")){
+            queryPage(req,resp);
         }
     }
 }

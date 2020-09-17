@@ -3,11 +3,13 @@ package service.impl;
 import dao.impl.UserDaoImpl;
 import factory.BeanFactory;
 import pojo.User;
-import service.UserLoginService;
+import service.UserService;
 
-public class UserLoginServiceImpl implements UserLoginService {
+import java.util.List;
+
+public class UserServiceImpl implements UserService {
     private UserDaoImpl userDao;
-    public UserLoginServiceImpl(){
+    public UserServiceImpl(){
         userDao= BeanFactory.getInstance("UserDao",UserDaoImpl.class);
     }
     @Override
@@ -39,5 +41,20 @@ public class UserLoginServiceImpl implements UserLoginService {
     public int deleteByName(String name) {
 
         return userDao.deleteByName(name);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return userDao.findAllUsers();
+    }
+
+    @Override
+    public long calCount() {
+        return userDao.calCount();
+    }
+
+    @Override
+    public List<User> findPageUsers(Integer page, Integer pageAmount) {
+        return userDao.findPageUsers(page,pageAmount);
     }
 }
