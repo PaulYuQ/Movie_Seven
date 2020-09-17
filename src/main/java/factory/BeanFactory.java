@@ -15,8 +15,10 @@ public class BeanFactory{
         bundle = ResourceBundle.getBundle("instance");
     }
 
-    //采用静态方法，反射，获取类实例，注：类需要添加默认的构造方法！！
-    public static <T> T getInstance(String key,Class<T> cls){
+    /**
+     * 采用静态方法，反射，获取类实例，注：类需要添加默认的构造方法！！
+     */
+    public static <T> T getInstance(String key){
         try {
             return (T)  Class.forName(bundle.getString(key)).newInstance();
         } catch (ClassNotFoundException |IllegalAccessException | InstantiationException e) {

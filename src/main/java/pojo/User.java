@@ -7,11 +7,17 @@ package pojo;
  * user类
  */
 public class User{
-    //自增
+    /**
+     * 自增
+     */
     private int id ;
-    //user_id
+    /**
+     * user_id
+     */
     private String user_id;
-    //user_psw
+    /**
+     * user_psw
+     */
     private String user_psw;
 
     public User() {

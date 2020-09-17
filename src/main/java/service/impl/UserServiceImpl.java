@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao = null;
 
     public UserServiceImpl() {
-        userDao = BeanFactory.getInstance("UserDao", UserDaoImpl.class);
+        userDao = BeanFactory.getInstance("UserDao");
     }
 
 
