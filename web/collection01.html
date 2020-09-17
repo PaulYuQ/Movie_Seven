@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="static/js/jquery-3.2.1.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <script>
+        function oper() {
+            let la = $(".hinput").attr("type");
+            if(la == "hidden") {
+                $(".hinput").attr('type','checkbox');
+            } else {
+                $(".hinput").attr('type','hidden');
+            }
+            let id1 = document.getElementById("button1");
+            if(id1.style.display == "none") {
+                id1.style.display="inline-block";
+            } else {
+                id1.style.display="none";
+            }
+            let id2 = document.getElementById("button2");
+            if(id2.style.display == "none") {
+                id2.style.display="inline-block";
+            } else {
+                id2.style.display="none";
+            }
+            let id3 = document.getElementById("button3");
+            if(id3.style.display == "none") {
+                id3.style.display="inline-block";
+            } else {
+                id3.style.display="none";
+            }
+        }
+
+        function doChooseAll() {
+            $(".hinput").prop("checked",true);
+        }
+        function doChooseReverse() {
+            $(".hinput").each(function () {
+                if($(this).prop("checked")==true) {
+                    $(this).prop("checked", false);
+                } else {
+                    $(this).prop("checked", true);
+                }
+            })
+        }
+
+
+        /*/!*批量选中的效果*!/
+        $('input:checkbox[name="selectall"]').click(function(){
+            if($(this).is(':checked')){
+                $('input:checkbox').each(function(){
+                    $(this).prop("checked",true);
+                });
+            }else{
+                $('input:checkbox').each(function(){
+                    $(this).prop("checked",false);
+                });
+            }
+        });*/
+        /*获取ids,批量删除*/
+        function batch_del() {
+            var ids = " ";
+            $(".hinput").each(function(){
+                if($(this).prop("checked") == true){
+                    ids += this.value + ',';
+                }
+            });
+            //layer.alert(ids);return;
+            //下面的ajax根据自己的情况写
+            layer.confirm('批量删除后不可恢复，谨慎操作！', {icon: 7, title: '警告'}, function (index) {
+                $.ajax({
+                    type: 'POST',
+                    url: '你的url地址?ids=' + ids,
+                    data: {"1": "1"},
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code == 200) {
+                            $(obj).parents("tr").remove();
+                            layer.msg(data.message, {icon: 1, time: 1000});
+                        } else {
+                            layer.msg(data.message, {icon: 2, time: 3000});
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data.msg);
+                    },
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="carousel slide" id="carousel-956640">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt="" src="img/1.jpg" />
+                        <div class="carousel-caption">
+                            <p>
+                                小强子大大
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <form class="form-search form-inline">
+                <input class="input-medium search-query" type="text" value="输入关键字" />
+                <button class="btn" type="submit">查找</button>
+            </form>
+            <button class="btn" onclick="oper()">批量操作</button>
+
+            <button style="display: none" id="button1" class="btn" onClick="batch_del()">批量删除</button>
+            <button style="display: none" id="button2" class="btn" onClick="doChooseAll()">全选</button>
+            <button style="display: none" id="button3" class="btn" onClick="doChooseReverse()">反选</button>
+            <p class="form-inline">
+            </p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="hero-unit well">
+                <input type="hidden" class="hinput" value="collection.id"/>
+                <a href=""><img src="https://kuyun.tv/upload/vod/20200825-1/0da879accd61955c1210a732fe311aa3.jpg" style="display: block"></a>
+                <a href="" style="text-decoration:none;"><p>潜行天下第一季</p></a>
+                <p>收藏于：2020-09-25 16:18:55</p>
+                <p><a class="btn btn-primary btn-large" href="#" onclick="doDelete(collection.id, this)">移出收藏夹</a></p>
+            </div>
+        </div>
+        <div class="span2">
+            <div class="hero-unit well">
+                <input type="hidden" class="hinput" value="collection.id"/>
+                <a href=""><img src="https://kuyun.tv/upload/vod/20200825-1/0da879accd61955c1210a732fe311aa3.jpg" style="width: 100%"></a>
+                <a href="" style="text-decoration:none;"><p>潜行天下第一季</p></a>
+                <p>收藏于：2020-09-25 16:18:55</p>
+                <p><a class="btn btn-primary btn-large" href="#" onclick="doDelete(collection.id, this)">移出收藏夹</a></p>
+            </div>
+        </div>
+        <div class="span2">
+            <div class="hero-unit well">
+                <input type="hidden" class="hinput" value="collection.id" />
+                <a href=""><img src="https://kuyun.tv/upload/vod/20200825-1/0da879accd61955c1210a732fe311aa3.jpg" style="width: 100%"></a>
+                <a href="" style="text-decoration:none;"><p>潜行天下第一季</p></a>
+                <p>收藏于：2020-09-25 16:18:55</p>
+                <p><a class="btn btn-primary btn-large" href="#" onclick="doDelete(collection.id, this)">移出收藏夹</a></p>
+            </div>
+        </div>
+        <div class="span2">
+            <div class="hero-unit well">
+                <input type="hidden" class="hinput" value="collection.id"/>
+                <a href=""><img src="https://kuyun.tv/upload/vod/20200825-1/0da879accd61955c1210a732fe311aa3.jpg" style="width: 100%"></a>
+                <a href="" style="text-decoration:none;"><p>潜行天下第一季</p></a>
+                <p>收藏于：2020-09-25 16:18:55</p>
+                <p><a class="btn btn-primary btn-large" href="#" onclick="doDelete(collection.id, this)">移出收藏夹</a></p>
+            </div>
+        </div>
+        <div class="span2">
+            <div class="hero-unit well">
+                <input type="hidden" class="hinput" value="collection.id"/>
+                <a href=""><img src="https://kuyun.tv/upload/vod/20200825-1/0da879accd61955c1210a732fe311aa3.jpg" style="width: 100%"></a>
+                <a href="" style="text-decoration:none;"><p>潜行天下第一季</p></a>
+                <p>收藏于：2020-09-25 16:18:55</p>
+                <p><a class="btn btn-primary btn-large" href="#" onclick="doDelete(collection.id, this)">移出收藏夹</a></p>
+            </div>
+        </div>
+        <div class="span2">
+            <div class="hero-unit well">
+                <input type="hidden" class="hinput" value="collection.id"/>
+                <a href=""><img src="https://kuyun.tv/upload/vod/20200825-1/0da879accd61955c1210a732fe311aa3.jpg" style="width: 100%"></a>
+                <a href="" style="text-decoration:none;"><p>潜行天下第一季</p></a>
+                <p>收藏于：2020-09-25 16:18:55</p>
+                <p><a class="btn btn-primary btn-large" href="#" onclick="doDelete(collection.id, this)">移出收藏夹</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="pagination pagination-centered">
+                <ul>
+                    <li>
+                        <a href="#">上一页</a>
+                    </li>
+                    <li>
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
