@@ -1,5 +1,7 @@
 package dao;
 
+import pojo.User;
+
 import java.util.List;
 
 /**
@@ -8,7 +10,15 @@ import java.util.List;
  * @Version 1.0
  */
 public interface UserDao {
-
+    boolean dologin(String name,String pwd);
+    boolean addUser(String name,String pwd,String phone);
+    User findByName(String name);
+    int updateUser(User user);
+    User findById(int id);
+    int deleteByName(String name);
+    long calCount();
+    List<User> findAllUsers();
+    List<User> findPageUsers(Integer page,Integer pageAmount);
 
 }
 

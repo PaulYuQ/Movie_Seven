@@ -1,11 +1,10 @@
 import dao.impl.CommentDaoImpl;
-import dao.impl.UserDaoImpl;
 import factory.BeanFactory;
 import org.junit.Test;
 import pojo.Comment;
 import service.CommentService;
 import service.impl.CommentServiceImpl;
-import util.DBUtil;
+import service.impl.UserServiceImpl;
 
 import java.util.List;
 
@@ -15,6 +14,26 @@ import java.util.List;
  * @Version 1.0
  */
 public class TestJunit{
+
+    UserServiceImpl userService = BeanFactory.getInstance("UserLoginService", UserServiceImpl.class);
+
+    @Test
+    public void findAllUsers(){
+        System.out.println(userService.findAllUsers());
+    }
+
+    @Test
+    public void calCount(){
+        System.out.println(userService.calCount());
+    }
+    @Test
+    public void findPageUsers(){
+        System.out.println(userService.findPageUsers(2, 2));
+    };
+
+
+
+
     //测试工厂类
     @Test
     public void testFactory(){
