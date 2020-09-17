@@ -3,6 +3,7 @@ package controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import factory.BeanFactory;
+import pojo.Collection;
 import service.CollectionService;
 import vo.CollectionVo;
 
@@ -40,6 +41,31 @@ public class CollectionServlet extends HttpServlet {
             delete(request, response);
         } else if(path.contains("queryAlllike.collection")) {
             queryAlllike(request, response);
+        } else if(path.contains("queryCollectionCount.collection")) {
+            queryCollectionCount(request, response);
+        } else if(path.contains("queryCollectionList.collection")) {
+            queryCollectionList(request, response);
+        }
+    }
+
+    private void queryCollectionList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String page = request.getParameter("page");
+        String pageAmount = request.getParameter("pageAmount");
+        List<Collection> userCollectionByPage = collectionService.getUserCollectionByPage(Integer.parseInt(page), Integer.parseInt(pageAmount));
+        if(userCollectionByPage != null) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("collectionList", userCollectionByPage);
+            response.getWriter().print(jsonObject.toJSONString());
+        }
+    }
+
+    private void queryCollectionCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=utf-8");
+        Long aLong = collectionService.calCollectionCount();
+        if(aLong > 0) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("collectionCount", aLong);
+            response.getWriter().print(jsonObject.toJSONString());
         }
     }
 

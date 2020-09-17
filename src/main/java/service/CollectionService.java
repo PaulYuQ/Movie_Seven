@@ -93,4 +93,18 @@ public interface CollectionService {
      * @return
      */
     List<Collection> getAllCollectByUser(int userId, int currentPage, int pageSize);
+
+    /**
+     * 计算当前用户的收藏的总记录数
+     * @return
+     */
+    Long calCollectionCount();
+
+    /**
+     * 实现分页
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    List<Collection> getUserCollectionByPage(int currentPage, int pageSize);
 }

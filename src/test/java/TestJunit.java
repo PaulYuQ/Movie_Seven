@@ -103,4 +103,14 @@ public class TestJunit{
     public void testGetMovieByMovieId() {
         System.out.println(collectionDao.getMovieByMovieId(4));
     }
+
+    @Test
+    public void calCollectionCountTest() {
+        System.out.println(collectionDao.calCollectionCount());
+    }
+
+    @Test
+    public void getUserCollectionByPageTest() {
+        System.out.println(collectionDao.getUserCollectionByPage(1, 6));
+    }
 }

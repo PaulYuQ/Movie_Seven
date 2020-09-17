@@ -4,8 +4,10 @@ import dao.CollectionDao;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import pojo.Collection;
 import pojo.Movie;
+import pojo.User;
 import util.DBUtil;
 import vo.CollectionVo;
 
@@ -236,7 +238,14 @@ public class CollectionDaoImpl implements CollectionDao {
      */
     @Override
     public Long calCollectionCount() {
-        return 0L;
+        String calCollectionCount = "select count(*) from collections";
+        Long count = 0L;
+        try {
+            count = queryRunner.query(calCollectionCount, new ScalarHandler<>());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 
     /**
@@ -248,6 +257,13 @@ public class CollectionDaoImpl implements CollectionDao {
      */
     @Override
     public List<Collection> getUserCollectionByPage(int currentPage, int pageSize) {
-        return null;
+        String getUserCollectionByPage="select * from collections limit ?,?";
+        List<Collection> collections = null;
+        try {
+            collections=queryRunner.query(getUserCollectionByPage,new BeanListHandler<>(Collection.class),new Object[]{(currentPage-1)*pageSize,pageSize});
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return collections;
     }
 }

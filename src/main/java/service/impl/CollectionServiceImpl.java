@@ -142,4 +142,26 @@ public class CollectionServiceImpl implements CollectionService {
     public List<Collection> getAllCollectByUser(int userId, int currentPage, int pageSize) {
         return collectionDao.getAllCollectByUser(userId, currentPage, pageSize);
     }
+
+    /**
+     * 计算当前用户的收藏的总记录数
+     *
+     * @return
+     */
+    @Override
+    public Long calCollectionCount() {
+        return collectionDao.calCollectionCount();
+    }
+
+    /**
+     * 实现分页
+     *
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public List<Collection> getUserCollectionByPage(int currentPage, int pageSize) {
+        return collectionDao.getUserCollectionByPage(currentPage, pageSize);
+    }
 }
