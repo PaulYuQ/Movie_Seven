@@ -6,6 +6,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="seven_movies" />
+          <element id="javaee-facet-classes" facet="seven_movie/web/Web" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
@@ -40,8 +41,14 @@
           <element id="library" level="project" name="Maven: org.opentest4j:opentest4j:1.2.0" />
           <element id="library" level="project" name="Maven: org.testng:testng:7.3.0" />
           <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.21" />
+          <element id="library" level="project" name="ValidateCode" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.1" />
+          <element id="library" level="project" name="Maven: commons-dbutils:commons-dbutils:1.7" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp:javax.servlet.jsp-api:2.3.1" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.73" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="seven_movie/web/Web" />
     </root>
   </artifact>
 </component>
