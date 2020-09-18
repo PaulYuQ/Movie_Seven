@@ -10,8 +10,9 @@
 <head>
     <title>个人中心</title>
 </head>
-<link rel="stylesheet" href="/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="/static/css/users.css">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
 <body>
 <div class="container">
     <div class="row row-info">
