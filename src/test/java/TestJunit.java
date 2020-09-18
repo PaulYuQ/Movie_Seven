@@ -23,6 +23,12 @@ public class TestJunit{
     }
 
     @Test
+    public void insertUsers(){
+        for(int i=0;i<20;i++)
+        userService.addUser("测试用户"+i,"123456"+i,"15578807485");
+
+    }
+    @Test
     public void calCount(){
         System.out.println(userService.calCount());
     }

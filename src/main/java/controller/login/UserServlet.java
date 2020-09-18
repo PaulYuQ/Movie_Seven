@@ -104,7 +104,8 @@ public class UserServlet extends HttpServlet {
             resp.getWriter().print(jsonObject.toJSONString());
         }
     }
-    public void doDelete(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+    @Override
+    public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        String name = req.getParameter("name");
         int res = userService.deleteByName(name);
         if (res>0){
@@ -121,9 +122,7 @@ public class UserServlet extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         resp.setHeader("Content-Type", "text/html;charset=utf-8");
         long count = userService.calCount();
-        JSONObject json = new JSONObject();
-        json.put("count",count);
-        resp.getWriter().print(json.toJSONString());
+        resp.getWriter().print((int)count);
 
     }
     public void queryPage(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {

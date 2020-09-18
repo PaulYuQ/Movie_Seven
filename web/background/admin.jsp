@@ -49,11 +49,6 @@ width:100%;
 position:absolute;
 }
 
-    ._page_container ._pages {
-      display: inline-block;
-      margin-top: 30px;
-      margin-bottom: 50px;
-    }
 
 
   </style>
