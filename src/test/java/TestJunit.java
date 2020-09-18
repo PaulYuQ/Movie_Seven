@@ -28,7 +28,7 @@ public class TestJunit{
     }
     @Test
     public void findPageUsers(){
-        System.out.println(userService.findPageUsers(2, 2));
+        System.out.println(userService.findPageUsers(1, 2));
     };
 
 

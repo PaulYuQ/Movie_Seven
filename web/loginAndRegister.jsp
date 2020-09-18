@@ -53,24 +53,24 @@
                     <h2>立即注册</h2>
                     <label>
                         <span>用户名</span>
-                        <input type="text" name="name"/>
+                        <input type="text" id="name"/>
                     </label>
                     <label>
                         <span>密码</span>
-                        <input type="password" name="password"/>
+                        <input type="password" id="password"/>
                     </label>
                     <label>
                         <span>确认密码</span>
-                        <input type="password" name="password1"/>
+                        <input type="password" id="password1"/>
                     </label>
                     <label>
                         <span>电话号码</span>
-                        <input type="tel" name="phone"/>
+                        <input type="tel" id="phone"/>
                     </label>
                     <label>
-                        <span style="color: red">${msg1}</span>
+                        <span style="color: red" id="msg">${msg1}</span>
                     </label>
-                    <button type="submit" class="submit">注 册</button>
+                    <button type="button" class="submit" onclick="register()">注 册</button>
                 </div>
             </div>
         </form>
@@ -84,7 +84,29 @@
             var img = document.getElementsByTagName("img")[0];
             img.src = "${pageContext.request.contextPath}/code?time="+new Date().getTime();//最新
         }
+
+        function register() {
+
+            $.post(
+                "register.users",
+                {"name":$("#name").val(),"password":$("#password").val(),"password1":$("#password1").val(),"phone":$("#phone").val()},
+                function (data) {
+                    let result = data.result;
+                    if (result==3){
+                        $("#msg").html("密码不一致！")
+                    }else if (result==2){
+                        $("#msg").html("用户名已被占用！")
+                    }else if (result==1){
+                        alert("注册成功！");
+                        window.location.replace("${pageContext.request.contextPath}/loginAndRegister.jsp");
+                    }else if (result==4){
+                        $('#msg').html("密码和用户名都错误")
+                    }
+                },"json"
+            )
+        }
         </script>
 </body>
 
 </html>
+
