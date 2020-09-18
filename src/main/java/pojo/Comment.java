@@ -39,11 +39,36 @@ public class Comment {
      * comment---content  字段(评论内容)
      */
     private String content;
-    private Date date;//comment---date 字段(评论日期)
-    private List<Comment> child;//(评论的子评论)
+    /**
+     * comment---date 字段(评论日期)
+     */
+    private Date date;
+    /**
+     * (评论的子评论)
+     */
+    private List<Comment> child;
 
-    //默认构造方法
+    /**
+     * 默认构造方法
+     */
     public Comment(){}
+
+    /**
+     * 有参构造方法
+     * @param movie_id
+     * @param parent_id
+     * @param user_id
+     * @param content
+     * @param child
+     */
+    public Comment(Integer movie_id, Integer parent_id,  String content, Integer user_id,List<Comment> child) {
+        this.movie_id = movie_id;
+        this.parent_id = parent_id;
+        this.user_id = user_id;
+        this.content = content;
+        this.child = child;
+    }
+
 
     public Integer getComment_id() {
         return comment_id;
@@ -121,25 +146,5 @@ public class Comment {
                 ", date=" + date +
                 ", child=" + child +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Comment comment = (Comment) o;
-        return Objects.equals(comment_id, comment.comment_id) &&
-                Objects.equals(movie_id, comment.movie_id) &&
-                Objects.equals(parent_id, comment.parent_id) &&
-                Objects.equals(user_id, comment.user_id) &&
-                Objects.equals(name, comment.name) &&
-                Objects.equals(content, comment.content) &&
-                Objects.equals(date, comment.date) &&
-                Objects.equals(child, comment.child);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(comment_id, movie_id, parent_id, user_id, name, content, date, child);
     }
 }
