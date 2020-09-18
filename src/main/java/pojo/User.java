@@ -11,9 +11,21 @@ public class User{
     private int user_id;
     private String name;
     private String password;
+    private String date;
     private String phone;
 
     public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", date='" + date + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 
     public int getUser_id() {
@@ -23,13 +35,6 @@ public class User{
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
-
-    public User(String name, String password, String phone) {
-        this.name = name;
-        this.password = password;
-        this.phone = phone;
-    }
-
 
     public String getName() {
         return name;
@@ -47,6 +52,14 @@ public class User{
         this.password = password;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -55,13 +68,12 @@ public class User{
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id=" + user_id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+    public User(String name, String password, String phone) {
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
     }
+
+
+
 }
