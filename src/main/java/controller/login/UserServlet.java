@@ -24,7 +24,7 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     private UserService userService;
     public UserServlet(){
-        userService = BeanFactory.getInstance("UserLoginService", UserServiceImpl.class);
+        userService = BeanFactory.getInstance("UserLoginService", UserService.class);
     }
 
     public void doLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
