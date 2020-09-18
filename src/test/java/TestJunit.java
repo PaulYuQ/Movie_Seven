@@ -113,4 +113,12 @@ public class TestJunit{
     public void getUserCollectionByPageTest() {
         System.out.println(collectionDao.getUserCollectionByPage(1, 6));
     }
+
+    @Test
+    public void insertTest() {
+        int temp = 44;
+        for (int i = 0; i < 20; i++) {
+            collectionDao.insert(new Collection(3, temp++, new Date()));
+        }
+    }
 }

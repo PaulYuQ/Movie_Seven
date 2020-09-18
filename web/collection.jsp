@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Title</title>
+    <title>收藏页面</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="static/js/jquery-3.2.1.js"></script>
@@ -59,16 +60,20 @@
         }//函数结束
         //实现下一页功能,一、获取a的key，二、将获得的key+3
         function nextpage(key,num){
-            key=key+num;
-            clickA(key,num);
+            if(key == 24) {
+                clickA(24,6);
+            } else {
+                key=key+num;
+                clickA(key,num);
+            }
         }
         //翻页，上一页,由于在clickA中实现动态改变a标签的属性，所以这里就不需要担心其不会跟着next等变化了
         function prevpage(key,num){
             if(key==0||key<=num) {
                 clickA(0,num);
             }else{
-                num = key-num;
-                clickA(num,num);
+                key = key-num;
+                clickA(key,num);
             }
         }
         //默认加载第一页，每页三条数据
@@ -201,8 +206,8 @@
                     if(key==0||key<=num) {
                         clickA(0,num);
                     }else{
-                        num = key-num;
-                        clickA(num,num);
+                        key = key-num;
+                        clickA(key,num);
                     }
                 }
                 //默认加载第一页，每页三条数据

@@ -17,6 +17,12 @@ public class Collection {
         this.date = new Date();
     }
 
+    public Collection(Integer user_id, Integer movie_id, Date date) {
+        this.user_id = user_id;
+        this.movie_id = movie_id;
+        this.date = date;
+    }
+
     public Collection(Integer collection_id, Integer user_id, Integer movie_id) {
         this.collection_id = collection_id;
         this.user_id = user_id;
