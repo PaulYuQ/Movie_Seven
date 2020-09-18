@@ -46,7 +46,8 @@ public class UserServlet extends HttpServlet {
             req.getRequestDispatcher("loginAndRegister.jsp").forward(req, resp);
         }
     }
-    public void doRegister(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+
+    public void doRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("utf-8");
         resp.setHeader("Content-Type", "text/html;charset=utf-8");
         PrintWriter out = resp.getWriter();
@@ -54,19 +55,24 @@ public class UserServlet extends HttpServlet {
         String pwd = req.getParameter("password");
         String pwd1 = req.getParameter("password1");
         String phone = req.getParameter("phone");
-    /*    String scode=(String)req.getSession().getAttribute("scode");
-
-        String code=req.getParameter("code");*/
-            if (pwd.equals(pwd1)){
-                if (userService.findByName(name)==null){
-                    userService.addUser(name,pwd,phone);
-                    out.print("<script>alert('注册成功'); window.location='loginAndRegister.jsp' </script>");
-                } else{
-                resp.getWriter().print("<script>alert('用户名已被占用');window.location='loginAndRegister.jsp'</script>");
+        JSONObject jsonObject = new JSONObject();
+        if (!pwd.equals(pwd1) && userService.findByName(name) != null) {
+            jsonObject.put("result", 4);
+            resp.getWriter().print(jsonObject.toJSONString());
+        } else if (pwd.equals(pwd1)) {
+            if (userService.findByName(name) == null) {
+                userService.addUser(name, pwd, phone);
+                jsonObject.put("result", 1);
+                resp.getWriter().print(jsonObject.toJSONString());
+            } else {
+                jsonObject.put("result", 2);
+                resp.getWriter().print(jsonObject.toJSONString());
             }
-        }else if (!pwd.equals(pwd1)){
-            req.setAttribute("msg1","两次输入的密码不一致");
-            req.getRequestDispatcher("loginAndRegister.jsp").forward(req,resp);
+        } else if (!pwd.equals(pwd1)) {
+            jsonObject.put("result", 3);
+            resp.getWriter().print(jsonObject.toJSONString());
+            System.out.println(jsonObject);
+
         }
     }
 
