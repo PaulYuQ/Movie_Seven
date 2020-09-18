@@ -1,33 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>浏览历史</title>
     <script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="static/js/history.js"></script>
-    <script>$(document).ready(doload())</script>
+    <link rel="stylesheet" type="text/css" href="static/css/history.css">
+    <script>
+        $(document).ready(doShow());
+    </script>
 </head>
 <body>
-<input type="button" value="全选" onclick="doChooseAll()">
-<input type="button" value="反选" onclick="doChooseReverse()">
-<input type="button" value="删除" onclick="doDelete()">
-<input type="button" value="清空" onclick="doEmpty()">
-<p></p>
-<table border="2px" id="history">
-    <thead>
-    <tr>
-        <td>选择</td>
-        <td>电影类型</td>
-        <td>电影名</td>
-        <td>电影图片</td>
-        <td>人员</td>
-        <td>观看时间</td>
-        <td>全部删除</td>
-    </tr>
-    </thead>
-    <tbody id="historyBody">
-
-    </tbody>
-</table>
+<div id="history">
+    <div class="historyText">历史记录</div>
+    <div class="historyButton">
+        <input type="button" value="全选" class="chooseAll">
+        <input type="button" value="反选" class="chooseReverse">
+        <input type="button" value="删除" class="delete">
+        <input type="button" value="清空" class="empty">
+    </div>
+    <ul id="historyBody">
+        <li class="historyLi">
+            <div class="historyDiv" onclick="doDivChoose()">
+                <div class="historyImg">
+                    <img src="https://kuyun.tv/upload/vod/20180715/040e6262945cefc23502493c404e0266.jpg">
+                </div>
+                <div class="historyInfo">
+                    <div class="historyName">
+                        <span>【动作片】</span>
+                        <span>勇敢者的游戏2：太空飞行棋 国语</span>
+                    </div>
+                    <div class="historyActor">
+                    <span>
+                        主演：迪皮卡·帕度柯妮 阿努普瑞雅·戈恩卡 兰维尔·辛格 沙希德·卡普尔 阿娣提·拉奥·希达里 吉姆·萨伯 拉萨·默拉德 夏恩·辛格 曼吉特·辛格 帕德曼瓦蒂·拉奥  导演：桑杰·里拉·彭萨里  
+                    </span>
+                    </div>
+                    <div class="historyTime">
+                        <span>已观看时间:2:35:39</span>
+                    </div>
+                </div>
+                <div class="historyInput">
+                    <input type="checkbox" class="historyChoose">
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div id="historyPage">
+        <input type="button" value="首页" class="firstPage">
+        <input type="button" value="上一页" class="lastPage">
+        <input type="button" value="下一页" class="nextPage">
+        <input type="button" value="尾页" class="finalPage">
+    </div>
+</div>
 </body>
 </html>
