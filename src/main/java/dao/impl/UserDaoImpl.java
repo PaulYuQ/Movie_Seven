@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findById(int id) {
-        String sql = "select *from users where name =?";
+        String sql = "select *from users where user_id =?";
         User user = null;
         try{
             user = qr.query(sql,new BeanHandler<>(User.class),id);
@@ -84,6 +84,17 @@ public class UserDaoImpl implements UserDao {
         String sql = "delete from users where name=?";
         try {
             return qr.update(sql,new Object[]{name});
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int deleteById(Integer id) {
+        String sql = "delete from users where User_id=?";
+        try {
+            return qr.update(sql,new Object[]{id});
         } catch (SQLException e) {
             e.printStackTrace();
         }

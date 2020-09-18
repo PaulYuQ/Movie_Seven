@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserService {
     public List<User> findPageUsers(Integer page, Integer pageAmount) {
         return userDao.findPageUsers(page,pageAmount);
     }
+
+    @Override
+    public int deleteById(Integer id) {
+        return userDao.deleteById(id);
+    }
 }
