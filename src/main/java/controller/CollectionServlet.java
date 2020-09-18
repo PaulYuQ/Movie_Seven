@@ -45,8 +45,68 @@ public class CollectionServlet extends HttpServlet {
             queryCollectionCount(request, response);
         } else if(path.contains("queryCollectionList.collection")) {
             queryCollectionList(request, response);
+        } else if(path.contains("addCollection.collection")) {
+            addCollection(request, response);
+        } else if(path.contains("deleteCollection.collection")) {
+            deleteCollection(request, response);
+        } else if(path.contains("updateCollection.collection")) {
+            updateCollection(request, response);
+        } else if(path.contains("queryCollectionById.collection")) {
+            queryCollectionById(request, response);
         }
     }
+
+    private void queryCollectionById(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String collectionId = request.getParameter("collectionId");
+        Collection collectionResult= collectionService.getCollectById(Integer.parseInt(collectionId));
+        if(collectionResult != null) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("collectionResult", collectionResult);
+            response.getWriter().print(jsonObject.toJSONString());
+        } else {
+            response.getWriter().print("没有查询到该收藏！");
+        }
+    }
+
+    private void updateCollection(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userId = request.getParameter("userId");
+        String movieId = request.getParameter("movieId");
+        Collection collection = new Collection();
+        collection.setUser_id(Integer.parseInt(userId));
+        collection.setMovie_id(Integer.parseInt(movieId));
+        int insertResult = collectionService.update(collection);
+        if(insertResult > 0) {
+            response.getWriter().print("true");
+        } else {
+            response.getWriter().print("false");
+        }
+    }
+
+    private void deleteCollection(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String collectionId = request.getParameter("collectionId");
+        int deleteResult = collectionService.delete(Integer.parseInt(collectionId));
+        if(deleteResult > 0) {
+            response.getWriter().print("true");
+        } else {
+            response.getWriter().print("false");
+        }
+    }
+
+    private void addCollection(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userId = request.getParameter("userId");
+        String movieId = request.getParameter("movieId");
+        Collection collection = new Collection();
+        collection.setUser_id(Integer.parseInt(userId));
+        collection.setMovie_id(Integer.parseInt(movieId));
+        int insertResult = collectionService.insert(collection);
+        if(insertResult > 0) {
+            response.getWriter().print("true");
+        } else {
+            response.getWriter().print("false");
+        }
+    }
+
+
 
     private void queryCollectionList(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String page = request.getParameter("page");
