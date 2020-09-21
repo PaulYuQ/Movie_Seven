@@ -10,8 +10,8 @@
 <head>
     <title>个人中心</title>
 </head>
-<link rel="stylesheet" href="/static/css/bootstrap.min.css">
-<link rel="stylesheet" href="/static/css/users.css">
+<link rel="stylesheet" href="/static/user/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/user/css/users.css">
 <body>
 <div class="container">
     <div class="row row-info">
@@ -54,23 +54,11 @@
 </div>
 
 
-<script src="static/js/jquery-3.2.1.js"></script>
-<script src="static/js/bootstrap.min.js"></script>
+<script src="static/user/js/jquery-3.2.1.js"></script>
+<script src="static/user/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script>
 function remove() {
-/*    bootbox.confirm("确定删除吗？",
-        function(result){
-        $.post(
-            "delete.users",
-            {"name":$("#name").val()},
-            function (data) {
-                console.log(data.result);
-                bootbox.alert("删除成功！");
-                window.location.replace("login.jsp")
-            },"json"
-        )
-    })*/
     bootbox.confirm({
         size: "small",
         message:"确定注销账号吗?",
