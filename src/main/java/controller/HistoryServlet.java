@@ -45,8 +45,6 @@ public class HistoryServlet extends HttpServlet {
             deleteHistoryByIds(request, response);
         }else if (servletPath.contains("doEmpty")) {
             emptyHistoryByUserId(request, response);
-        }else if (servletPath.contains("doPage")) {
-            pageHistory(request, response);
         }
         /**
          * 对Histories表操作
@@ -90,29 +88,7 @@ public class HistoryServlet extends HttpServlet {
         response.sendRedirect("history.jsp");
     }
 
-    /**
-     * create by: sky
-     * create time: 9:06 2020/9/18
-     * 分页按钮改变页数
-     * @Param: request
-     * @Param: response
-     * @return void
-     */
-    protected void pageHistory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int page=(int)request.getSession().getAttribute("historyPage");
-        int id=(int)request.getSession().getAttribute("user_id");
-        if(("add").equals(request.getParameter("page"))){
-            page=page+1;
-        }else if(("delete").equals(request.getParameter("page"))){
-            page=page-1;
-        }else if(("final").equals(request.getParameter("page"))){
-            page=(int)historyService.historyNumber(id)/6+1;
-        }else {
-            page=1;
-        }
-        response.getWriter().print(page);
-        request.getSession().setAttribute("page",page);
-    }
+
     /**
      * create by: sky
      * create time: 16:58 2020/9/16
@@ -135,9 +111,14 @@ public class HistoryServlet extends HttpServlet {
         }
         int ROW = 6;
         List<ShowHistory> list = historyService.historyList(id, page, ROW);
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        response.getWriter().print(json);
+        if(list!=null){
+            Gson gson=new Gson();
+            String json=gson.toJson(list);
+            response.getWriter().print(json);
+            System.out.println(json);
+        }else {
+            response.getWriter().print("false");
+        }
     }
 
     /**
@@ -151,24 +132,39 @@ public class HistoryServlet extends HttpServlet {
     protected void deleteHistoryByIds(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String historyId=request.getParameter("id");
         String[] history=historyId.split(",");
+        int i=0;
         for (String id:history){
-            historyService.movieDelete(Integer.parseInt(id));
+            i=historyService.movieDelete(Integer.parseInt(id));
+            if(i==0){
+                break;
+            }
         }
-        response.getWriter().print("true");
+        if(i>0){
+            response.getWriter().print("true");
+        }else {
+            response.getWriter().print("false");
+        }
     }
+
 
     /**
      * create by: sky
      * create time: 10:46 2020/9/18
-     *
+     * 计算个人历史记录行数
      * @Param: request
      * @Param: response
      * @return void
      */
     protected void historyNumber(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("user_id") == null) {
+            response.getWriter().print("false");
+            return;
+        }
         int id = (int) request.getSession().getAttribute("user_id");
         response.getWriter().print(historyService.historyNumber(id));
     }
+
+
     /**
      * create by: sky
      * create time: 19:24 2020/9/16
@@ -179,8 +175,13 @@ public class HistoryServlet extends HttpServlet {
      */
     protected void emptyHistoryByUserId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = (int) request.getSession().getAttribute("user_id");
-        historyService.historyDelete(id);
-        response.getWriter().print("true");
+        int i=historyService.historyDelete(id);
+        if(i>0){
+            response.getWriter().print("true");
+        }
+        else {
+            response.getWriter().print("false");
+        }
     }
 
 
@@ -206,7 +207,12 @@ public class HistoryServlet extends HttpServlet {
         int movieId=Integer.parseInt(request.getParameter("movie_id"));
         int progress=Integer.parseInt(request.getParameter("progress"));
         Histories histories=new Histories(userId,movieId,progress);
-        historyService.movieAdd(histories);
+        int i=historyService.movieAdd(histories);
+        if(i>0){
+            response.getWriter().print("true");
+        }else {
+            response.getWriter().print("false");
+        }
     }
 
 
@@ -224,14 +230,19 @@ public class HistoryServlet extends HttpServlet {
             return;
         }
         int historyId=Integer.parseInt(request.getParameter("history_id"));
-        historyService.movieDelete(historyId);
+        int i=historyService.movieDelete(historyId);
+        if(i>0){
+            response.getWriter().print("true");
+        }else {
+            response.getWriter().print("false");
+        }
     }
 
 
     /**
      * create by: sky
      * create time: 20:27 2020/9/16
-     * Histories表的修改
+     * Histories表的修改,根据history_id
      * 开头测试接收数据非空
      * @Param: request
      * @Param: response
@@ -247,7 +258,12 @@ public class HistoryServlet extends HttpServlet {
         int historyId=Integer.parseInt(request.getParameter("history_id"));
         Histories histories=new Histories(userId,movieId,progress);
         histories.setHistory_id(historyId);
-        historyService.movieUpdate(histories);
+        int i=historyService.movieUpdate(histories);
+        if(i>0){
+            response.getWriter().print("true");
+        }else {
+            response.getWriter().print("false");
+        }
     }
 
 
@@ -266,6 +282,13 @@ public class HistoryServlet extends HttpServlet {
         }
         int historyId=Integer.parseInt(request.getParameter("history_id"));
         Histories histories=historyService.movieFindById(historyId);
+        if(histories!=null){
+            Gson gson=new Gson();
+            String json=gson.toJson(histories);
+            response.getWriter().print(json);
+        }else {
+            response.getWriter().print("false");
+        }
     }
 
 
@@ -299,5 +322,12 @@ public class HistoryServlet extends HttpServlet {
         }
         int row=6;
         List<Histories> list=historyService.movieList(page,row);
+        if(list!=null){
+            Gson gson=new Gson();
+            String json=gson.toJson(list);
+            response.getWriter().print(json);
+        }else {
+            response.getWriter().print("false");
+        }
     }
 }
