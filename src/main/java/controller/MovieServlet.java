@@ -44,7 +44,7 @@ public class MovieServlet extends HttpServlet {
             initAnyMovies(request, response);
         } else if (requestURI.contains("gotoIntroduction.do")) {
             gotoIntroduction(request, response);
-        } else if (requestURI.contains("/movie/showIntroduction.do")) {
+        } else if (requestURI.contains("showIntroduction.do")) {
             showIntroduction(request, response);
         } else if (requestURI.contains("gotoPlayer.do")) {
             gotoPlayer(request, response);
@@ -72,13 +72,10 @@ public class MovieServlet extends HttpServlet {
 
     private void showSearch(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
-        System.out.println(name);
         List<Movie> movies = movieService.getMoviesByName(name);
-        System.out.println(movies);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("movies", movies);
         jsonObject.put("name", name);
-        System.out.println(movies.size());
         jsonObject.put("movieSum", movies.size());
         response.getWriter().print(jsonObject.toJSONString());
     }
@@ -94,12 +91,10 @@ public class MovieServlet extends HttpServlet {
 
     private void showPlayer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String movie_id = request.getParameter("movie_id");
-        System.out.println("movie_id:" + movie_id);
         Movie movie = null;
         if (movie_id != null && movie_id != "") {
             movie = movieService.getMovieById(Integer.parseInt(movie_id));
         }
-        System.out.println("查询电影：" + movie);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("movie", movie);
         response.getWriter().print(jsonObject.toJSONString());
@@ -107,18 +102,15 @@ public class MovieServlet extends HttpServlet {
 
     private void gotoPlayer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String movie_id = request.getParameter("movie_id");
-        System.out.println("gotoPlayer----movie_id:" + movie_id);
         response.sendRedirect("/player.jsp?movie_id=" + movie_id);
     }
 
     private void showIntroduction(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String movie_id = request.getParameter("movie_id");
-        System.out.println("movie_id:" + movie_id);
         Movie movie = null;
         if (movie_id != null && movie_id != "") {
             movie = movieService.getMovieById(Integer.parseInt(movie_id));
         }
-        System.out.println("查询电影：" + movie);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("movie", movie);
         response.getWriter().print(jsonObject.toJSONString());
@@ -126,7 +118,6 @@ public class MovieServlet extends HttpServlet {
 
     private void gotoIntroduction(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String movie_id = request.getParameter("movie_id");
-        System.out.println("movie_id:" + movie_id);
 
         response.sendRedirect("/introduction.jsp?movie_id=" + movie_id);
     }
@@ -146,18 +137,13 @@ public class MovieServlet extends HttpServlet {
         //电影类型名
         String name = request.getParameter("name");
         Integer currentPage = Integer.parseInt(request.getParameter("currentPage"));
-        System.out.println("currentPage:" + currentPage);
-        System.out.println("initAnyMovies()" + name);
-//        List<Movie> anyMovies = movieService.getMoviesByType(name);
         List<Movie> anyMovies = movieService.getPageMoviesByType(name, (currentPage - 1) * pageSize, pageSize);
         int movieSum = anyMovies.size();
-        System.out.println("数量" + movieSum);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("anyMovies", anyMovies);
         jsonObject.put("movieName", name);
         jsonObject.put("movieSum", movieSum);
         response.getWriter().print(jsonObject.toJSONString());
-        System.out.println(anyMovies);
     }
 
     private void initAllData(HttpServletRequest request, HttpServletResponse response) throws IOException {
