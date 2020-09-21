@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="static/css/users.css">
 </head>
 
-<body>
+<body >
     <div class="content">
         <form action="${pageContext.request.contextPath}/login.users" method="post">
             <div class="form sign-in">
