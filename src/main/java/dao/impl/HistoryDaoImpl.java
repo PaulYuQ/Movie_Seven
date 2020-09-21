@@ -58,7 +58,7 @@ public class HistoryDaoImpl implements HistoryDao {
     /**
      * create by: sky
      * create time: 8:48 2020/9/15
-     *
+     * 个人浏览记录的分页展示
      * @Param: id
      * @Param: page :当前页数
      * @Param: row :一页展示的行数
