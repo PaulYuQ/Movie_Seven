@@ -17,7 +17,7 @@
         /*<div class="span2 divbg">
             <div class="hero-unit well">
                 <input type="hidden" class="hinput" value="collection.id"/>
-                <a href=""><img src="https://kuyun.tv/upload/vod/20200825-1/0da879accd61955c1210a732fe311aa3.jpg" style="width: 100%"></a>
+                <a href=""><img src="https://kuyun.tv/upload/vod/20200825-1/0da879accd61955c1210a732fe311aa3.jpg" style="width: 100%;height:222px"></a>
                 <a href="" style="text-decoration:none;"><p>潜行天下第一季</p></a>
                 <p>收藏于：2020-09-25 16:18:55</p>
                 <p><a class="btn btn-primary btn-large" href="#" onclick="doDelete(collection.id, this)">移出收藏夹</a></p>
@@ -39,7 +39,7 @@
                         console.log(obj.name);
                         str +="<div class=\"span2 divbg\">" + "<div class=\"hero-unit well chbg\">"
                             + "<input type=\"hidden\" class=\"hinput\" value=\"" + obj.collection_id + "\"/>"
-                            + "<a href=\"\"><img src=\"" + obj.image_url + "\" style=\"width: 100%\"></a>"
+                            + "<a href=\"\"><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
                             + "<a href=\"\" style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
                             + "<p style='color: #0e90d2;font-size: small'>收藏于：<br/>" + obj.date + "</p>"
                             + "<p><a class=\"btn btn-primary btn-large\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'><label>移出</label></a></p>"
@@ -223,7 +223,7 @@
     </script>
     <style type="text/css">
         /*背景模糊*/
-        .bg {
+        /*.bg {
             width: 100%;
             height: 100%;
             position: relative;
@@ -231,12 +231,16 @@
             background-size: cover;
             box-sizing: border-box;
             z-index: -1;
-        }
+        }*/
         .divbg {
             background:rgba(0,0,0,0);
+            height: 420px;
         }
         .chbg {
-            background:rgba(0,0,0,0.2);
+            background:rgba(0,0,0,0);
+            padding: 40px;
+            height: 413px;
+            width: 160px;
             border: 0px;
         }
     </style>
