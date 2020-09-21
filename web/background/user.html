@@ -10,8 +10,6 @@
   <link rel="stylesheet" href="css/all.css">
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/pagination.css">
@@ -263,7 +261,7 @@
 
         <div class="form-group">
           <label for="txt_name1">账户名</label>
-          <input type="text"  class="form-control" id="txt_name1" >
+          <input type="text"  class="form-control" id="txt_name1" disabled="disabled"  >
         </div>
         <div class="form-group">
           <label for="txt_password1">密码</label>
@@ -353,7 +351,7 @@
   function addAdmin() {
     var da={"name":$("#txt_name").val(),"password":$("#txt_password").val(),"phone":$("#txt_phone").val()};
     console.log(da);
-    $.post("insert.admin",da,function (data) {
+    $.post("addUser.users",da,function (data) {
       if(data=='true') {
         alert("添加成功");
         getEndpage();
@@ -364,7 +362,8 @@
 
   function updateAdmin() {
     var da={"id":$("#txt_ID1").val(),"name":$("#txt_name1").val(),"password":$("#txt_password1").val(),"phone":$("#txt_phone1").val(),"control":$("#txt_control").val()};
-    $.post("update.admin",da,function (data) {
+    $.post("updateUser.users",da,function (data) {
+      console.log("修改结果"+data);
       if(data=='true') {
         alert("修改成功");
         getEndpage();
@@ -378,8 +377,9 @@
     if($("#search").val()==""||$("#search").val()==null)
       return;
     let num=$("#search").val();
+    console.log(num);
     let str="";
-    $.post("queryone.admin",{"myid":num},function (data) {
+    $.post("search.users",{"id":num},function (data) {
       console.log(data);
       show(data);
       page=new Pagination({
@@ -404,9 +404,9 @@
 
 
 
-  function doDel(id,element) {
+  function doDel(id) {
     if (window.confirm("确认删除该行数据吗?")) {
-      $.post("delete.admin",{"id":id},function (data) {
+      $.post("deleteById.users",{"id":id},function (data) {
         if(!data){alert("删除失败");return;}
         getEndpage();
       });
@@ -415,8 +415,7 @@
   }
 
   function doEdit(id) {
-
-    $.post("queryone.admin",{"myid":id},function (data) {
+    $.post("search.users",{"id":id},function (data) {
       console.log(data);
       $("#myModal_1").modal();
       $.each(data, function (index, obj){
@@ -440,10 +439,10 @@
               + "<td>" + obj.phone + "</td>"
               + "<td>" + obj.date + "</td>" ;
       if(s==1){
-        str=str+"<td> <a href=\"javascript:void(0);\" onclick='doDel("+ obj.id + ",this)'> <img src=\"img/svg/delete.svg\" style=\"width: 30px;height: 30px;margin-right: 20px\"></a>" +
+        str=str+"<td> <a href=\"javascript:void(0);\" onclick='doDel("+ obj.user_id + ",this)'> <img src=\"img/svg/delete.svg\" style=\"width: 30px;height: 30px;margin-right: 20px\"></a>" +
                 "<a href=\"javascript:void(0);\" value='编辑' " +
                 "onclick='doEdit("
-                + obj.id +",this)'> <img src=\"img/svg/xiugai.svg\" style=\"width: 30px;height: 30px;\"></a>" +
+                + obj.user_id +",this)'> <img src=\"img/svg/xiugai.svg\" style=\"width: 30px;height: 30px;\"></a>" +
                 "</td>"
         ;
       }

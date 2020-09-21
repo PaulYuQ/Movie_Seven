@@ -4,12 +4,10 @@ package controller.login;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.mysql.cj.xdevapi.JsonArray;
 import factory.BeanFactory;
+import pojo.Admin;
 import pojo.User;
 import service.UserService;
-import service.impl.UserServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -173,10 +172,14 @@ public class UserServlet extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         resp.setHeader("Content-Type", "text/html;charset=utf-8");
         Integer id = Integer.parseInt(req.getParameter("id"));
+        System.out.println(id);
         User user = userService.findById(id);
-        JSONObject jsonObject =new JSONObject();
-        jsonObject.put("user",user);
-        resp.getWriter().print(jsonObject.toJSONString());
+        if(user!=null) {
+            ArrayList<User> users=new ArrayList<>();
+            users.add(user);
+            String s = JSON.toJSONString(users);
+            resp.getWriter().print(s);
+        }
     }
 
 
@@ -203,7 +206,7 @@ public class UserServlet extends HttpServlet {
             addUser(req,resp);
         }else if (path.contains("deleteById.users")){
             deleteById(req,resp);
-        }else if (path.contains("updateUser.uers")){
+        }else if (path.contains("updateUser.users")){
             updateUser(req,resp);
         }else if (path.contains("search.users")){
             searchById(req,resp);
