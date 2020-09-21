@@ -42,7 +42,7 @@ function doShow(page) {
                 "<li class='historyLi'>" +
                     "<div class='historyDiv'>" +
                         "<div class='historyImg'>" +
-                            "<img src="+obj.image_url+">"+
+                            "<img src="+obj.image_url+" onerror='imgError(this)'>"+
                         "</div>"+
                         "<div class='historyInfo'>"+
                             "<div class='historyName'>"+
@@ -154,15 +154,14 @@ $(function () {
         }
     });
 
-
-
     /**
-     * 选中的单选框显示出来
+     * 图片加载失败
      */
-   /* $("body").on("change",".historyChoose",function () {
-        if($(this).prop("checked")==true){
-            $(this).css("display","inline");
-        }
-    })*/
-
+    /*$("body").on("click","img",function () {
+        console.log(111);
+    });*/
 });
+function imgError(cell) {
+    cell.src="https://s1.ax1x.com/2020/09/21/wbQoTg.jpg"
+    console.log(222);
+}
