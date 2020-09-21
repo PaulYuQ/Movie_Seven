@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>收藏页面</title>
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-
-    <script src="static/js/jquery-3.2.1.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
+    <link href="static/collection/css/bootstrap.min.css" rel="stylesheet">
+    <script src="static/collection/js/jquery-3.2.1.js"></script>
+    <script src="static/collection/js/bootstrap.min.js"></script>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
@@ -252,7 +251,7 @@
             <div class="carousel slide" id="carousel-956640">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="" src="static/img/haha.png"/>
+                        <img alt="" src="static/collection/img/haha.png"/>
                         <div class="carousel-caption">
                             <p style="font-weight: bold;font-size: 20px">
                                 小强子大人
