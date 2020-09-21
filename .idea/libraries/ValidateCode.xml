@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ValidateCode">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/ValidateCode.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
