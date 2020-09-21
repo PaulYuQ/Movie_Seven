@@ -66,6 +66,7 @@
     margin-right: 80px;
 }
 .textarea-container textarea{
+    resize: none;
     font-size: 12px;
     display: inline-block;
     box-sizing: border-box;
@@ -102,6 +103,7 @@
     margin-top: 10px;
 }
 .comment-emoji{
+    display: none;
     padding: 0;
     width: 66px;
     height: 24px;
@@ -116,7 +118,7 @@
     margin-left: 111px;
     margin-top: 3px;
     cursor: pointer;
-    display: inline-block;
+/*    display: inline-block;*/
 }
 .comment-emoji i{
      display: inline-block;
@@ -267,7 +269,9 @@
      display: inline-block;
      width: calc(100% - 34px);
  }
-
+#pages{
+    margin-left: -100px;
+}
 a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
     margin: 0;
     padding: 0;

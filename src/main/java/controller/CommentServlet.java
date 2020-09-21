@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.Console;
 import java.io.IOException;
 import java.util.List;
 
@@ -40,9 +41,7 @@ public class CommentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("请求！！成功");
         String servletPath = request.getRequestURI();
-        System.out.println(servletPath);
         if (servletPath.contains(GetPathUtil.countRequest)){
             doGetCommentCount(request,response);
         }else if(servletPath.contains(GetPathUtil.addCommentsRequest)){
@@ -117,16 +116,50 @@ public class CommentServlet extends HttpServlet {
     private void doAddComment(HttpServletRequest request, HttpServletResponse response) throws IOException {
         /*{'movie_id':movie_id,'parent_id':-1,'content':content,'user_id':user_id,'date':date},*/
         SensitivewordUtil filter = new SensitivewordUtil();
+
         Integer movieId = Integer.valueOf(request.getParameter("movie_id"));
+
         Integer parentId = Integer.valueOf(request.getParameter("parent_id"));
-        String content = filter.replaceSensitiveWord(request.getParameter("content"), 1,"*");
-        Integer userId = Integer.valueOf(request.getParameter("user_id"));
-        Integer i = 0;
-        if (parentId== -1){
-            i = commentService.addComment(new Comment(movieId, null, content, userId, null));
+        String content = request.getParameter("content");
+        if (!substringContent(content)){
+            System.out.println("评论信息为空！！");
+            response.getWriter().print("你还没有评论！！");
         }else {
-            i = commentService.addComment(new Comment(movieId,parentId,content,userId,null));
+            //判断是否包含铭感词汇，
+            boolean flag = filter.isContaintSensitiveWord(content, 1);
+            if (flag){
+                System.out.println("包含敏感词汇，同时返回到前端页面");
+                response.getWriter().print("false");
+            }else {
+                Integer userId = Integer.valueOf(request.getParameter("user_id"));
+                Integer i = 0;
+                if (parentId== -1){
+                    i = commentService.addComment(new Comment(movieId, null, content, userId, null));
+                }else {
+                    i = commentService.addComment(new Comment(movieId,parentId,content,userId,null));
+                }
+                if (i==1){ response.getWriter().print("true"); }else { response.getWriter().print("false"); }
+            }
         }
-        if (i==1){ response.getWriter().print("true"); }else { response.getWriter().print("false"); }
+    }
+
+    /**
+     * 判断评论时候为空
+     * @param content
+     * @return
+     */
+    public boolean substringContent(String content){
+        System.out.println("输出content:"+content);
+        if (content.equals("")){
+            return false;
+        }else {
+            if (content.contains("@")){
+                String[] split = content.split(" ");
+                if (split.length == 1){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

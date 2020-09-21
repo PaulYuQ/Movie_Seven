@@ -6,7 +6,6 @@ import pojo.Comment;
 import service.CommentService;
 import service.impl.CommentServiceImpl;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -78,5 +77,25 @@ public class TestJunit{
         for (Comment i : commentsIdByParentId){
             System.out.println(i.getComment_id());
         }
+    }
+    @Test
+    public void testContent(){
+        boolean b = SubstringContent("回复@lsx fsd  f");
+        System.out.println(b);
+    }
+
+    public boolean SubstringContent(String content){
+        System.out.println("输出content:");
+        if (content.contains("@")){
+            String[] split = content.split(" ");
+            if (split.length > 1){
+                return true;
+            }else return false;
+        }else {
+            if (content.equals("")){
+                return false;
+            }
+        }
+        return true;
     }
 }

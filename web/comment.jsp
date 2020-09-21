@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>评论页面</title>
+    <link  type="text/css" rel="stylesheet" href="static/pagination/css/pagination.css">
     <link type="text/css"  rel="stylesheet" href="static/css/comments.css">
-    <script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="static/js/comments.js"></script>
-    <script>
-        $(function () {
-            getCount();
-            getAllComments(1);
-        });
-    </script>
 </head>
 <body>
+
+<span class="userId" style="display: none"><%--${sessionScope.user.id}--%>1</span>
 <!--总div-->
 <div class="common">
     <!--评论上面的导航-->
@@ -46,7 +43,6 @@
                     <button type="submit" class="comment-submit" onclick="addComments(0,0)" >发表评论</button>
                 </div>
                 <div class="comment-emoji">
-
                     <i class="face"></i>
                     <span class="text">表情</span>
                 </div>
@@ -61,7 +57,17 @@
             <!--第一个评论显示-->
             </div>
         </div>
+        <div  id="pages"></div>
     </div>
 </div>
 </body>
+<script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="static/js/comments.js"></script>
+<script type="text/javascript" src="static/pagination/js/pagination.js"></script>
+<script>
+    $(function () {
+        getCount();
+        getAllComments(1)
+    });
+</script>
 </html>

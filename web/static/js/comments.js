@@ -1,13 +1,34 @@
+/*
+
+function get() {
+    let counts = $("#result").html();
+    new Pagination({
+        element: '#pages',
+        type: 1,
+        pageIndex: 1,
+        pageSize: 5,
+        pageCount: 5,
+        total: counts,
+        jumper: true,
+        singlePageHide: false,
+        prevText: '上一页',
+        nextText: '下一页',
+        disabled: true,
+        currentChange: function(index) {
+            getAllComments(1,index);
+        }
+    });
+}
+*/
+
 /*全局变量*/
-var user_id = getQueryVariable("user_id");
+var user_id = $('.userId').text();
 var movie_id = getQueryVariable("movie_id");
 
 document.onclick = function () {
     $('.opera-list').css("display", "none");
     $('.comment-reply').css("display", "none");
 };
-
-
 /*获取总评论数*/
 function getCount() {
     var username = getQueryVariable("user_name");
@@ -21,7 +42,6 @@ function getCount() {
         }
         , "json");
 }
-
 /*对发表评论进行处理*/
 function addComments(comment_id, flag) {
     var f = flag;
@@ -37,11 +57,13 @@ function addComments(comment_id, flag) {
                     getAllComments(1);
                     console.log("添加成功！");
                     $(".ipt-txt").val("");
-                } else {
-                    getCount();
-                    getAllComments(1);
+                } else if (data.toString() == "false"){
+                    alert("请注意文明用语！");
                     $(".ipt-txt").val("");
                     console.log("添加失败！");
+                }else {
+                    alert("你还没有评论！");
+                    console.log(data);
                 }
             }, "json"
         );
@@ -52,6 +74,9 @@ function addComments(comment_id, flag) {
         var movie_Id = movie_id;
         /*获取content信息*/
         var content = $(".ipt-txt").val();
+        if (content== 'null'||content == ''){
+            alert("你还没有评论！");
+        }
         $.post(
             "/comment/addComment.do",
             {'movie_id': movie_Id, 'parent_id': -1, 'content': content, 'user_id': user_Id},
@@ -60,9 +85,13 @@ function addComments(comment_id, flag) {
                     getCount();
                     getAllComments(1);
                     $(".ipt-txt").val("");
-                } else {
-                    console.log("添加失败");
+                } else if (data.toString() == "false"){
+                    alert("请注意文明用语！");
                     $(".ipt-txt").val("");
+                    console.log("添加失败！");
+                }else {
+                    alert("你还没有评论！");
+                    console.log(data);
                 }
             }, "json"
         );

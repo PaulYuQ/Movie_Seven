@@ -46,7 +46,7 @@ public class CommentDaoImpl implements CommentDao {
         //执行sect语句
         List<Comment> commentList = null;
         try {
-            commentList = qr.query(sql, new BeanListHandler<Comment>(Comment.class), movie_id);
+            commentList = qr.query(sql, new BeanListHandler<Comment>(Comment.class), new Object[]{movie_id});
             return commentList;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,7 +93,6 @@ public class CommentDaoImpl implements CommentDao {
                         comm.getChild().add(comment);
                         it.remove();
                     }else {
-                        System.out.println("没有改父节点");
                     }
                 }
             }
@@ -127,11 +126,11 @@ public class CommentDaoImpl implements CommentDao {
      */
     @Override
     public Integer getCountComments(Integer movie_id,Integer flag) {
-        List<Comment> comments = getComments(movie_id,flag);
+        Integer comments = getCount(movie_id);
         if (comments == null){
             return 0;
         }else {
-            return comments.size();
+            return comments;
         }
     }
 

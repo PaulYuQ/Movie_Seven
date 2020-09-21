@@ -40,7 +40,6 @@
           <element id="library" level="project" name="Maven: org.testng:testng:7.3.0" />
           <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.21" />
           <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.2" />
-          <element id="library" level="project" name="commons-dbutils-1.7" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.62" />
           <element id="library" level="project" name="Maven: commons-dbutils:commons-dbutils:1.7" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
