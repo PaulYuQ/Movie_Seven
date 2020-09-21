@@ -101,7 +101,7 @@
                         window.location.replace("${pageContext.request.contextPath}/loginAndRegister.jsp");
                     }else if (result==4){
                         $('#msg').html("密码和用户名都错误")
-                    }else if (result=5){
+                    }else if (result==5){
                         $('#msg').html("注册失败！")
                     }
                 },"json"
