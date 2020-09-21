@@ -5,6 +5,7 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    </component>
   <component name="FacetManager">
     <facet type="web" name="Web">
       <configuration>
