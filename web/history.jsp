@@ -12,11 +12,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>浏览历史</title>
-    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="js/history.js"></script>
-    <script src="js/pagination.js"></script>
-    <link rel="stylesheet" href="css/pagination.css">
-    <link rel="stylesheet" type="text/css" href="css/history.css">
+    <script type="text/javascript" src="static/history/js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="static/history/js/history.js"></script>
+    <script src="static/history/js/pagination.js"></script>
+    <link rel="stylesheet" href="static/history/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="static/history/css/history.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
