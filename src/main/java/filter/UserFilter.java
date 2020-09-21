@@ -17,7 +17,7 @@ public class UserFilter implements Filter {
             chain.doFilter(request,response);
         }else {
             httpServletResponse.setContentType("text/html; charset=utf-8");
-            httpServletResponse.sendRedirect("login.jsp");
+            httpServletResponse.sendRedirect("loginAndRegister.jsp");
         }
     }
 

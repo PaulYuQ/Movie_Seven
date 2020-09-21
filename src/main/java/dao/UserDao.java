@@ -16,6 +16,7 @@ public interface UserDao {
     int updateUser(User user);
     User findById(int id);
     int deleteByName(String name);
+    int deleteById(Integer id);
     long calCount();
     List<User> findAllUsers();
     List<User> findPageUsers(Integer page,Integer pageAmount);

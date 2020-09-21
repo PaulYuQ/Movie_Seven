@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html lang="zh-CN">
 
 <head>
 <meta charset="utf-8">
-<title>HTML注册登录页面模板</title>
+<title>007影院登录注册</title>
 <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/users.css">
 </head>

@@ -2,6 +2,7 @@ import dao.impl.CommentDaoImpl;
 import factory.BeanFactory;
 import org.junit.Test;
 import pojo.Comment;
+import pojo.User;
 import service.CommentService;
 import service.impl.CommentServiceImpl;
 import service.impl.UserServiceImpl;
@@ -31,6 +32,24 @@ public class TestJunit{
         System.out.println(userService.findPageUsers(1, 2));
     };
 
+    @Test
+    public void findById(){
+        System.out.println(userService.findById(2));
+    }
+    @Test
+    public void addUsers(){
+        for (int i = 0;i<12;i++){
+            System.out.println(userService.addUser("刘逼熊", "123", "15800000000"));
+        }
+    }
+    @Test
+    public void deleteById(){
+        System.out.println(userService.deleteById(15));
+    }
+    @Test
+    public void updateUser(){
+        System.out.println(userService.updateUser(new User("余强22","1233","12345678901")));
+    }
 
 
 

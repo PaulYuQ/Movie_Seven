@@ -5,7 +5,7 @@
   Time: 17:03
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
     <title>个人中心</title>
@@ -91,7 +91,9 @@ function remove() {
                     {"name":$("#name").val(),},
                     function (data) {
                         bootbox.alert("删除成功！");
-                        window.location.replace("login.jsp")
+                        setTimeout(function () {
+                            window.location.replace("loginAndRegister.jsp")
+                        },2000)
                     },"json"
                 )
             }
@@ -117,10 +119,13 @@ function update() {
                     {"name":$("#name").val(),"password":$("#password").val(),"phone":$("#phone").val()},
                     function (data) {
                         if (data.result>0){
-                            bootbox.alert("修改成功！");
-                            window.location.replace("info.jsp")
+                            bootbox.alert("删除成功");
+                            setTimeout(function () {
+                                location.reload();
+                            },2000)
+                        }else {
+                            bootbox.alert("修改失败！")
                         }
-                        bootbox.alert("修改失败！")
                     },"json"
                 )
             }
