@@ -72,7 +72,6 @@ public class UserServlet extends HttpServlet {
             jsonObject.put("result", 3);
             resp.getWriter().print(jsonObject.toJSONString());
             System.out.println(jsonObject);
-
         }
     }
 
@@ -134,6 +133,51 @@ public class UserServlet extends HttpServlet {
         JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(users));
         resp.getWriter().print(jsonArray.toString());
     }
+    public void addUser(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        resp.setHeader("Content-Type", "text/html;charset=utf-8");
+        String name = req.getParameter("name");
+        String password =req.getParameter("password");
+        String phone = req.getParameter("phone");
+        if (userService.addUser(name,password,phone)){
+            resp.getWriter().print("true");
+        }else {
+            resp.getWriter().print("false");
+        }
+    }
+    public void deleteById(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        resp.setHeader("Content-Type", "text/html;charset=utf-8");
+        Integer id = Integer.valueOf(req.getParameter("id"));
+        if (userService.deleteById(id)>0){
+            resp.getWriter().print("true");
+        }else {
+            resp.getWriter().print("false");
+        }
+    }
+    public void updateUser(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        resp.setHeader("Content-Type", "text/html;charset=utf-8");
+        User user = null;
+        String name = req.getParameter("name");
+        String pwd = req.getParameter("password");
+        String phone = req.getParameter("phone");
+        user=new User(name,pwd,phone);
+        if (userService.updateUser(user)>0){
+            resp.getWriter().print("true");
+        }else {
+            resp.getWriter().print("false");
+        }
+    }
+    public void searchById(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("utf-8");
+        resp.setHeader("Content-Type", "text/html;charset=utf-8");
+        Integer id = Integer.parseInt(req.getParameter("id"));
+        User user = userService.findById(id);
+        JSONObject jsonObject =new JSONObject();
+        jsonObject.put("user",user);
+        resp.getWriter().print(jsonObject.toJSONString());
+    }
 
 
     @Override
@@ -155,6 +199,14 @@ public class UserServlet extends HttpServlet {
             calCount(req,resp);
         }else if (path.contains("queryPage.users")){
             queryPage(req,resp);
+        }else if (path.contains("addUser.users")){
+            addUser(req,resp);
+        }else if (path.contains("deleteById.users")){
+            deleteById(req,resp);
+        }else if (path.contains("updateUser.uers")){
+            updateUser(req,resp);
+        }else if (path.contains("search.users")){
+            searchById(req,resp);
         }
     }
 }

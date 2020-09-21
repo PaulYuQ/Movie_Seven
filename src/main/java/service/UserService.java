@@ -14,4 +14,5 @@ public interface UserService {
     List<User> findAllUsers();
     long calCount();
     List<User> findPageUsers(Integer page,Integer pageAmount);
+    int deleteById(Integer id);
 }
