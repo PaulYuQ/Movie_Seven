@@ -230,7 +230,7 @@ class Pagination implements IPagination {
                 if (value < 1)  value = 1;
                 if (value > _this.pageNum) value = _this.pageNum;
                 // @ts-ignore
-                this.value = value;
+                this.value = String(value);
                 if (value !== _this.options.pageIndex) _this.handleClick(value);
             });
             jumper.appendChild(this.input);
@@ -307,7 +307,7 @@ class Pagination implements IPagination {
                     dom.classList.add(v);
                 });
             } else {
-                dom.classList.add(classList);
+                dom.classList.add(<string>classList);
             }
         }
         return dom;

@@ -7,7 +7,7 @@ let page;
 function getcount() {
     $.post("doGetCount.histories",function (data) {
         console.log(data);
-        page=new Pagination({
+        new Pagination({
             element: '#historyPage', // 元素
             type: 1, // 样式类型，可选[1,2]
             pageIndex: 1, // 初始页码
@@ -74,7 +74,7 @@ $(function () {
      */
     $(".chooseAll").click(function () {
         $(".historyChoose").prop("checked", true);
-
+        $(".historyChoose").css("display", "inline");
     });
 
 
@@ -86,10 +86,14 @@ $(function () {
      */
     $(".chooseReverse").click(function () {
         $(".historyChoose").each(function () {
-            if($(this).prop("checked")==true)
-                $(this).prop("checked",false);
-            else
-                $(this).prop("checked",true);
+            if($(this).prop("checked")==true) {
+                $(this).prop("checked", false);
+                $(this).css("display", "none");
+            }
+            else {
+                $(this).prop("checked", true);
+                $(this).css("display", "inline");
+            }
         });
     });
 
@@ -136,4 +140,29 @@ $(function () {
             getcount();
         });
     });
+
+
+    /**
+     * 复选框的显示
+     */
+    $("body").on("mouseover",".historyDiv",function() {
+        $(this).find(".historyChoose").css("display", "inline");
+    });
+    $("body").on("mouseout",".historyDiv",function() {
+        if($(this).find(".historyChoose").prop("checked")!=true){
+            $(this).find(".historyChoose").css("display", "none");
+        }
+    });
+
+
+
+    /**
+     * 选中的单选框显示出来
+     */
+   /* $("body").on("change",".historyChoose",function () {
+        if($(this).prop("checked")==true){
+            $(this).css("display","inline");
+        }
+    })*/
+
 });
