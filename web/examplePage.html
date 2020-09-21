@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>jQuery响应式Banner图片轮播代码 - 站长素材</title>
+
+<link rel="stylesheet" href="static/banner/css/style.css" />
+
+</head>
+<body>
+
+<div class="c-banner">
+	<div class="banner">
+		<ul>
+			<li><a href="/"><img src="http://liangcang-material.alicdn.com/prod/upload/3c9e9bb2035a49df8cee94a573a88690.jpg"></a></li>
+			<li><a href="/"><img src="http://liangcang-material.alicdn.com/prod/upload/7d3fe289dca64866bbc01d83a4eff3af.jpg"></a></li>
+			<li><a href="/"><img src="https://puui.qpic.cn/media_img/lena/PICy2nx63_580_1680/0"></a></li>
+			<li><a href="/"><img src="https://3img.hitv.com/preview/cms_icon/2020/7/6/07/20200706000711426.jpg"></a></li>
+			<li><a href="/"><img src="http://liangcang-material.alicdn.com/prod/upload/5bdc4e3e3ff54c38805435504bf3fae6.jpg"></a></li>
+		</ul>
+	</div>
+	<div class="nexImg">
+		<img src="static/banner/img/nexImg.png" />
+	</div>
+	<div class="preImg">
+		<img src="static/banner/img/preImg.png" />
+	</div>
+	<div class="jumpBtn">
+		<ul>
+			<li jumpImg="0"></li>
+			<li jumpImg="1"></li>
+			<li jumpImg="2"></li>
+			<li jumpImg="3"></li>
+			<li jumpImg="4"></li>
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript" src="static/banner/js/jquery.min.js"></script>
+<script type="text/javascript">
+//定时器返回值
+var time=null;
+//记录当前位子
+var nexImg = 0;
+//用于获取轮播图图片个数
+var imgLength = $(".c-banner .banner ul li").length;
+//当时动态数据的时候使用,上面那个删除
+// var imgLength =0;
+//设置底部第一个按钮样式
+$(".c-banner .jumpBtn ul li[jumpImg="+nexImg+"]").css("background-color","black");
+
+//页面加载
+$(document).ready(function(){
+	// dynamicData();
+	//启动定时器,设置时间为3秒一次
+	time =setInterval(intervalImg,3000);
+});
+
+//点击上一张
+$(".preImg").click(function(){
+	//清楚定时器
+	clearInterval(time);
+	var nowImg = nexImg;
+	nexImg = nexImg-1;
+	console.log(nexImg);
+	if(nexImg<0){
+		nexImg=imgLength-1;
+	}
+	//底部按钮样式设置
+	$(".c-banner .jumpBtn ul li").css("background-color","white");
+	$(".c-banner .jumpBtn ul li[jumpImg="+nexImg+"]").css("background-color","black");
+	
+	//将当前图片试用绝对定位,下一张图片试用相对定位
+	$(".c-banner .banner ul img").eq(nowImg).css("position","absolute");
+	$(".c-banner .banner ul img").eq(nexImg).css("position","relative");
+	
+	//轮播淡入淡出
+	$(".c-banner .banner ul li").eq(nexImg).css("display","block");
+	$(".c-banner .banner ul li").eq(nexImg).stop().animate({"opacity":1},1000);
+	$(".c-banner .banner ul li").eq(nowImg).stop().animate({"opacity":0},1000,function(){
+		$(".c-banner ul li").eq(nowImg).css("display","none");
+	});
+	
+	//启动定时器,设置时间为3秒一次
+	time =setInterval(intervalImg,3000);
+})
+
+//点击下一张
+$(".nexImg").click(function(){
+	clearInterval(time);
+	intervalImg();
+	time =setInterval(intervalImg,3000);
+})
+
+//轮播图
+function intervalImg(){
+	if(nexImg<imgLength-1){
+		nexImg++;
+	}else{
+		nexImg=0;
+	}
+	
+	//将当前图片试用绝对定位,下一张图片试用相对定位
+	$(".c-banner .banner ul img").eq(nexImg-1).css("position","absolute");
+	$(".c-banner .banner ul img").eq(nexImg).css("position","relative");
+	
+	$(".c-banner .banner ul li").eq(nexImg).css("display","block");
+	$(".c-banner .banner ul li").eq(nexImg).stop().animate({"opacity":1},1000);
+	$(".c-banner .banner ul li").eq(nexImg-1).stop().animate({"opacity":0},1000,function(){
+		$(".c-banner .banner ul li").eq(nexImg-1).css("display","none");
+	});
+	$(".c-banner .jumpBtn ul li").css("background-color","white");
+	$(".c-banner .jumpBtn ul li[jumpImg="+nexImg+"]").css("background-color","black");
+}
+
+//轮播图底下按钮
+//动态数据加载的试用应放在请求成功后执行该代码,否则按钮无法使用
+$(".c-banner .jumpBtn ul li").each(function(){
+	//为每个按钮定义点击事件
+	$(this).click(function(){
+		clearInterval(time);
+		$(".c-banner .jumpBtn ul li").css("background-color","white");
+		jumpImg = $(this).attr("jumpImg");
+		if(jumpImg!=nexImg){
+			var after =$(".c-banner .banner ul li").eq(jumpImg);
+			var befor =$(".c-banner .banner ul li").eq(nexImg);
+			
+			//将当前图片试用绝对定位,下一张图片试用相对定位
+			$(".c-banner .banner ul img").eq(nexImg).css("position","absolute");
+			$(".c-banner .banner ul img").eq(jumpImg).css("position","relative");
+			
+			after.css("display","block");
+			after.stop().animate({"opacity":1},1000);
+			befor.stop().animate({"opacity":0},1000,function(){
+				befor.css("display","none");
+			});
+			nexImg=jumpImg;
+		}
+		$(this).css("background-color","black");
+		time =setInterval(intervalImg,3000);
+	});
+});
+
+	//动态数据轮播图
+	//动态数据加载的时候不要直接点击demo.html运行否则可能请求不到本地json数据
+// function dynamicData(){
+// 	$.ajax({
+// 		url:"js/test.json",
+// 		type:"get",
+// 		dataType:"json",
+// 		success:function(data){
+// 			if(data.code==1){
+// 				var data = data.data;
+// 				$.each(data,function(i){
+// 					$(".c-banner .banner ul").append('<li><img src="'+this.img+'"></li>');
+// 					$(".c-banner .jumpBtn ul").append('<li jumpImg="'+i+'"></li>')
+// 				})
+// 			}
+// 			//获取图片总数量
+// 			imgLength = $(".c-banner .banner ul li").length;
+// 			//为底部按钮定义单击事件
+// 			$(".c-banner .jumpBtn ul li").each(function(){
+// 				//为每个按钮定义点击事件
+// 				$(this).click(function(){
+// 					clearInterval(time);
+// 					$(".c-banner .jumpBtn ul li").css("background-color","white");
+// 					jumpImg = $(this).attr("jumpImg");
+// 					if(jumpImg!=nexImg){
+// 						var after =$(".c-banner .banner ul li").eq(jumpImg);
+// 						var befor =$(".c-banner .banner ul li").eq(nexImg);
+// 						
+// 						//将当前图片试用绝对定位,下一张图片试用相对定位
+// 						$(".c-banner .banner ul img").eq(nexImg).css("position","absolute");
+// 						$(".c-banner .banner ul img").eq(jumpImg).css("position","relative");
+// 						
+// 						after.css("display","block");
+// 						after.stop().animate({"opacity":1},1000);
+// 						befor.stop().animate({"opacity":0},1000,function(){
+// 							befor.css("display","none");
+// 						});
+// 						nexImg=jumpImg;
+// 					}
+// 					$(this).css("background-color","black");
+// 					time =setInterval(intervalImg,3000);
+// 				});
+// 			});
+// 		}
+// 	})
+// }
+</script>
+<div style="text-align:center;margin:10px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>
+
