@@ -85,7 +85,7 @@ public class TestJunit{
      */
     @Test
     public void findTest(){
-        Histories histories=movie.movieFindById(2);
+        Histories histories=movie.movieFindById(159);
         System.out.println(histories.toString());
     }
 
