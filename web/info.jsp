@@ -12,46 +12,46 @@
 </head>
 <link rel="stylesheet" href="/static/user/css/bootstrap.min.css">
 <link rel="stylesheet" href="/static/user/css/users.css">
-<body>
-<div class="container">
-    <div class="row row-info">
-        <div class="info-center">
-            <div>
-                <div class="col-lg-2">
-                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600314127342&di=3113df7e6be597c6ab63a0b6dfd6be73&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F31%2F76%2F99573b52787e93b.jpg" alt="" width="100px" height="100px">
-                </div>
-                <div class="col-lg-10">
-                    <form action="${pageContext.request.contextPath}/modify.users?name=${name}" class="form-info">
-                        <div class="form-group row ">
-                            <label for="name" class="col-sm-2 col-form-label" >用户名</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control" id="name" name="name" value="${user.name}">
+<body style="background: #ededed;">
+<div class="container" >
+        <div class="row row-info" style="background: #fff;height: 500px">
+            <div class="info-center">
+                <div>
+                    <div class="col-lg-3">
+                        <img src="http://img95.699pic.com/photo/50060/5752.jpg_wh300.jpg" alt="" width="227px" height="150px">
+                    </div>
+                    <div class="col-lg-9">
+                        <form action="${pageContext.request.contextPath}/modify.users?name=${name}" class="form-info">
+                            <div class="form-group row ">
+                                <label for="name" class="col-sm-2 col-form-label" >用户名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control" id="name" name="name" value="${user.name}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row checked-2">
-                            <label for="password" class="col-sm-2 col-form-label">密码</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="password" class="form-control" id="password" value="${user.password}">
+                            <div class="form-group row checked-2">
+                                <label for="password" class="col-sm-2 col-form-label">密码</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="password" class="form-control" id="password" value="${user.password}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row checked-2">
-                            <label for="phone" class="col-sm-2 col-form-label">手机号码</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="phone" class="form-control" id="phone" value="${user.phone}">
+                            <div class="form-group row checked-2">
+                                <label for="phone" class="col-sm-2 col-form-label">手机号码</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="phone" class="form-control" id="phone" value="${user.phone}">
+                                </div>
                             </div>
-                        </div>
-                        <div style="margin-top: 40px;display: block">
-                            <input type="button" class="btn btn-lg  btn-group" style="margin-left:300px"onclick="window.location.href = '${pageContext.request.contextPath}/index.jsp' " value="返回首页">
-                            <input type="button" class="btn btn-lg  btn-info" onclick="update()" value="修改">
-                            <input class="btn btn-primary btn-lg" type="reset" value="重置">
-                            <input class="btn btn-danger btn-lg" type="button" onclick="remove()" value="注销账号">
-                        </div>
+                            <div style="margin-top: 40px;display: block">
+                                <input type="button" class="btn btn-lg  btn-group" style="margin-left:300px"onclick="window.location.href = '${pageContext.request.contextPath}/index.jsp' " value="返回首页">
+                                <input type="button" class="btn btn-lg  btn-info" onclick="update()" value="修改">
+                                <input class="btn btn-primary btn-lg" type="reset" value="重置">
+                                <input class="btn btn-danger btn-lg" type="button" onclick="remove()" value="注销账号">
+                            </div>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
 

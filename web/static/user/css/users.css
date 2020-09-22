@@ -43,13 +43,14 @@ a:hover{
     color: #000000;
 }
 .row-info{
-    margin-top: 200px;
+    margin-top: 100px;
     text-align: center;
 }
 .info-center{
     display:inline-block;
     float:none;
     text-align:left;
+    margin-top:100px;
     width: 1000px;
 }
 input,button:active{
