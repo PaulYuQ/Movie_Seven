@@ -64,25 +64,25 @@
                 console.log(type);
                 switch (type) {
                     case "动作片":
-                        $("#fed-more").attr("href","/action.html");
+                        $("#fed-more").attr("href","/action.jsp");
                         break;
                     case "喜剧片":
-                        $("#fed-more").attr("href","/comedy.html");
+                        $("#fed-more").attr("href","/comedy.jsp");
                         break;
                     case "爱情片":
-                        $("#fed-more").attr("href","/love.html");
+                        $("#fed-more").attr("href","/love.jsp");
                         break;
                     case "剧情片":
-                        $("#fed-more").attr("href","/story.html");
+                        $("#fed-more").attr("href","/story.jsp");
                         break;
                     case "恐怖片":
-                        $("#fed-more").attr("href","/horror.html");
+                        $("#fed-more").attr("href","/horror.jsp");
                         break;
                     case "科幻片":
-                        $("#fed-more").attr("href","/science.html");
+                        $("#fed-more").attr("href","/science.jsp");
                         break;
                     case "纪录片":
-                        $("#fed-more").attr("href","/documentary.html");
+                        $("#fed-more").attr("href","/documentary.jsp");
                         break;
                 }
 
