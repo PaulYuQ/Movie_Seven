@@ -54,7 +54,16 @@
         </div>
 </div>
 
-
+<footer class="panel-footer" style="width: 100%; overflow: hidden;">
+    <div class="container">
+        <div class="row footer-top" style="text-align: center;">
+            <h2>Design By 007 </h2>
+            <p>本网站内容均收集于互联网，007影视不承担任何由于内容的合法性及健康性所引起的争议和法律责任。</p>
+            <p>欢迎大家对网站内容侵犯版权等不合法和不健康行为进行监督和举报。</p>
+            <p>Copyright © 2020 </p>
+        </div>
+    </div>
+</footer>
 <script src="static/user/js/jquery-3.2.1.js"></script>
 <script src="static/user/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
