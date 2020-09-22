@@ -305,14 +305,12 @@ position:absolute;
 
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!--  &lt;!&ndash; MDB core JavaScript &ndash;&gt;-->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
   <script src="js/pagination.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization
 
     let pageAmount=7;
-    new WOW().init();
 
     var s=${control};
 
