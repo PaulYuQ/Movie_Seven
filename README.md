@@ -1,10 +1,10 @@
 # seven_movie影柒
 
 ## 介绍
-基于javaWeb的007电影网站项目。
+基于javaWeb的007电影网站项目。功能包括用户的登陆注册、电影观看、观看历史、收藏电影、评论系统以及对所有表格的增删改查的后台系统，页面风格统一，电影资源采用了直接网址播放。
 
 ## 软件架构
-B/S架构，采用了JavaWeb等servlet、mySql、dbUtils、Bootstrap等框架
+开发采用了MVC分层开发，软件整体采用了B/S架构，使用JavaWeb的servlet、mySql、dbUtils、Bootstrap等框架
 
 
 
@@ -77,45 +77,45 @@ B/S架构，采用了JavaWeb等servlet、mySql、dbUtils、Bootstrap等框架
 
 ```sql
 CREATE TABLE admins(
-                     admin_id		INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT ,
-                     name	    	VARCHAR(16) NOT NULL ,
-                     password		VARCHAR(16) NOT NULL,
-    				 phone       	VARCHAR(15) ,
-    				control       int(1) NOT NULL
+                     admin_id     INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT ,
+                     name         VARCHAR(16) NOT NULL ,
+                     password     VARCHAR(16) NOT NULL,
+                 phone         VARCHAR(15) ,
+                control       int(1) NOT NULL
 ) charset = utf8mb4;
 
 
 CREATE TABLE users(
-                     user_id		INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT ,
-                     name		VARCHAR(16) NOT NULL ,
-                     password		VARCHAR(16) NOT NULL ,
+                     user_id      INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT ,
+                     name     VARCHAR(16) NOT NULL ,
+                     password     VARCHAR(16) NOT NULL ,
                      date      timestamp default current_timestamp(),
-    				 phone       	VARCHAR(15)   
+                 phone         VARCHAR(15)   
 ) charset = utf8mb4;
 
 
 CREATE TABLE movies(
-                       movie_id		INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                       name	    VARCHAR(255) NOT NULL ,
-                       type		VARCHAR(16) NOT NULL ,
-                       actor		text NOT NULL ,
-                       image_url		text NOT NULL ,
+                       movie_id       INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                       name        VARCHAR(255) NOT NULL ,
+                       type       VARCHAR(16) NOT NULL ,
+                       actor      text NOT NULL ,
+                       image_url      text NOT NULL ,
                        banner_url   text,
                        introduction  text NOT NULL ,
                        url         text NOT NULL
 ) charset = utf8mb4;
 
 CREATE TABLE histories(
-                     history_id		INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                     user_id	    INT(20) NOT NULL ,
-                     movie_id		INT(20) NOT NULL ,
-                     progress		INT(20)
+                     history_id       INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                     user_id       INT(20) NOT NULL ,
+                     movie_id     INT(20) NOT NULL ,
+                     progress     INT(20)
 ) charset = utf8mb4;
 
 CREATE TABLE collections(
-                     collection_id		INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                     user_id	    INT(20) NOT NULL ,
-                     movie_id		INT(20) NOT NULL ,
+                     collection_id    INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                     user_id       INT(20) NOT NULL ,
+                     movie_id     INT(20) NOT NULL ,
                      date      timestamp default current_timestamp()
 ) charset = utf8mb4;
 
@@ -166,5 +166,3 @@ https://www.cnblogs.com/godlovesme/p/10708358.html
 2.  新建 你自己的分支
 3.  提交代码
 4.  新建 Pull Request
-
-
