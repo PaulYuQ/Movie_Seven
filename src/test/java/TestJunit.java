@@ -1,5 +1,6 @@
 import com.alibaba.fastjson.JSON;
 import dao.impl.CommentDaoImpl;
+import dao.impl.UserDaoImpl;
 import factory.BeanFactory;
 import org.junit.Test;
 import pojo.Comment;
@@ -82,6 +83,13 @@ public class TestJunit{
     public void testContent(){
         boolean b = SubstringContent("回复@lsx fsd  f");
         System.out.println(b);
+    }
+
+    @Test
+    public void test(){
+        UserDaoImpl userDao = BeanFactory.getInstance("UserDao",UserDaoImpl.class);
+        System.out.println(userDao);
+
     }
 
     public boolean SubstringContent(String content){

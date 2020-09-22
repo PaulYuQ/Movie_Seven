@@ -10,7 +10,7 @@
 <body>
 
 <%--获取用户的id--%>
-<span class="userId" style="display: none"><%--${sessionScope.user.id}--%>1</span>
+<span class="userId" style="display: none">${user.user_id}</span>
 <!--总div-->
 <div class="common">
     <!--评论上面的导航-->
@@ -33,7 +33,7 @@
             <div class="comment-send ">
                 <div class="user-name">
                     <%--从session中获取用户的姓名  ${user.name}}--%>
-                    <span class="user_name">Misskun</span>
+                    <span class="user_name">${user.name}</span>
                 </div>
                 <div class="textarea-container">
                     <i class="ipt-arrow"></i>

@@ -259,7 +259,10 @@
                 </ul>
             </div>
         </div>
-
+        <%--静态导入--%>
+        <div>
+            <%@include file="comment.jsp"%>
+        </div>
         <div class="fed-part-layout fed-back-whits">
             <div class="fed-list-head fed-part-rows fed-padding">
                 <h2 class="fed-font-xvi">相关热播</h2>
@@ -313,7 +316,7 @@
     'not': '1'
 }; </script>
 <script src="static/js/jquery.js?v=3.1.5" type="text/javascript" charset="utf-8"></script>
-<script src="static/js/sidebar.js?v=3.1.5" type="text/javascript" charset="utf-8"></script>
+<%--<script src="static/js/sidebar.js?v=3.1.5" type="text/javascript" charset="utf-8"></script>--%>
 <div class="fed-foot-info fed-part-layout fed-back-whits">
     <div class="fed-part-case">
         <p class="fed-text-center fed-text-black"></p>
