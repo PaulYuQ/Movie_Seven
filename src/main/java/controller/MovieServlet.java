@@ -58,7 +58,9 @@ public class MovieServlet extends HttpServlet {
             getMoviesCount(request, response);
         } else if (requestURI.contains("getRelevantMovies.do")){
             getRelevantMovies(request,response);
-        }
+        }/*else {
+            System.out.println("错误++++++++++");
+        }*/
     }
 
 
