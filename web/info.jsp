@@ -41,7 +41,8 @@
                             </div>
                         </div>
                         <div style="margin-top: 40px;display: block">
-                            <input type="button" class="btn btn-lg  btn-info" style="margin-left:300px"onclick="update()" value="修改">
+                            <input type="button" class="btn btn-lg  btn-group" style="margin-left:300px"onclick="window.location.href = '${pageContext.request.contextPath}/index.jsp' " value="返回首页">
+                            <input type="button" class="btn btn-lg  btn-info" onclick="update()" value="修改">
                             <input class="btn btn-primary btn-lg" type="reset" value="重置">
                             <input class="btn btn-danger btn-lg" type="button" onclick="remove()" value="注销账号">
                         </div>
