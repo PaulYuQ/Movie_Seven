@@ -291,7 +291,7 @@
                     function logout() {
                         if (confirm("请确认是否退出")){
                             $.post("/logout.users",function () {
-                                window.location.href = "loginAndRegister.jsp";
+                                window.location.href = "index.jsp";
                             });
                         }
                     }
