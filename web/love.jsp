@@ -201,7 +201,7 @@
                             src="https://kuyun.tv/upload/vod/20190901-1/091.jpg"></a>
                     </li>
                     <li>
-                        <a href="/movie/gotoIntroduction.do?movie_id=1676"><img src="http://pic0.iqiyipic.com/common/lego/20200816/da10becfaf82434f991c4ba5e417e4b4.jpg"></a>
+                        <a href="/movie/gotoIntroduction.do?movie_id=1676"><img src="static/images/banner_3.jpg"></a>
                     </li>
                     <li>
                         <a href="/movie/gotoIntroduction.do?movie_id=203"><img src="https://3img.hitv.com/preview/cms_icon/2020/7/6/07/20200706000711426.jpg"></a>

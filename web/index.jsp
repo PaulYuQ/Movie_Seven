@@ -253,7 +253,7 @@
                    href="javascript:;"></a>
                 <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">看过<span
                         class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
-                <a id="loginBtn" href="javascript:;" style="display: block">登录</a>
+                <a id="loginBtn" href="${pageContext.request.contextPath}/loginAndRegister.jsp" style="display: block">登录</a>
                 <a id="myBtn" href="javascript:;" style="display: none" >我的</a>
             </div>
         </div>
@@ -300,7 +300,7 @@
                             src="https://kuyun.tv/upload/vod/20190901-1/091.jpg"></a>
                     </li>
                     <li>
-                        <a href="/movie/gotoIntroduction.do?movie_id=1676"><img src="http://pic0.iqiyipic.com/common/lego/20200816/da10becfaf82434f991c4ba5e417e4b4.jpg"></a>
+                        <a href="/movie/gotoIntroduction.do?movie_id=1676"><img src="static/images/banner_3.jpg"></a>
                     </li>
                     <li>
                         <a href="/movie/gotoIntroduction.do?movie_id=203"><img src="https://3img.hitv.com/preview/cms_icon/2020/7/6/07/20200706000711426.jpg"></a>
