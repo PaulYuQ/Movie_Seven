@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <title>007影院登录注册</title>
 <link rel="stylesheet" href="static/user/css/style.css">
-    <link rel="stylesheet" href="static/user/css/users.css">
 </head>
 
 <body >
