@@ -35,13 +35,8 @@ public class UserServlet extends HttpServlet {
         if (userService.login(name,pwd)){
             if (code.equalsIgnoreCase(scode)){
                 User user = userService.findByName(name);
-                if (user!=null){
-                    req.getSession().setAttribute("user",user);
-                    resp.sendRedirect("index.jsp");
-                }else {
-                    req.setAttribute("msg","登录失败！");
-                    req.getRequestDispatcher("loginAndRegister.jsp").forward(req, resp);
-                }
+                req.getSession().setAttribute("user",user);
+                resp.sendRedirect("index.jsp");
             }else {
                 req.setAttribute("msg","验证码错误！");
                 req.getRequestDispatcher("loginAndRegister.jsp").forward(req, resp);
