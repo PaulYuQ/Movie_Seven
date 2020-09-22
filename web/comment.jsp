@@ -33,7 +33,7 @@
             <div class="comment-send ">
                 <div class="user-name">
                     <%--从session中获取用户的姓名  ${user.name}}--%>
-                    <span class="user_name"> ${user.name}</span>
+                    <span class="user_name">${user.name}</span>
                 </div>
                 <div class="textarea-container">
                     <i class="ipt-arrow"></i>

@@ -3,15 +3,16 @@
 
 /*设置common评论区的大小*/
 .common{
-    width: 65%;
+    width: 100%;
 }
 /*设置评论的右边距*/
 .comment-m,.b-head,.results {
     margin-right: 10px;
+    margin-left: 10px;
 }
 /*设置下划线*/
 .comment-header,.comment-bilibili-fold,.comment-header {
-    margin: 0 0 24px;
+    margin: 0 0 60px;
     border-bottom: 1px solid #e5e9ef;
 }
 .bb-comment{
@@ -24,7 +25,7 @@
     margin-bottom: 10px;
 }
 .comment-header{
-    margin: 0 0 24px;
+    margin: 0 0 60px;
     border-bottom: 1px solid #e5e9ef;
 }
 .tabs-order{
@@ -40,8 +41,8 @@
     background-color: transparent;
     border-radius: 0;
     border: 0;
-    padding: 8px 0;
-    margin-right: 16px;
+    padding: 20px 0;
+    margin-left: 30px;
     border-bottom: 1px solid transparent;
     position: relative;
     float: left;
@@ -75,7 +76,7 @@
     overflow: auto;
     border-radius: 4px;
     color: #555;
-    width: 100%!important;
+    width: 70%!important;
     height: 65px;
     transition: 0s;
     padding: 5px 10px;
@@ -85,7 +86,7 @@
     width: 70px;
     height: 64px;
     position: absolute;
-    right: -80px;
+    right: 20%;
     top: 0;
     padding: 4px 15px;
     font-size: 14px;
@@ -147,6 +148,7 @@
  }
  .comment-list{
      padding-top: 20px;
+     margin-left: 20px;
  }
  .user-face{
      float: left;
@@ -160,7 +162,7 @@
      border-top: 1px solid #e5e9ef;
  }
  .name{
-     color: #fb7299!important;
+     color: #24a9d8!important
  }
  .user{
      font-size: 12px;
@@ -173,7 +175,7 @@
      margin-left: 30px;
  }
  .user-nickname{
-     color: #fb7299;
+     color: #2faede;
  }
  .text{
      line-height: 20px;
@@ -230,7 +232,7 @@
      width: 18px;
      float: right;
      margin-top: 5px;
-     margin-right: 0;
+     margin-right: 20%;
  }
  .spot{
      width: 18px;
