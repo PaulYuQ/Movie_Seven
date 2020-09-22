@@ -107,7 +107,8 @@ public class UserServlet extends HttpServlet {
             resp.getWriter().print(jsonObject.toJSONString());
         }
     }
-    public void doDelete(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+    @Override
+    public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        String name = req.getParameter("name");
         int res = userService.deleteByName(name);
         if (res>0){

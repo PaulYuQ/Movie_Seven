@@ -253,17 +253,37 @@
                    href="javascript:;"></a>
                 <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">看过<span
                         class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
+<%--                <%--%>
+<%--                    if (session.getAttribute("user") == null) {--%>
+<%--                        String login_url = request.getContextPath() + "/loginAndRegister.jsp";--%>
+<%--                        out.print("<a id=\"loginBtn\" href=" + login_url + " style=\"display: block\">登录</a>");--%>
+<%--                    } else {--%>
+<%--                        out.print("<a id=\"myBtn\" href=\"javascript:;\" style=\"display: none\" >我的</a>");--%>
+<%--                    }--%>
+<%--                %>--%>
+                <%
+                    if (session.getAttribute("user") == null){
+                %>
                 <a id="loginBtn" href="${pageContext.request.contextPath}/loginAndRegister.jsp" style="display: block">登录</a>
-                <a id="myBtn" href="javascript:;" style="display: none" >我的</a>
+                <%
+                    }else {
+
+                %>
+                <a id="myBtn" href="javascript:;" style="display: block" >我的</a>
+                <%
+                    }
+                %>
+
             </div>
         </div>
-        <div class="fed-pops-user fed-box-shadow fed-back-whits fed-hidden fed-conceal fed-anim fed-anim-upbit" id="myInfo" style="right: -86px;">
+        <div class="fed-pops-user fed-box-shadow fed-back-whits fed-hidden fed-conceal fed-anim fed-anim-upbit"
+             id="myInfo" style="right: -86px;">
             <ul class="fed-pops-list fed-font-size fed-back-whits">
                 <li>
-                    <a href="/user/index.html">游客</a>
+                    <a href="javascript:;">${user.name}</a>
                 </li>
                 <li>
-                    <a href="/user/info.html">修改资料</a>
+                    <a href="/info.jsp">修改资料</a>
                 </li>
                 <li>
                     <a href="/user/favs.html">我的收藏</a>
@@ -272,8 +292,17 @@
                     <a href="/user/plays.html">浏览记录</a>
                 </li>
                 <li>
-                    <a href="/user/logout.html">退出登录</a>
+                    <a href="javascript:;" onclick="logout()">退出登录</a>
                 </li>
+                <script>
+                    function logout() {
+                        if (confirm("请确认是否退出")){
+                            $.post("/logout.users",function () {
+                                window.location.href = "loginAndRegister.jsp";
+                            });
+                        }
+                    }
+                </script>
             </ul>
         </div>
     </div>
@@ -303,11 +332,12 @@
                         <a href="/movie/gotoIntroduction.do?movie_id=1676"><img src="static/images/banner_3.jpg"></a>
                     </li>
                     <li>
-                        <a href="/movie/gotoIntroduction.do?movie_id=203"><img src="https://3img.hitv.com/preview/cms_icon/2020/7/6/07/20200706000711426.jpg"></a>
+                        <a href="/movie/gotoIntroduction.do?movie_id=203"><img
+                                src="https://3img.hitv.com/preview/cms_icon/2020/7/6/07/20200706000711426.jpg"></a>
                     </li>
                     <li>
                         <a href="/movie/gotoIntroduction.do?movie_id=1681"><img
-                            src="http://liangcang-material.alicdn.com/prod/upload/5bdc4e3e3ff54c38805435504bf3fae6.jpg"></a>
+                                src="http://liangcang-material.alicdn.com/prod/upload/5bdc4e3e3ff54c38805435504bf3fae6.jpg"></a>
                     </li>
                 </ul>
             </div>

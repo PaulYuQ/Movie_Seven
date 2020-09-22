@@ -8,13 +8,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>个人中心</title>
 </head>
 <link rel="stylesheet" href="/static/user/css/bootstrap.min.css">
 <link rel="stylesheet" href="/static/user/css/users.css">
 <body>
-<div class="container">
-    <div class="row row-info">
+
+    <jsp:include page="navigationBar.jsp"></jsp:include>
+    <div class="row row-info"style="float: none">
         <div class="info-center">
             <div>
                 <div class="col-lg-2">
@@ -48,7 +54,6 @@
 
                     </form>
                 </div>
-            </div>
         </div>
     </div>
 </div>
