@@ -12,13 +12,21 @@
 </head>
 <link rel="stylesheet" href="/static/user/css/bootstrap.min.css">
 <link rel="stylesheet" href="/static/user/css/users.css">
+<style>
+    p{
+      font-size: 10px;
+    }
+</style>
 <body style="background: #ededed;">
 <div class="container" >
         <div class="row row-info" style="background: #fff;height: 500px">
+            <div class="info-top">
+                <h2>修改资料</h2>
+            </div>
             <div class="info-center">
                 <div>
                     <div class="col-lg-3">
-                        <img src="http://img95.699pic.com/photo/50060/5752.jpg_wh300.jpg" alt="" width="227px" height="150px">
+                        <img src="static/user/img/info.svg" alt="" width="227px" height="150px">
                     </div>
                     <div class="col-lg-9">
                         <form action="${pageContext.request.contextPath}/modify.users?name=${name}" class="form-info">
@@ -41,7 +49,7 @@
                                 </div>
                             </div>
                             <div style="margin-top: 40px;display: block">
-                                <input type="button" class="btn btn-lg  btn-group" style="margin-left:300px"onclick="window.location.href = '${pageContext.request.contextPath}/index.jsp' " value="返回首页">
+                                <input type="button" class="btn btn-lg  btn-group" style="margin-left:355px"onclick="window.location.href = '${pageContext.request.contextPath}/index.jsp' " value="返回首页">
                                 <input type="button" class="btn btn-lg  btn-info" onclick="update()" value="修改">
                                 <input class="btn btn-primary btn-lg" type="reset" value="重置">
                                 <input class="btn btn-danger btn-lg" type="button" onclick="remove()" value="注销账号">
@@ -54,10 +62,10 @@
         </div>
 </div>
 
-<footer class="panel-footer" style="width: 100%; overflow: hidden;">
+<footer class="panel-footer" style="width: 100%; overflow: hidden; background: #ededed">
     <div class="container">
         <div class="row footer-top" style="text-align: center;">
-            <h2>Design By 007 </h2>
+            <h5>Design By 007 </h5>
             <p>本网站内容均收集于互联网，007影视不承担任何由于内容的合法性及健康性所引起的争议和法律责任。</p>
             <p>欢迎大家对网站内容侵犯版权等不合法和不健康行为进行监督和举报。</p>
             <p>Copyright © 2020 </p>

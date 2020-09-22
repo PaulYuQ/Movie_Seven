@@ -50,7 +50,14 @@ a:hover{
     display:inline-block;
     float:none;
     text-align:left;
-    margin-top:100px;
+    margin-top:60px;
+    width: 1000px;
+}
+.info-top{
+    display:inline-block;
+    float:none;
+    text-align:left;
+    margin-top:50px;
     width: 1000px;
 }
 input,button:active{
@@ -58,3 +65,24 @@ input,button:active{
 }
 input:focus{outline: none;border: 1px solid white;}
 button:focus{outline: none;border: 1px solid white;}
+.btn-group-lg>.btn, .btn-lg {
+    padding: 10px 16px;
+    font-size: 15px;
+    line-height: 1.3333333;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    /* font-weight: 700; */
+    font-weight: 500;
+}
