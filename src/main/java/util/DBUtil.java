@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * @Author lao liu
+ * @Author Miss kun
  * @Date 2020/9/10 11:36
  * @Version 1.0
  * 通过连接池获取连接
@@ -28,7 +28,8 @@ public class DBUtil{
     }
 
     /**
-     * @return 返回DataSource
+     * 返回DataSource
+     * @return
      */
     public  static DataSource getDataSource(){
         return dataSource;
