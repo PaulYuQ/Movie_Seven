@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.Console;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,11 +24,14 @@ import java.util.List;
 @WebServlet(name = "CommentServlet" ,urlPatterns = {"/comment/*"})
 public class CommentServlet extends HttpServlet {
     /**
-     *
+     * 定义业务层对象
      */
     private CommentServiceImpl commentService = null;
 
     public  CommentServlet(){
+        /**
+         * 初始化业务层对象
+         */
         commentService = BeanFactory.getInstance("CommentService",CommentServiceImpl.class);
     }
 
@@ -73,7 +75,6 @@ public class CommentServlet extends HttpServlet {
             response.getWriter().print("true");
         }
     }
-
     /**
      * 获取 当前 电影id 的 所有 评论
      * @param request
@@ -83,7 +84,6 @@ public class CommentServlet extends HttpServlet {
         Integer movie_id = Integer.valueOf(request.getParameter("movie_id"));
         Integer flag = Integer.valueOf(request.getParameter("flag"));
         List<Comment> comments = commentService.getComments(movie_id,flag);
-
         if (comments != null){
             String string = JSON.toJSONString(comments);
             response.getWriter().print(string);
@@ -92,7 +92,7 @@ public class CommentServlet extends HttpServlet {
     }
 
     /**
-     * 获取 总数 并返回 给前端
+     * 获取 评论的总数
      * @param request
      * @param response
      */
@@ -112,7 +112,12 @@ public class CommentServlet extends HttpServlet {
         }
     }
 
-    /*添加评论*/
+    /**
+     * 添加评论
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     private void doAddComment(HttpServletRequest request, HttpServletResponse response) throws IOException {
         /*{'movie_id':movie_id,'parent_id':-1,'content':content,'user_id':user_id,'date':date},*/
         SensitivewordUtil filter = new SensitivewordUtil();
@@ -121,6 +126,7 @@ public class CommentServlet extends HttpServlet {
 
         Integer parentId = Integer.valueOf(request.getParameter("parent_id"));
         String content = request.getParameter("content");
+        //判断获取的评论是否为空
         if (!substringContent(content)){
             System.out.println("评论信息为空！！");
             response.getWriter().print("你还没有评论！！");
@@ -144,7 +150,7 @@ public class CommentServlet extends HttpServlet {
     }
 
     /**
-     * 判断评论时候为空
+     * 判断评论是否为空
      * @param content
      * @return
      */

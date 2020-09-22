@@ -1,26 +1,23 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>评论页面</title>
-    <link  type="text/css" rel="stylesheet" href="static/pagination/css/pagination.css">
-    <link type="text/css"  rel="stylesheet" href="static/css/comments.css">
+    <%--<link  type="text/css" rel="stylesheet" href="static/comments/pagination/css/pagination.css">--%>
+    <link type="text/css"  rel="stylesheet" href="static/comments/css/comments.css">
 </head>
 <body>
 
+<%--获取用户的id--%>
 <span class="userId" style="display: none"><%--${sessionScope.user.id}--%>1</span>
 <!--总div-->
 <div class="common">
     <!--评论上面的导航-->
     <div class="comment" style="position: relative;">
         <div class="bb-comment ">
-            <div class="reply-notice">
-
-            </div>
+            <div class="reply-notice"></div>
             <div class="comment-header clearfix">
-
                 <div class="tabs-order">
                     <ul class="clearfix">
                         <li class="default-sort" data-sort="0" style="display: none;">全部评论</li>
@@ -31,16 +28,17 @@
                 <div class="paging-box"></div>
             </div>
 
+
             <!--添加评论框-->
             <div class="comment-send ">
                 <div class="user-name">
-                    <span class="user_name"></span>
+                    <%--从session中获取用户的姓名  ${user.name}}--%>
+                    <span class="user_name">Misskun</span>
                 </div>
                 <div class="textarea-container">
                     <i class="ipt-arrow"></i>
                     <textarea cols="80" name="msg" rows="5" placeholder="发条友善的评论" class="ipt-txt" ></textarea>
-                    <!--hasmessagebox-->
-                    <button type="submit" class="comment-submit" onclick="addComments(0,0)" >发表评论</button>
+                    <button type="submit" class="comment-submit" onclick="addComments(0,0)">发表评论</button>
                 </div>
                 <div class="comment-emoji">
                     <i class="face"></i>
@@ -61,13 +59,16 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="static/js/comments.js"></script>
-<script type="text/javascript" src="static/pagination/js/pagination.js"></script>
+<script type="text/javascript" src="static/comments/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="static/comments/js/comments.js"></script>
 <script>
     $(function () {
+        /*显示所有评论的数量*/
         getCount();
-        getAllComments(1)
+        /*显示所有评论*/
+        getAllComments(1);
+        /*检查是否登录*/
+        checkLogin();
     });
 </script>
 </html>

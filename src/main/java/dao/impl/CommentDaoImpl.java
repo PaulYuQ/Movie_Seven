@@ -28,7 +28,7 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     /**
-     *
+     *返回没有处理的 comments 集合，flag：0，没有进行排序 ；flag = 1 ，按照时间排序
      * @param movie_id 传入当前页面的movie_id
      * @return
      */
@@ -55,10 +55,10 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     /**
-     *
+     *对原始的comments集合进行处理
      * @param movie_id 传入当前电影id，获取所有评论。
      * @param flag 用于时间排序
-     * @return 返回评论List集合
+     * @return 返回评论List集合(二级评论的格式)
      */
     @Override
     public List<Comment> getComments(Integer movie_id,Integer flag){
@@ -92,8 +92,7 @@ public class CommentDaoImpl implements CommentDao {
                     if (comm.getComment_id().equals(comment.getParent_id())){
                         comm.getChild().add(comment);
                         it.remove();
-                    }else {
-                    }
+                    }else { }
                 }
             }
             return  result;
@@ -157,7 +156,7 @@ public class CommentDaoImpl implements CommentDao {
 
     /**
      * 删除评论
-     * @param comment_id 更据comment_id 删除评论
+     * @param comment_id 根据comment_id 删除评论
      * @return
      */
     @Override

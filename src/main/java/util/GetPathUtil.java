@@ -8,12 +8,12 @@ package util;
 public class GetPathUtil{
 
     /**
-     * 请求： 响应所有评论  路径请求
+     * 请求： 响应获取所有评论的数量
      */
     public final static String countRequest="getAllCount.do";
 
     /**
-     * 请求： 响应添加评论 路径请求
+     * 请求： 响应添加评论
      */
     public final static  String addCommentsRequest="addComment.do";
 

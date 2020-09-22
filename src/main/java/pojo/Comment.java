@@ -12,7 +12,6 @@ import java.util.Objects;
  */
 public class Comment {
 
-    //成员变量
     /**
      * comment---comment_id  字段(评论id)
      */
