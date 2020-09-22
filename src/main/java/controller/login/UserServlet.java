@@ -59,9 +59,13 @@ public class UserServlet extends HttpServlet {
             resp.getWriter().print(jsonObject.toJSONString());
         } else if (pwd.equals(pwd1)) {
             if (userService.findByName(name) == null) {
-                userService.addUser(name, pwd, phone);
-                jsonObject.put("result", 1);
-                resp.getWriter().print(jsonObject.toJSONString());
+                if (userService.addUser(name, pwd, phone)){
+                    jsonObject.put("result", 1);
+                    resp.getWriter().print(jsonObject.toJSONString());
+                }else {
+                    jsonObject.put("result", 5);
+                    resp.getWriter().print(jsonObject.toJSONString());
+                }
             } else {
                 jsonObject.put("result", 2);
                 resp.getWriter().print(jsonObject.toJSONString());

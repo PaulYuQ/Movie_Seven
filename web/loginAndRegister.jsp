@@ -4,11 +4,11 @@
 <head>
 <meta charset="utf-8">
 <title>007影院登录注册</title>
-<link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/users.css">
+<link rel="stylesheet" href="static/user/css/style.css">
+    <link rel="stylesheet" href="static/user/css/users.css">
 </head>
 
-<body>
+<body >
     <div class="content">
         <form action="${pageContext.request.contextPath}/login.users" method="post">
             <div class="form sign-in">
@@ -76,8 +76,8 @@
         </form>
     </div>
 
-    <script src="static/js/jquery-3.2.1.js"></script>
-    <script src="static/js/script.js"></script>
+    <script src="static/user/js/jquery-3.2.1.js"></script>
+    <script src="static/user/js/script.js"></script>
     <script type="text/javascript">
         function changecode(){
             //得到图片元素
@@ -101,6 +101,8 @@
                         window.location.replace("${pageContext.request.contextPath}/loginAndRegister.jsp");
                     }else if (result==4){
                         $('#msg').html("密码和用户名都错误")
+                    }else if (result==5){
+                        $('#msg').html("注册失败！")
                     }
                 },"json"
             )
