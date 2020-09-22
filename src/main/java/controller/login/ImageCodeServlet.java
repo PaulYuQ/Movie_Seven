@@ -15,11 +15,13 @@ import java.util.Random;
 
 @WebServlet(name = "ImageCode",urlPatterns = {"/code"})
 public class ImageCodeServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         this.doGet(request, response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /**
          * 生成验证码
