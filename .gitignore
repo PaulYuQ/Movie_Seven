@@ -1,6 +1,5 @@
 # Compiled class file
 *.class
-.idea
 
 #忽略target文件
 target/ 
