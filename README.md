@@ -1,16 +1,14 @@
-# seven_movie
+# seven_movie影柒
 
-#### 介绍
+## 介绍
 基于javaWeb的007电影网站项目。
 
-#### 软件架构
-软件架构说明
+## 软件架构
+B/S架构，采用了JavaWeb等servlet、mySql、dbUtils、Bootstrap等框架
 
 
-#### 安装教程
 
-1.  建表语句
-### 电影项目数据库设计
+## 电影项目数据库设计
 
 #### 电影和用户表设计
 
@@ -28,7 +26,7 @@
 
 项目需要用到的表
 
-### 表名：admins
+#### 表名：admins
 
 |    字段名    |    admin_id    |    name     |  password   |  phone   |    control     |
 | :----------: | :------------: | :---------: | :---------: | :------: | :------------: |
@@ -39,7 +37,7 @@
 
 
 
-### **表名：users**
+#### **表名：users**
 
 |    字段名    |    user_id     |    name     |   password   |     date     |  phone   |
 | :----------: | :------------: | :---------: | :----------: | :----------: | :------: |
@@ -48,7 +46,7 @@
 | **类型大小** |    int(20)     | varchar(16) | varchar(16)  |  timestamp   | int(11)  |
 | **是否为空** | 不为空（自增） |   不为空    |    不为空    |    不为空    |  可为空  |
 
-### **表名：movies**
+#### **表名：movies**
 
 |     字段     |    movie_id    |    name     |    type     |  actor   |  image_url   | banner_url | introduction |   url    |
 | :----------: | :------------: | :---------: | :---------: | :------: | :----------: | :--------: | :----------: | :------: |
@@ -57,7 +55,7 @@
 | **类型大小** |    int(20)     | varchar(16) | varchar(16) |   text   |     text     |    text    |     text     |   text   |
 | **是否为空** | 不为空（自增） |   不为空    |   不为空    |  不为空  |    不为空    |   可为空   |    不为空    |  不为空  |
 
-### 表名：histories
+#### 表名：histories
 
 |    字段名    |   history_id   | user_id | movie_id |       progress       |
 | :----------: | :------------: | :-----: | :------: | :------------------: |
@@ -66,7 +64,7 @@
 | **类型大小** |    int(20)     | int(20) | int(20)  |       int(20)        |
 | **是否为空** | 不为空（自增） | 不为空  |  不为空  |         可空         |
 
-### 表名：collections
+#### 表名：collections
 
 |    字段名    | collection_id  | user_id | movie_id |   date    |
 | :----------: | :------------: | :-----: | :------: | :-------: |
@@ -75,7 +73,7 @@
 | **类型大小** |    int(20)     | int(20) | int(20)  | timestamp |
 | **是否为空** | 不为空（自增） | 不为空  |  不为空  |  不为空   |
 
-### 建表语句：
+#### 建表语句：
 
 ```sql
 CREATE TABLE admins(
@@ -123,9 +121,9 @@ CREATE TABLE collections(
 
 ```
 
-## 评论系统表设计
+### 评论系统表设计
 
-### 表名：comments
+#### 表名：comments
 
 |    字段名    |                      comment_id                      |       movie_id       |                     parent_id                      |   content    |      user_id       |     date     |
 | :----------: | :--------------------------------------------------: | :------------------: | :------------------------------------------------: | :----------: | :----------------: | :----------: |
@@ -158,28 +156,15 @@ https://www.cnblogs.com/godlovesme/p/10708358.html
 ```
 
 
-2.  xxxx
-3.  xxxx
 
-#### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+
 
 #### 参与贡献
 
 1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
+2.  新建 你自己的分支
 3.  提交代码
 4.  新建 Pull Request
 
 
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
