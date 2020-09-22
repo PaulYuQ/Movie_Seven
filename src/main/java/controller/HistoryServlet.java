@@ -25,13 +25,11 @@ public class HistoryServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("post");
         this.doGet(request, response);
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String servletPath = request.getServletPath();
-        System.out.println(servletPath);
         /**
          * 对页面浏览记录的操作
          */
@@ -74,18 +72,18 @@ public class HistoryServlet extends HttpServlet {
      * create time: 16:49 2020/9/16
      * 测试跳转
      * 设置一个session记录用户id
+     * 测试跳转
      * @Param: request
      * @Param: response
      * @return void
      */
     protected void getUserId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(3);
         if(request.getParameter("id")==null) {
             return;
         }
         int id=Integer.parseInt(request.getParameter("id"));
         request.getSession().setAttribute("user_id",id);
-        response.sendRedirect("history.jsp");
+        response.sendRedirect("../../history.jsp");
     }
 
 
@@ -115,7 +113,6 @@ public class HistoryServlet extends HttpServlet {
             Gson gson=new Gson();
             String json=gson.toJson(list);
             response.getWriter().print(json);
-            System.out.println(json);
         }else {
             response.getWriter().print("false");
         }
