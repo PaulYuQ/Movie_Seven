@@ -94,14 +94,14 @@
                 <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">看过<span
                         class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
                 <%
-                    if (session.getAttribute("user") == null){
+                    if (session.getAttribute("user") == null) {
                 %>
                 <a id="loginBtn" href="${pageContext.request.contextPath}/loginAndRegister.jsp" style="display: block">登录</a>
                 <%
-                }else {
+                } else {
 
                 %>
-                <a id="myBtn" href="javascript:;" style="display: block" >我的</a>
+                <a id="myBtn" href="javascript:;" style="display: block">我的</a>
                 <%
                     }
                 %>
@@ -127,8 +127,8 @@
                 </li>
                 <script>
                     function logout() {
-                        if (confirm("请确认是否退出")){
-                            $.post("/logout.users",function () {
+                        if (confirm("请确认是否退出")) {
+                            $.post("/logout.users", function () {
                                 window.location.href = "loginAndRegister.jsp";
                             });
                         }
@@ -143,28 +143,7 @@
 }</style>
 
 
-<div class="fed-goto-info">
-    <a class="fed-goto-color fed-visible fed-text-center fed-back-whits fed-icon-font fed-icon-fengge fed-event"
-       href="javascript:;"></a>
-    <a class="fed-goto-toper fed-hidden fed-text-center fed-back-whits fed-icon-font fed-icon-top"
-       href="javascript:;"></a>
-</div>
-<script type="text/javascript"> var vfed = {
-    'path': '/',
-    'tips': 'DIma3V5dW4udHY9MTU5OTk2OTIyNw==',
-    'ver': '3.1.5',
-    'tpl': '/template/2019/',
-    'mid': '',
-    'aid': '1',
-    'did': '',
-    'sid': '',
-    'nid': '',
-    'wap': 'kuyun.tv',
-    'mob': '0',
-    'not': '1'
-}; </script>
-<script src="static/js/jquery.js?v=3.1.5" type="text/javascript" charset="utf-8"></script>
-<script src="static/banner/js/banner.js"></script>
+
 
 
 </body>

@@ -253,14 +253,7 @@
                    href="javascript:;"></a>
                 <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">看过<span
                         class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
-<%--                <%--%>
-<%--                    if (session.getAttribute("user") == null) {--%>
-<%--                        String login_url = request.getContextPath() + "/loginAndRegister.jsp";--%>
-<%--                        out.print("<a id=\"loginBtn\" href=" + login_url + " style=\"display: block\">登录</a>");--%>
-<%--                    } else {--%>
-<%--                        out.print("<a id=\"myBtn\" href=\"javascript:;\" style=\"display: none\" >我的</a>");--%>
-<%--                    }--%>
-<%--                %>--%>
+
                 <%
                     if (session.getAttribute("user") == null){
                 %>
@@ -310,10 +303,7 @@
 <style type="text/css">body {
     padding-bottom: 0
 }</style>
-<div class="fed-tabr-advs fed-part-zero fed-back-whits">
-    <a class="fed-part-advs fed-text-center fed-font-xvi" href="javascript:;">×</a>
-    <script src="https://乐视科技.ltd:12443/ty/9C516371-0598-7817-33-E082CC2B99C5.alpha"></script>
-</div>
+
 
 <div class="fed-main-info fed-min-width">
     <div class="fed-part-case">
