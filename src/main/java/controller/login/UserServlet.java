@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import factory.BeanFactory;
-import pojo.Admin;
 import pojo.User;
 import service.UserService;
 import javax.servlet.ServletException;
