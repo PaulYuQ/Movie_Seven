@@ -57,7 +57,7 @@
                     </label>
                     <label>
                         <span>密码</span>
-                        <input type="password" id="password"/>
+                        <input type="password" id="password" class="mima"/>
                     </label>
                     <label>
                         <span>确认密码</span>
@@ -84,7 +84,19 @@
             var img = document.getElementsByTagName("img")[0];
             img.src = "${pageContext.request.contextPath}/code?time="+new Date().getTime();//最新
         }
-
+        $('.mima').blur(function () {
+            var pwd = $(".mima").val();
+            var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}$/;
+            if(!reg.test(pwd)){
+                alert("密码长度要大于6位，由数字和字母组成");
+            }
+        })
+        $("#phone").blur(function () {
+            var phone =  $("#phone").val();
+            if(!(/^1[3456789]\d{9}$/.test(phone))){
+                $("#msg").html("电话号码错误！")
+            }
+        })
         function register() {
 
             $.post(
@@ -107,6 +119,7 @@
                 },"json"
             )
         }
+
         </script>
 </body>
 

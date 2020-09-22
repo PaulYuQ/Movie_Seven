@@ -58,6 +58,24 @@
 <script src="static/user/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script>
+
+    $('#password').blur(function () {
+        var pwd = $("#password").val();
+        var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}$/;
+        if(!reg.test(pwd)){
+            bootbox.alert("密码长度要大于6位，由数字和字母组成");
+            return ;
+        }
+    })
+    $("#phone").blur(function () {
+        var phone =  $("#phone").val();
+        if(!(/^1[3456789]\d{9}$/.test(phone))){
+            bootbox.alert("手机号码有误，请重填");
+            return;
+        }
+    })
+
+
 function remove() {
     bootbox.confirm({
         size: "small",
@@ -107,7 +125,7 @@ function update() {
                     {"name":$("#name").val(),"password":$("#password").val(),"phone":$("#phone").val()},
                     function (data) {
                         if (data.result>0){
-                            bootbox.alert("删除成功");
+                            bootbox.alert("修改成功！");
                             setTimeout(function () {
                                 location.reload();
                             },2000)
