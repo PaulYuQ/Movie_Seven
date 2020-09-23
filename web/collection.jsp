@@ -245,9 +245,11 @@
     </style>
 </head>
 <body class="bg">
+
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
+            <%--导航栏--%>
         </div>
     </div>
     <div class="row-fluid">
@@ -348,6 +350,11 @@
                     </li>
                 </ul>
             </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <%--底栏--%>
         </div>
     </div>
 </div>
