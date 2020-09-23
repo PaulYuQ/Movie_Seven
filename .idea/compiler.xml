@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="seven_movie - 副本" />
         <module name="seven_movies" />
+        <module name="seven_movie" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">

@@ -1,0 +1,37 @@
+Index: target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst	(date 1599448151271)
++++ target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst	(date 1599448151271)
+@@ -0,0 +1,6 @@
++D:\java\javaweb\work9\movie\src\main\java\pojo\Movie.java
++D:\java\javaweb\work9\movie\src\main\java\getmovie\getMovieInfo.java
++D:\java\javaweb\work9\movie\src\main\java\dao\Test.java
++D:\java\javaweb\work9\movie\src\main\java\getmovie\MovieFactory.java
++D:\java\javaweb\work9\movie\src\main\java\util\GetProInfoUtil.java
++D:\java\javaweb\work9\movie\src\main\java\util\GetConnectionUtil.java
+Index: target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst	(date 1599896387655)
++++ target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst	(date 1599896387655)
+@@ -0,0 +1,15 @@
++util\GetConnectionUtil.class
++pojo\Admins.class
++pojo\Comments.class
++util\GetProInfoUtil.class
++pojo\Collects.class
++dao\impl\MoviesDaoImpl.class
++util\GetDataSourceUtil.class
++service\impl\MoviesServiceImpl.class
++mytest\Test.class
++service\MovieService.class
++dao\MovieDao.class
++pojo\Users.class
++pojo\Movies.class
++factory\DaoFactory.class
++pojo\Historys.class
