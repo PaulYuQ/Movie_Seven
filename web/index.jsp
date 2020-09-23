@@ -279,7 +279,7 @@
                     <a href="/info.jsp">修改资料</a>
                 </li>
                 <li>
-                    <a href="/user/favs.html">我的收藏</a>
+                    <a href="/collection.jsp">我的收藏</a>
                 </li>
                 <li>
                     <a href="/navigationBar.jsp">浏览记录</a>
