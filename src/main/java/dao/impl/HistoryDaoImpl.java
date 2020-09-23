@@ -66,7 +66,7 @@ public class HistoryDaoImpl implements HistoryDao {
      */
     @Override
     public List<ShowHistory> historyList(int id,int page,int row) {
-        String mysqlFind = "SELECT movies.type,movies.name,movies.image_url,movies.actor,histories.progress,histories.history_id " +
+        String mysqlFind = "SELECT movies.movie_id,movies.type,movies.name,movies.image_url,movies.actor,histories.progress,histories.history_id " +
                 "FROM histories,movies WHERE  histories.movie_id=movies.movie_id AND histories.user_id=? LIMIT ?,?";
         int number=(page-1)*row;
         try {

@@ -3,9 +3,10 @@ package factory;
 import java.util.ResourceBundle;
 
 /**
- * @author ：sky
- * @date ：Created in 2020/9/14 14:28
- * @version: 1.0
+ * @Author Miss kun
+ * @Date 2020/9/10 10:47
+ * @Version 1.0
+ * 工程类
  */
 public class BeanFactory{
     private static ResourceBundle bundle = null;
@@ -15,12 +16,11 @@ public class BeanFactory{
     }
 
     /**
-     * create by: sky
-     * create time: 15:30 2020/9/14
-     *  返回构造函数
-     * @Param: key
-     * @Param: cls
-     * @return T
+     * 采用静态方法，反射，获取类实例，注：类需要添加默认的构造方法！！
+     * @param key
+     * @param cls
+     * @param <T>
+     * @return
      */
     public static <T> T getInstance(String key,Class<T> cls){
         try {

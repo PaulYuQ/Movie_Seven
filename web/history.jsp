@@ -14,13 +14,14 @@
     <title>浏览历史</title>
     <script type="text/javascript" src="static/history/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="static/history/js/history.js"></script>
-    <script src="static/history/js/pagination.js"></script>
+    <script src="static/js/pagination.js"></script>
     <link rel="stylesheet" href="static/history/css/pagination.css">
     <link rel="stylesheet" type="text/css" href="static/history/css/history.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div id="history">
+    <a name="top"></a>
     <div class="historyText">历史记录</div>
     <div class="historyButton">
         <input type="button" value="全选" class="chooseAll btn btn-info">

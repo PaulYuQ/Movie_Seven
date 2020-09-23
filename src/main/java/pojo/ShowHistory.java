@@ -39,6 +39,10 @@ public class ShowHistory {
      */
     private int history_id;
 
+    /**
+     * movie_id:电影的id
+     */
+    private int movie_id;
 
     /**
      * create by: sky
@@ -51,6 +55,7 @@ public class ShowHistory {
 
     }
 
+
     /**
      * create by: sky
      * create time: 10:22 2020/9/15
@@ -60,17 +65,18 @@ public class ShowHistory {
      * @Param: image_url
      * @Param: actor
      * @Param: progress
-     * @Param: history_id
+     * @Param: movie_id
      * @return
      */
-    public ShowHistory(String type, String name, String image_url, String actor, int progress, int history_id) {
+    public ShowHistory(String type, String name, String image_url, String actor, int progress, int movie_id) {
         this.type = type;
         this.name = name;
         this.image_url = image_url;
         this.actor = actor;
         this.progress = progress;
-        this.history_id = history_id;
+        this.movie_id = movie_id;
     }
+
 
     public String getType() {
         return type;
@@ -120,6 +126,14 @@ public class ShowHistory {
         this.history_id = history_id;
     }
 
+    public int getMovie_id() {
+        return movie_id;
+    }
+
+    public void setMovie_id(int movie_id) {
+        this.movie_id = movie_id;
+    }
+
     @Override
     public String toString() {
         return "ShowHistory{" +
@@ -129,6 +143,7 @@ public class ShowHistory {
                 ", actor='" + actor + '\'' +
                 ", progress=" + progress +
                 ", history_id=" + history_id +
+                ", movie_id=" + movie_id +
                 '}';
     }
 }

@@ -1,11 +1,11 @@
-import dao.impl.HistoryDaoImpl;
+import com.alibaba.fastjson.JSON;
+import dao.impl.CommentDaoImpl;
+import dao.impl.UserDaoImpl;
 import factory.BeanFactory;
 import org.junit.Test;
-import pojo.Histories;
-import pojo.ShowHistory;
-import service.HistoryService;
-import service.impl.HistoryServiceImpl;
-import util.DBUtil;
+import pojo.Comment;
+import service.CommentService;
+import service.impl.CommentServiceImpl;
 
 import java.util.List;
 
@@ -15,135 +15,95 @@ import java.util.List;
  * @Version 1.0
  */
 public class TestJunit{
+    public CommentService commentService = null;
     //测试工厂类
     @Test
     public void testFactory(){
-        HistoryServiceImpl userService = BeanFactory.getInstance("HistoryService", HistoryServiceImpl.class);
-        HistoryDaoImpl userDao = BeanFactory.getInstance("HistoryDao", HistoryDaoImpl.class);
-        System.out.println(userService);
-        System.out.println(userDao);
     }
     //测试连接池是否成功
     @Test
     public void testC3p0(){
-        System.out.println(DBUtil.getConnection());
-        System.out.println(DBUtil.getDataSource());
     }
 
-
-    HistoryService movie=BeanFactory.getInstance("HistoryService", HistoryService.class);
-
-    /**
-     * create by: sky
-     * create time: 8:58 2020/9/15
-     * 增加测试
-     * @Param:
-     * @return void
-     */
+    //测试输出Comments(评论集合)
     @Test
-    public void addTest(){
-        int i=movie.movieAdd(new Histories(15,19,200));
-        System.out.println(i);
-    }
+    public void testComments(){
+        CommentService commentService = BeanFactory.getInstance("CommentService", CommentServiceImpl.class);
+        CommentDaoImpl commentDao = BeanFactory.getInstance("CommentDao",CommentDaoImpl.class);
+        List<Comment> comments = commentService.getComments(1,0);
 
-
-    /**
-     * create by: sky
-     * create time: 8:59 2020/9/15
-     * 删除测试
-     * @Param:
-     * @return void
-     */
-    @Test
-    public void deleteTest(){
-        int i=movie.movieDelete(7);
-        System.out.println(i);
-    }
-
-
-    /**
-     * create by: sky
-     * create time: 8:59 2020/9/15
-     * 修改测试
-     * @Param:
-     * @return void
-     */
-    @Test
-    public void updateTest(){
-        Histories histories=new Histories(22,33,44);
-        histories.setHistory_id(2);
-        int i=movie.movieUpdate(histories);
-        System.out.println(i);
+        //List<Comment> comments = commentDao.findCommentsByMovieId(1);
+        System.out.println("打印信息！！");
+        for (Comment comment : comments){
+            System.out.println(comment+"\n");
+        }
+        String string = JSON.toJSONString("\n\n\n"+comments);
+        System.out.println(string);
     }
 
     /**
-     * create by: sky
-     * create time: 9:02 2020/9/15
-     * 通过id进行查询测试
-     * @Param:
-     * @return void
+     * 测试获取处理好的comment数量
      */
     @Test
-    public void findTest(){
-        Histories histories=movie.movieFindById(159);
-        System.out.println(histories.toString());
+    public void testCountComments(){
+        commentService = BeanFactory.getInstance("CommentService", CommentServiceImpl.class);
+        Integer count = commentService.getCountComments(1);
+        System.out.println(commentService.getCount(1));
+        System.out.println(count);
     }
 
-
     /**
-     * create by: sky
-     * create time: 9:20 2020/9/15
-     * 查询表格行数测试
-     * @Param: 
-     * @return void
+     * 添加评论
      */
     @Test
-    public void numberTest(){
-        System.out.println(movie.movieNumber());
+    public void testAddComment(){
+        //"2020-09-17 17:50:05"
+        commentService = BeanFactory.getInstance("CommentService", CommentServiceImpl.class);
+        Integer result = commentService.addComment(new Comment(2,null,"这部电影好喜欢",2,null));
     }
 
-
     /**
-     * create by: sky
-     * create time: 9:25 2020/9/15
-     * 分页查询测试
-     * @Param:
-     * @return void
+     * 删除评论
      */
     @Test
-    public void listTest(){
-        List<Histories> histories=movie.movieList(1,3);
-        for(Histories hs:histories){
-            System.out.println(hs.toString());
+    public void testDaleteComment(){
+        commentService = BeanFactory.getInstance("CommentService", CommentServiceImpl.class);
+        commentService.deleteComment(11);
+    }
+
+    @Test
+    public void testGetCommentIdByParentId(){
+        commentService = BeanFactory.getInstance("CommentService", CommentServiceImpl.class);
+        List<Comment> commentsIdByParentId = commentService.getCommentsIdByParentId(3);
+        for (Comment i : commentsIdByParentId){
+            System.out.println(i.getComment_id());
         }
     }
-
-
-    /**
-     * create by: sky
-     * create time: 9:33 2020/9/15
-     * 用户浏览信息的行数查询测试
-     * @Param:
-     * @return void
-     */
     @Test
-    public void showNumberTest(){
-        movie.historyNumber(15);
-        System.out.println(movie.historyNumber(15));
+    public void testContent(){
+        boolean b = SubstringContent("回复@lsx fsd  f");
+        System.out.println(b);
     }
 
-    /**
-     * create by: sky
-     * create time: 9:40 2020/9/15
-     * 用户浏览信息测试
-     * @Param:
-     * @return void
-     */
     @Test
-    public void showTest(){
-        List<ShowHistory> showHistories=movie.historyList(15,1,3);
-        for(ShowHistory sh:showHistories){
-            System.out.println(sh.toString());
+    public void test(){
+        UserDaoImpl userDao = BeanFactory.getInstance("UserDao",UserDaoImpl.class);
+        System.out.println(userDao);
+
+    }
+
+    public boolean SubstringContent(String content){
+        System.out.println("输出content:");
+        if (content.contains("@")){
+            String[] split = content.split(" ");
+            if (split.length > 1){
+                return true;
+            }else return false;
+        }else {
+            if (content.equals("")){
+                return false;
+            }
         }
+        return true;
     }
 }
