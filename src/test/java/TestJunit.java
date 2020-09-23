@@ -74,15 +74,6 @@ public class TestJunit{
     //测试输出Comments(评论集合)
     @Test
     public void testComments(){
-        CommentService commentService = BeanFactory.getInstance("CommentService", CommentServiceImpl.class);
-        CommentDaoImpl commentDao = BeanFactory.getInstance("CommentDao",CommentDaoImpl.class);
-        List<Comment> comments = commentService.getComments(1);
 
-        //List<Comment> comments = commentDao.findCommentsByMovieId(1);
-        System.out.println("打印信息！！");
-        for (Comment comment : comments){
-            System.out.println(comment+"\n");
-
-        }
     }
 }
