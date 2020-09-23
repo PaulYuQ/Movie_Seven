@@ -62,7 +62,7 @@
         </div>
 </div>
 
-<footer class="panel-footer" style="width: 100%; overflow: hidden; background: #ededed;margin-top: 35px">
+<footer class="panel-footer" style="width: 100%; overflow: hidden; background: #ededed;margin-top: 30px">
     <div class="container">
         <div class="row footer-top" style="text-align: center;">
             <h5>Design By 007 </h5>
