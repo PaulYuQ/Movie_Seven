@@ -8,6 +8,7 @@ import service.AdminService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -100,12 +101,20 @@ public class AdminServlet extends HttpServlet {
     private void login(HttpServletRequest req, HttpServletResponse resp) {
         String name=req.getParameter("username");
         String password=req.getParameter("password");
+        String remember=req.getParameter("check");
+        System.out.println("是否记住密码"+remember);
         Admin admin=adminService.findAdminByNamePassword(name,password);
         if(admin!=null){
             try {
                 req.getSession().setAttribute("name",admin.getName());
                 req.getSession().setAttribute("password",admin.getPassword());
                 req.getSession().setAttribute("control",admin.getControl());
+                if(remember.equals("on")){
+                    Cookie cookie=new Cookie("name",admin.getName());
+                    Cookie cookie1=new Cookie("password",admin.getPassword());
+                    resp.addCookie(cookie);
+                    resp.addCookie(cookie1);
+                }
                 req.getRequestDispatcher("admin.jsp").forward(req,resp);
             } catch (IOException | ServletException e) {
                 e.printStackTrace();

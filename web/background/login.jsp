@@ -20,6 +20,19 @@
 </head>
 <body >
 
+<%
+	Cookie[] cookies = request.getCookies();
+	for(Cookie cookie:cookies)
+	{
+		if(cookie.getName().equals("name")){
+			session.setAttribute("name",cookie.getValue());
+		}
+		if(cookie.getName().equals("password")){
+			session.setAttribute("password",cookie.getValue());
+		}
+	}
+%>
+
 <!-- Backgrounds-->
 
 <!--<div id="login-bg" class="container-fluid">-->
@@ -40,17 +53,17 @@
 		<!-- Loging form -->
 			  <form action="login.admin" method="post" >
 				<div class="form-group">
-				  <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="用户名">
+				  <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="用户名" value="${name}">
 				  
 				</div>
 				<div class="form-group">
-				  <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="密码">
+				  <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="密码" value="${password}">
 				</div>
 
 				  <div class="form-check">
 
 				  <label class="switch">
-				  <input type="checkbox" name="check">
+				  <input type="checkbox" name="check" checked="true">
 				  <span class="slider round"></span>
 				</label>
 				  <label class="form-check-label" >记住密码</label>

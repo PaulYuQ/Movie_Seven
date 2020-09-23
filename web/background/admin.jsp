@@ -32,6 +32,9 @@
     .navbar-collapse{
       background: white;
     }
+    .form-control{
+      margin-right: 20px;
+    }
 
 
 
@@ -189,7 +192,6 @@ position:absolute;
           <tr style="background: #007bff">
             <th style="color: white">ID</th>
             <th style="color: white">用户名</th>
-            <th style="color: white">密码</th>
             <th style="color: white">电话号码</th>
             <th style="color: white">权限</th>
             <%
@@ -227,8 +229,9 @@ position:absolute;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
           <h4 class="modal-title" id="myModalLabel">新增管理员</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
         </div>
         <div class="modal-body">
 
@@ -260,8 +263,9 @@ position:absolute;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
           <h4 class="modal-title" id="myModalLabel1">修改管理员</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
         </div>
         <div class="modal-body">
           <div class="form-group">
@@ -272,10 +276,6 @@ position:absolute;
           <div class="form-group">
             <label for="txt_name1">账户名</label>
             <input type="text"  class="form-control" id="txt_name1" >
-          </div>
-          <div class="form-group">
-            <label for="txt_password1">密码</label>
-            <input type="text"  class="form-control" id="txt_password1">
           </div>
           <div class="form-group">
             <label for="txt_phone1">电话号码</label>
@@ -432,7 +432,6 @@ position:absolute;
         $.each(data, function (index, obj){
           $("#txt_ID1").val(id);
             $("#txt_name1").val(obj.name);
-          $("#txt_password1").val(obj.password);
           $("#txt_phone1").val(obj.phone);
           $("#txt_control").val(obj.control);
         });
@@ -446,7 +445,6 @@ position:absolute;
         str += "<tr>" +
                 "<td>" + obj.id + "</td>"
                 + "<td>" + obj.name+ "</td>"
-                + "<td>" + obj.password + "</td>"
                 + "<td>" + obj.phone + "</td>"
                 + "<td>" + obj.control + "</td>" ;
         if(s==1){
