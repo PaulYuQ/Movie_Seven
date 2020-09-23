@@ -13,7 +13,10 @@ import java.sql.SQLException;
  * 通过连接池获取连接
  */
 public class DBUtil{
-    private static DataSource dataSource = new ComboPooledDataSource();//采用c3p0的连接池
+    /**
+     * 采用c3p0的连接池
+     */
+    private static DataSource dataSource = new ComboPooledDataSource();
 
     public static Connection getConnection(){
         try {
@@ -24,7 +27,10 @@ public class DBUtil{
         return null;
     }
 
-    //返回DataSource
+    /**
+     * 返回DataSource
+     * @return
+     */
     public  static DataSource getDataSource(){
         return dataSource;
     }
