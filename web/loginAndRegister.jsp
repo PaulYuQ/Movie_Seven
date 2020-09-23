@@ -94,6 +94,8 @@
             var phone =  $("#phone").val();
             if(!(/^1[3456789]\d{9}$/.test(phone))){
                 $("#msg").html("电话号码错误！")
+            }else {
+                $("#msg").html("电话号码正确！")
             }
         })
         function register() {
