@@ -180,10 +180,10 @@
         <div class="fed-pops-user fed-box-shadow fed-back-whits fed-hidden fed-conceal fed-anim fed-anim-upbit" id="myInfo" style="right: -86px;">
             <ul class="fed-pops-list fed-font-size fed-back-whits">
                 <li>
-                    <a href="/user/index.html">游客</a>
+                    <a href="javascript:;">${user.name}</a>
                 </li>
                 <li>
-                    <a href="/user/info.html">修改资料</a>
+                    <a href="/info.jsp">修改资料</a>
                 </li>
                 <li>
                     <a href="/user/favs.html">我的收藏</a>
@@ -192,8 +192,17 @@
                     <a href="/user/plays.html">浏览记录</a>
                 </li>
                 <li>
-                    <a href="/user/logout.html">退出登录</a>
+                    <a href="javascript:;" onclick="logout()">退出登录</a>
                 </li>
+                <script>
+                    function logout() {
+                        if (confirm("请确认是否退出")){
+                            $.post("/logout.users",function () {
+                                window.location.href = "index.jsp";
+                            });
+                        }
+                    }
+                </script>
             </ul>
         </div>
     </div>
