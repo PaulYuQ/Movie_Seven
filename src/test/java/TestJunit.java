@@ -9,17 +9,19 @@ import util.DBUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Stack;
 
 /**
  * @Author Miss kun
  * @Date 2020/9/12 15:02
  * @Version 1.0
  */
-public class TestJunit{
+public class TestJunit {
     CollectionDao collectionDao = new CollectionDaoImpl();
+
     //测试工厂类
     @Test
-    public void testFactory(){
+    public void testFactory() {
         UserServiceImpl userService = BeanFactory.getInstance("UserService");
         UserDaoImpl userDao = BeanFactory.getInstance("UserDao");
         System.out.println(userService);
@@ -28,7 +30,7 @@ public class TestJunit{
 
     //测试连接池是否成功
     @Test
-    public void testC3p0(){
+    public void testC3p0() {
         System.out.println(DBUtil.getConnection());
         System.out.println(DBUtil.getDataSource());
     }
@@ -65,6 +67,7 @@ public class TestJunit{
     public void testGetAll() {
         System.out.println(collectionDao.getAllCollect());
     }
+
     @Test
     public void testGetCollectById() {
         System.out.println(collectionDao.getCollectById(4));
@@ -77,7 +80,7 @@ public class TestJunit{
 
     @Test
     public void getMovieIdByKeyWordTest() {
-        System.out.println(collectionDao.getMovieIdByKeyWord("人", 3 , 0, 6));
+        System.out.println(collectionDao.getMovieIdByKeyWord("人", 3, 0, 6));
     }
 
     @Test
@@ -92,11 +95,12 @@ public class TestJunit{
 
     @Test
     public void testCollectionVo() {
-        System.out.println(collectionDao.getAllCollection(3,0,3));
+        System.out.println(collectionDao.getAllCollection(3, 0, 3));
     }
+
     @Test
     public void testGetAllCollectByUser() {
-        System.out.println(collectionDao.getAllCollectByUser(3,0,3));
+        System.out.println(collectionDao.getAllCollectByUser(3, 0, 3));
     }
 
     @Test
@@ -121,4 +125,42 @@ public class TestJunit{
             collectionDao.insert(new Collection(3, temp++, new Date()));
         }
     }
+
+    /*@Test
+    public void testBig() {
+        String a1 = "1234567891";
+        String a2 = "1234567891";
+        StringBuffer result = new StringBuffer("");
+        String[] split1 = a1.split("");
+        String[] split2 = a2.split("");
+        boolean flag = false;
+        *//* result.append(Integer.parseInt(split1[0]) + Integer.parseInt(split2[0]));
+         result.append(Integer.parseInt(split1[2]) + Integer.parseInt(split2[2]));*//*
+        for (int i = split1.length - 1; i >= 0; i--) {
+            int temp = (Integer.parseInt(split1[i]) + Integer.parseInt(split2[i]));
+            if (temp > 9 && flag == false) {
+                flag = true;
+                temp %= 10;
+                result.append(temp);
+                continue;
+            } else if (flag) {
+                flag = false;
+                temp += 1;
+                if (temp > 9 && flag == false) {
+                    flag = true;
+                    temp %= 10;
+                    result.append(temp);
+                    continue;
+                } else {
+                    result.append(temp);
+                    continue;
+                }
+            } else {
+                result.append(temp);
+                continue;
+            }
+        }
+        result.reverse();
+        System.out.println(result);
+    }*/
 }

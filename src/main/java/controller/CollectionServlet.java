@@ -107,7 +107,6 @@ public class CollectionServlet extends HttpServlet {
     }
 
 
-
     private void queryCollectionList(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String page = request.getParameter("page");
         String pageAmount = request.getParameter("pageAmount");
@@ -134,6 +133,7 @@ public class CollectionServlet extends HttpServlet {
         String keyword = request.getParameter("keyword");
         String key = request.getParameter("key");
         String num = request.getParameter("num");
+        //String userId = request.getAttribute()
         if(num == null || num.equals("")) {
             num = "6";
         }
@@ -167,6 +167,7 @@ public class CollectionServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         String key = request.getParameter("key");
         String num = request.getParameter("num");
+        //String userId = request.getAttribute()
 
         if(num == null || num.equals("")) {
             num = "6";
