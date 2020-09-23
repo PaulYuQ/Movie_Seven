@@ -10,7 +10,7 @@
 <body>
 
 <%--获取用户的id--%>
-<span class="userId" style="display: none"><%--${sessionScope.user.id}--%>1</span>
+<span class="userId" style="display: none">${user.user_id}</span>
 <!--总div-->
 <div class="common">
     <!--评论上面的导航-->

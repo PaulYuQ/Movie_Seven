@@ -32,18 +32,34 @@ public class UserServlet extends HttpServlet {
         String pwd = req.getParameter("password");
         String scode=(String)req.getSession().getAttribute("scode");
         String code=req.getParameter("code");
+        PrintWriter out = resp.getWriter();
         if (userService.login(name,pwd)){
             if (code.equalsIgnoreCase(scode)){
                 User user = userService.findByName(name);
                 req.getSession().setAttribute("user",user);
-                resp.sendRedirect("index.jsp");
+//                resp.sendRedirect("index.jsp");
+                out.println("<html>");
+                out.println("<script>");
+                out.println("window.open ('"+req.getContextPath()+"/index.jsp','_top')");
+                out.println("</script>");
+                out.println("</html>");
             }else {
                 req.setAttribute("msg","验证码错误！");
-                req.getRequestDispatcher("loginAndRegister.jsp").forward(req, resp);
+//                req.getRequestDispatcher("loginAndRegister.jsp").forward(req, resp);
+                out.println("<html>");
+                out.println("<script>alert('验证码错误！')");
+                out.println("window.open ('"+req.getContextPath()+"/loginAndRegister.jsp','_top')");
+                out.println("</script>");
+                out.println("</html>");
             }
         }else {
             req.setAttribute("msg","用户名或密码错误");
-            req.getRequestDispatcher("loginAndRegister.jsp").forward(req, resp);
+//            req.getRequestDispatcher("loginAndRegister.jsp").forward(req, resp);
+            out.println("<html>");
+            out.println("<script>alert('用户名或密码错误!')");
+            out.println("window.open ('"+req.getContextPath()+"/loginAndRegister.jsp','_top')");
+            out.println("</script>");
+            out.println("</html>");
         }
     }
 
