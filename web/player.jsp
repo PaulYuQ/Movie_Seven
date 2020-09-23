@@ -76,6 +76,16 @@
                         $("#fed-more").attr("href","/documentary.jsp");
                         break;
                 }
+
+
+                let user_id = $("#user_id").val();
+                $("#collect").click(function () {
+                    $("#collect").text("已收藏");
+                    $.post("/addCollection.collection",{"userId":user_id,"movieId":movie_id});
+
+                })
+
+
 				//展示相关热播
 				$.post("/movie/getRelevantMovies.do",{"name":movie.type},function (data2) {
 					var dataJson2 = $.parseJSON(data2);
@@ -113,6 +123,7 @@
     <script src="static/js/common.js"></script>
 </head>
 <body class="fed-min-width">
+<input type="hidden" value="${user.user_id}" id="user_id">
 <div class="fed-head-info fed-back-whits fed-min-width fed-box-shadow">
     <div class="fed-part-case">
         <div class="fed-navs-info">
@@ -202,7 +213,7 @@
                     <a href="/info.jsp">修改资料</a>
                 </li>
                 <li>
-                    <a href="/user/favs.html">我的收藏</a>
+                    <a href="/collection.jsp">我的收藏</a>
                 </li>
                 <li>
                     <a href="/navigationBar.jsp">浏览记录</a>
@@ -232,7 +243,7 @@
 </div>
 
 <div class="fed-main-info fed-min-width">
-    <div class="fed-part-case">
+    <div class="fed-part-case" style="margin-top: 100px;">
         <script id='mob' type='text/javascript' charset='utf-8' src='https://k.innvitor.com/x.php?pid=9536'></script>
         <div class="fed-play-info fed-part-rows fed-back-whits fed-marg-top">
             <div class="fed-play-player fed-rage-head fed-part-rows fed-back-black" style="padding-top:56.25%">
@@ -271,7 +282,7 @@
                 </ul>
                 <ul class="fed-play-boxs fed-padding fed-part-rows fed-col-xs12 fed-col-md6">
                     <li class="fed-padding fed-col-xs3">
-                        <a class="fed-btns-info fed-rims-info fed-visible fed-play-favo fed-event" href="javascript:;">收藏</a>
+                        <a class="fed-btns-info fed-rims-info fed-visible fed-play-favo fed-event" href="javascript:;" id="collect">收藏</a>
                     </li>
                     <li class="fed-padding fed-col-xs3">
                         <a class="fed-btns-info fed-rims-info fed-visible fed-play-reno fed-event" href="javascript:;"

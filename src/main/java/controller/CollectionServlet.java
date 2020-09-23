@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import factory.BeanFactory;
 import pojo.Collection;
+import pojo.User;
 import service.CollectionService;
+import service.impl.CollectionServiceImpl;
 import vo.CollectionVo;
 
 import javax.servlet.ServletException;
@@ -23,7 +25,7 @@ public class CollectionServlet extends HttpServlet {
     private CollectionService collectionService;
 
     public CollectionServlet() {
-        collectionService = BeanFactory.getInstance("CollectionService");
+        collectionService = BeanFactory.getInstance("CollectionService", CollectionServiceImpl.class);
     }
 
     @Override
@@ -134,6 +136,8 @@ public class CollectionServlet extends HttpServlet {
         String key = request.getParameter("key");
         String num = request.getParameter("num");
         //String userId = request.getAttribute()
+        User user = (User) request.getSession().getAttribute("user");
+        int user_id = user.getUser_id();
         if(num == null || num.equals("")) {
             num = "6";
         }
@@ -143,7 +147,7 @@ public class CollectionServlet extends HttpServlet {
         if(keyword.equals("")) {
             response.getWriter().print("没有找到收藏！");
         }
-        List<CollectionVo> listLike = collectionService.getAllCollectionByKeyWord(keyword, 3, Integer.parseInt(key), Integer.parseInt(num));
+        List<CollectionVo> listLike = collectionService.getAllCollectionByKeyWord(keyword, user_id, Integer.parseInt(key), Integer.parseInt(num));
         String json= JSON.toJSONString(listLike);
         response.getWriter().print(json);
         System.out.println(json);
@@ -168,7 +172,8 @@ public class CollectionServlet extends HttpServlet {
         String key = request.getParameter("key");
         String num = request.getParameter("num");
         //String userId = request.getAttribute()
-
+        User user = (User) request.getSession().getAttribute("user");
+        int user_id = user.getUser_id();
         if(num == null || num.equals("")) {
             num = "6";
         }
@@ -176,7 +181,7 @@ public class CollectionServlet extends HttpServlet {
             key = "0";
         }
 
-        List<CollectionVo> list = collectionService.getAllCollection(3, Integer.parseInt(key), Integer.parseInt(num));
+        List<CollectionVo> list = collectionService.getAllCollection(user_id, Integer.parseInt(key), Integer.parseInt(num));
         String json= JSON.toJSONString(list);
         response.getWriter().print(json);
         System.out.println(json);

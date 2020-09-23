@@ -14,7 +14,6 @@ public class Collection {
     private Date date;
 
     public Collection() {
-        this.date = new Date();
     }
 
     public Collection(Integer user_id, Integer movie_id, Date date) {
@@ -27,7 +26,6 @@ public class Collection {
         this.collection_id = collection_id;
         this.user_id = user_id;
         this.movie_id = movie_id;
-        this.date = new Date();
     }
 
     public Integer getCollection_id() {

@@ -1,355 +1,157 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>收藏页面</title>
-    <link href="static/collection/css/bootstrap.min.css" rel="stylesheet">
-    <script src="static/collection/js/jquery-3.2.1.js"></script>
-    <script src="static/collection/js/bootstrap.min.js"></script>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-title" content="Movie SEVEN,影柒，中国最牛逼的电影网站！"/>
+    <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/rss/index.xml"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript">window.location.href = '/map/index.jsp';</script><![endif]-->
+    <link rel="stylesheet" href="static/banner/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/blues.css" id="fed-colo-color"/>
+    <title>导航栏</title>
+
+    <script src="static/js/jquery-3.2.1.js"></script>
     <script>
 
-        /*<div class="span2 divbg">
-            <div class="hero-unit well">
-                <input type="hidden" class="hinput" value="collection.id"/>
-                <a href=""><img src="https://kuyun.tv/upload/vod/20200825-1/0da879accd61955c1210a732fe311aa3.jpg" style="width: 100%;height:222px"></a>
-                <a href="" style="text-decoration:none;"><p>潜行天下第一季</p></a>
-                <p>收藏于：2020-09-25 16:18:55</p>
-                <p><a class="btn btn-primary btn-large" href="#" onclick="doDelete(collection.id, this)">移出收藏夹</a></p>
-            </div>
-        </div>*/
-        
-        function clickA(key,num){
-            $.ajax({
-                type : "post",
-                async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                url : "/queryAll.collection",    //请求发送到/collection/queryAll.do处
-                data : {'key':key,'num':num},
-                dataType : "json",        //返回数据形式为json
-                success : function(data) {
-                    console.log(data);
-                    console.log(data.length);
-                    let str= "";
-                    $.each(data, function (index, obj) {
-                        console.log(obj.name);
-                        str +="<div class=\"span2 divbg\">" + "<div class=\"hero-unit well chbg\">"
-                            + "<input type=\"hidden\" class=\"hinput\" value=\"" + obj.collection_id + "\"/>"
-                            + "<a href=\"\"><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
-                            + "<a href=\"\" style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
-                            + "<p style='color: #0e90d2;font-size: small'>收藏于：<br/>" + obj.date + "</p>"
-                            + "<p><a class=\"btn btn-primary btn-large\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'><label>移出</label></a></p>"
-                            + "</div>" + "</div>";
-                    });
-                    $("#list").empty();
-                    $("#list").append(str);
-                    $("#prev").attr("href","javascript:prevpage("+key+","+num+")");
-                    $("#next").attr("href","javascript:nextpage("+key+","+num+")");
-                },
-                error : function(XMLHttpRequest, textStatus,errorMsg) {
-                    //请求失败时执行该函数
-                    alert("错误码:"+XMLHttpRequest.status);
-                    alert("错误状态:"+XMLHttpRequest.readyState);
-                    alert("数据请求数据失败!"+errorMsg);
-                }
-            });
-        }//函数结束
-        //实现下一页功能,一、获取a的key，二、将获得的key+3
-        function nextpage(key,num){
-            if(key == 24) {
-                clickA(24,6);
-            } else {
-                key=key+num;
-                clickA(key,num);
-            }
-        }
-        //翻页，上一页,由于在clickA中实现动态改变a标签的属性，所以这里就不需要担心其不会跟着next等变化了
-        function prevpage(key,num){
-            if(key==0||key<=num) {
-                clickA(0,num);
-            }else{
-                key = key-num;
-                clickA(key,num);
-            }
-        }
-        //默认加载第一页，每页三条数据
-        clickA(0,6);
-
-        function doDelete(id) {
-                $.ajax({
-                    type : "post",
-                    async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                    url : "/delete.collection",    //请求发送到/collection/delete.do处
-                    data : {'collectionId':id},
-                    dataType : "json",        //返回数据形式为json
-                    success : function(data) {
-                        console.log(data);
-                        let res = data.res;
-                        if(res > 0) {
-                            clickA(0,6);
-                        }
-                    },
-                    error : function(XMLHttpRequest, textStatus,errorMsg) {
-                        //请求失败时执行该函数
-                        alert("错误码:"+XMLHttpRequest.status);
-                        alert("错误状态:"+XMLHttpRequest.readyState);
-                        alert("数据请求数据失败!"+errorMsg);
-                    }
-                });
-        }
-
-        function oper() {
-            let la = $(".hinput").attr("type");
-            let id1 = document.getElementById("button1");
-            let id2 = document.getElementById("button2");
-            let id3 = document.getElementById("button3");
-            if(la == "hidden") {
-                $(".hinput").attr('type','checkbox');
-                if(id1.style.display == "none") {
-                    id1.style.display="inline-block";
-                }
-                if(id2.style.display == "none") {
-                    id2.style.display="inline-block";
-                }
-                if(id3.style.display == "none") {
-                    id3.style.display="inline-block";
-                }
-            } else {
-                $(".hinput").attr('type','hidden');
-                if(id1.style.display == "inline-block") {
-                    id1.style.display="none";
-                }
-                if(id2.style.display == "inline-block") {
-                    id2.style.display="none";
-                }
-                if(id3.style.display == "inline-block") {
-                    id3.style.display="none";
-                }
-            }
-        }
-
-        function doChooseAll() {
-            $(".hinput").prop("checked",true);
-        }
-
-        function doChooseReverse() {
-            $(".hinput").each(function () {
-                if($(this).prop("checked")==true) {
-                    $(this).prop("checked", false);
-                } else {
-                    $(this).prop("checked", true);
-                }
-            })
-        }
-
-        function batch_del() {
-            $(".hinput").each(function(){
-                if($(this).prop("checked") == true){
-                    doDelete($(this).val());
-                }
-            });
-        }
-
-        function doQuerylike() {
-            let id4 = document.getElementById("button4");
-            /*if(id4.style.display == "none") {
-                id4.style.display="inline-block";
-            } else {
-                id4.style.display="none";
-            }*/
-            let keyword = $("#keyword").val();
-            if(keyword=="") {
-                id4.style.display="none";
-                bootbox.alert("关键字 <b>不能为空</b>");
-                clickA(0,6);
-            } else {
-                id4.style.display="inline-block";
-                function clickA(key,num){
-                    $.ajax({
-                        type : "post",
-                        async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                        url : "/queryAlllike.collection",    //请求发送到/collection/queryAll.do处
-                        data : {'keyword':keyword,'key':key,'num':num},
-                        dataType : "json",        //返回数据形式为json
-                        success : function(data) {
-                            console.log(data);
-                            console.log(data.length);
-                            let str= "";
-                            $.each(data, function (index, obj) {
-                                console.log(obj.name);
-                                str +="<div class=\"span2 divbg\">" + "<div class=\"hero-unit well chbg\">"
-                                    + "<input type=\"hidden\" class=\"hinput\" value=\"" + obj.collection_id + "\"/>"
-                                    + "<a href=\"\"><img src=\"" + obj.image_url + "\" style=\"width: 100%\"></a>"
-                                    + "<a href=\"\" style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
-                                    + "<p style='color: #0e90d2;font-size: small'>收藏于：<br/>" + obj.date + "</p>"
-                                    + "<p><a class=\"btn btn-primary btn-large\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'>移出</a></p>"
-                                    + "</div>" + "</div>";
-                            });
-                            $("#list").empty();
-                            $("#list").append(str);
-                            $("#prev").attr("href","javascript:prevpage("+key+","+num+")");
-                            $("#next").attr("href","javascript:nextpage("+key+","+num+")");
-                        }
-                    });
-                }//函数结束
-                //实现下一页功能,一、获取a的key，二、将获得的key+3
-                function nextpage(key,num){
-                    key=key+num;
-                    clickA(key,num);
-                }
-                //翻页，上一页,由于在clickA中实现动态改变a标签的属性，所以这里就不需要担心其不会跟着next等变化了
-                function prevpage(key,num){
-                    if(key==0||key<=num) {
-                        clickA(0,num);
-                    }else{
-                        key = key-num;
-                        clickA(key,num);
-                    }
-                }
-                //默认加载第一页，每页三条数据
-                clickA(0,6);
-            }
-        }
-
-        function returnindex() {
-            document.getElementById("button4").style.display="none";
-            clickA(0,6);
-        }
-
+        $(function () {
+            myBtn();
+        });
     </script>
-    <style type="text/css">
-        /*背景模糊*/
-        /*.bg {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            background: url("static/img/33.png") no-repeat fixed;
-            background-size: cover;
-            box-sizing: border-box;
-            z-index: -1;
-        }*/
-        .divbg {
-            background:rgba(0,0,0,0);
-            height: 420px;
-        }
-        .chbg {
-            background:rgba(0,0,0,0);
-            padding: 40px;
-            height: 413px;
-            width: 160px;
-            border: 0px;
-        }
-    </style>
+    <script src="static/js/common.js"></script>
 </head>
-<body class="bg">
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span12">
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="carousel slide" id="carousel-956640">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img alt="" src="static/collection/img/haha.png"/>
-                        <div class="carousel-caption">
-                            <p style="font-weight: bold;font-size: 20px">
-                                小强子大人
-                            </p>
-                        </div>
+<body class="fed-min-width">
+<div class="fed-head-info fed-back-whits fed-min-width fed-box-shadow">
+    <div class="fed-part-case">
+        <div class="fed-navs-info">
+            <ul class="fed-menu-info">
+                <li class="fed-pull-left" id="first-logo">
+                    <a class="fed-menu-logo fed-show-kind" href="/"><img width="96" height="40"
+                                                                         alt="Movie SEVEN,影柒，做中国最牛的电影网站！"
+                                                                         src="static/images/logo.png"/></a>
+                </li>
+                <li class="fed-pull-left">
+                    <a class="fed-menu-title fed-show-kind fed-font-xvi fed-text-green fed-hide fed-show-md-block"
+                       name="fed-a" id="home-a"
+                       href="/" onclick="load()">首页</a>
+                </li>
+                <li class="fed-pull-left">
+                    <a class="fed-menu-title fed-show-kind fed-font-xvi fed-hide fed-show-md-block" name="fed-a"
+                       href="/action.jsp">动作片</a>
+                </li>
+                <li class="fed-pull-left">
+                    <a class="fed-menu-title fed-show-kind fed-font-xvi fed-hide fed-show-md-block" name="fed-a"
+                       href="/comedy.jsp">喜剧片</a>
+                </li>
+                <li class="fed-pull-left">
+                    <a class="fed-menu-title fed-show-kind fed-font-xvi fed-hide fed-show-lg-block" name="fed-a"
+                       href="/love.jsp">爱情片</a>
+                </li>
+                <li class="fed-pull-left">
+                    <a class="fed-menu-title fed-show-kind fed-font-xvi fed-hide fed-show-lg-block" name="fed-a"
+                       href="/story.jsp">剧情片</a>
+                </li>
+                <li class="fed-pull-left">
+                    <a class="fed-menu-title fed-show-kind fed-font-xvi fed-hide fed-show-md-block" name="fed-a"
+                       href="/horror.jsp">恐怖片</a>
+                </li>
+                <li class="fed-pull-left">
+                    <a class="fed-menu-title fed-show-kind fed-font-xvi fed-hide fed-show-md-block" name="fed-a"
+                       href="/science.jsp">科幻片</a>
+                </li>
+                <li class="fed-pull-left">
+                    <a class="fed-menu-title fed-show-kind fed-font-xvi fed-hide fed-show-md-block" name="fed-a"
+                       href="/documentary.jsp">纪录片</a>
+                </li>
+                <li class="fed-pull-left">
+                    <a class="fed-menu-title fed-show-kind fed-font-xvi fed-navs-navbar fed-event fed-hide fed-show-sm-block fed-hide-md"
+                       href="javascript:;">导航<span class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
+                </li>
+            </ul>
+            <div class="fed-navs-search fed-back-whits fed-hidden fed-conceal fed-show-sm-block">
+                <a class="fed-navs-close fed-conceal fed-hide-sm" href="javascript:;">取消</a>
+                <form class="fed-navs-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+                    <div class="fed-navs-cuts fed-event">
+                        <a class="fed-navs-btns" href="javascript:;">
+                            <span class="fed-navs-name" data-type="1" data-href="/vod/search.html">视频</span><span
+                                class="fed-part-move fed-edge-info fed-edge-bottom"></span> </a>
                     </div>
-                </div>
+                    <input class="fed-navs-input fed-back-ashen fed-event" id="search-content" type="search"
+                           placeholder="请输入关键字"/>
+                    <a class="fed-navs-submit fed-back-ashen" id="searchBtn" href="javascript:;" onclick="doSearch()"><i
+                            class="fed-icon-font fed-icon-sousuo"></i></a>
+                </form>
             </div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-                <input class="input-medium search-query" id="keyword" type="text" value=""/>
-                <button class="btn" onclick="doQuerylike()">查找</button>
-                <button style="display: none" id="button4" class="btn" onclick="returnindex()">返回</button>
-            <button class="btn" onclick="oper()">批量操作</button>
-            <button style="display: none" id="button1" class="btn" onClick="batch_del()">批量删除</button>
-            <button style="display: none" id="button2" class="btn" onClick="doChooseAll()">全选</button>
-            <button style="display: none" id="button3" class="btn" onClick="doChooseReverse()">反选</button>
-            <p class="form-inline">
-            </p>
-        </div>
-    </div>
-    <div class="row-fluid" id="list">
+            <div class="fed-navs-right">
+                <a class="fed-navs-route fed-text-black fed-event fed-hidden fed-hide-sm" href="javascript:;"></a>
+                <a class="fed-navs-button fed-text-black fed-event fed-hide-sm fed-icon-font fed-icon-sousuo"
+                   href="javascript:;"></a>
+                <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">${user.name}</a>
 
-        <!--<div class="span4">
-            <div class="hero-unit well">
-                <h1>
-                    Hello, world!
-                </h1>
-                <p>
-                    这是一个可视化布局模板, 你可以点击模板里的文字进行修改, 也可以通过点击弹出的编辑框进行富文本修改. 拖动区块能实现排序.
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-large" href="#">参看更多 »</a>
-                </p>
+                <%
+                    if (session.getAttribute("user") == null){
+                %>
+                <a id="loginBtn" href="${pageContext.request.contextPath}/loginAndRegister.jsp" style="display: block">登录</a>
+                <%
+                }else {
+
+                %>
+                <a id="myBtn" href="javascript:;" style="display: block" >我的<span
+                        class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
+                <%
+                    }
+                %>
+
             </div>
         </div>
-        <div class="span4">
-            <div class="hero-unit well">
-                <h1>
-                    Hello, world!
-                </h1>
-                <p>
-                    这是一个可视化布局模板, 你可以点击模板里的文字进行修改, 也可以通过点击弹出的编辑框进行富文本修改. 拖动区块能实现排序.
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-large" href="#">参看更多 »</a>
-                </p>
-            </div>
-        </div>
-        <div class="span4">
-            <div class="hero-unit well">
-                <h1>
-                    Hello, world!
-                </h1>
-                <p>
-                    这是一个可视化布局模板, 你可以点击模板里的文字进行修改, 也可以通过点击弹出的编辑框进行富文本修改. 拖动区块能实现排序.
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-large" href="#">参看更多 »</a>
-                </p>
-            </div>
-        </div>-->
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="pagination pagination-centered">
-                <ul>
-                    <li>
-                        <a id="prev" href="javascript:prevpage(0,0);">上一页</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(0,6);">1</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(6,6);">2</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(12,6);">3</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(18,6);">4</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(24,6);">5</a>
-                    </li>
-                    <li class="a1">
-                        <a id="next" href="javascript:nextpage(0,0);">下一页</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="fed-pops-user fed-box-shadow fed-back-whits fed-hidden fed-conceal fed-anim fed-anim-upbit"
+             id="myInfo" style="right: -86px;">
+            <ul class="fed-pops-list fed-font-size fed-back-whits">
+                <li>
+                    <a href="javascript:;">${user.name}</a>
+                </li>
+                <li>
+                    <a href="/info.jsp">修改资料</a>
+                </li>
+                <li>
+                    <a href="/collection.jsp">我的收藏</a>
+                </li>
+                <li>
+                    <a href="/navigationBar.jsp">浏览记录</a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="logout()">退出登录</a>
+                </li>
+                <script>
+                    function logout() {
+                        if (confirm("请确认是否退出")) {
+                            $.post("/logout.users", function () {
+                                window.location.href = "loginAndRegister.jsp";
+                            });
+                        }
+                    }
+                </script>
+            </ul>
         </div>
     </div>
 </div>
+<style type="text/css">
+    body {
+        padding-bottom: 0;
+    }
+    /*body::-webkit-scrollbar {*/
+    /*    display: none;*/
+    /*}*/
+
+</style>
+<div style="background: #ededed;padding-top: 18px;">
+    <iframe src="collectionBar.jsp" frameborder="0" style="width: 100%;height: 600px" scrolling="auto"></iframe>
+</div>
+
 </body>
 </html>

@@ -7,44 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="589ce290-7c98-477a-9284-c210c7b3cca0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/infoBar.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/loginAndRegisterBar.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/collectionBar.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/web/static/js/jquery-3.2.1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/seven_movie_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/seven_movie_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8a74d960-c53e-4154-87e8-b32b4edf9f02/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_15_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_15__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_17_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_17__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_19_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_19__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_25_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_25_[Default_Changelist]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_25__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_25__Default_Changelist_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_26_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_26__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_30_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_30__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_37_[Default_Changelist]1/movie.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_37_[Default_Changelist]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_37__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_37__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_37__Default_Changelist_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_39_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_39__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_51_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_51__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/HistoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/HistoryServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MovieServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MovieServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/login/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/login/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/HistoryDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/impl/HistoryDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pojo/ShowHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pojo/ShowHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CollectionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CollectionServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pojo/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pojo/Collection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/impl/CollectionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/impl/CollectionServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/action.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/action.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/collection.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/collection01.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/collection02.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/comedy.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/comedy.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/comment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/comment.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/documentary.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/documentary.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/history.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/horror.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/horror.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/info.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/info.jsp" afterDir="false" />
@@ -55,8 +30,6 @@
       <change beforePath="$PROJECT_DIR$/web/player.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/player.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/science.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/science.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/search.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/history/css/history.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/history/css/history.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/history/js/history.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/history/js/history.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/story.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/story.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -355,62 +328,62 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="445" y="156" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600823303952" />
-    <state width="1137" height="188" key="GridCell.Tab.0.bottom" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.0.bottom" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state width="1137" height="188" key="GridCell.Tab.0.center" timestamp="1600861583279">
+    <state width="1137" height="188" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1137" height="188" key="GridCell.Tab.0.center" timestamp="1600865472001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600861583279" />
-    <state width="1137" height="188" key="GridCell.Tab.0.left" timestamp="1600861583279">
+    <state width="1137" height="188" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600865472001" />
+    <state width="1137" height="188" key="GridCell.Tab.0.left" timestamp="1600865472001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600861583279" />
-    <state width="1137" height="188" key="GridCell.Tab.0.right" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600865472001" />
+    <state width="1137" height="188" key="GridCell.Tab.0.right" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state width="1137" height="188" key="GridCell.Tab.1.bottom" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1137" height="188" key="GridCell.Tab.1.bottom" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state width="1137" height="188" key="GridCell.Tab.1.center" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1137" height="188" key="GridCell.Tab.1.center" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state width="1137" height="188" key="GridCell.Tab.1.left" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1137" height="188" key="GridCell.Tab.1.left" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state width="1137" height="188" key="GridCell.Tab.1.right" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1137" height="188" key="GridCell.Tab.1.right" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state width="1137" height="188" key="GridCell.Tab.2.bottom" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1137" height="188" key="GridCell.Tab.2.bottom" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state width="1137" height="188" key="GridCell.Tab.2.center" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1137" height="188" key="GridCell.Tab.2.center" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state width="1137" height="188" key="GridCell.Tab.2.left" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1137" height="188" key="GridCell.Tab.2.left" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state width="1137" height="188" key="GridCell.Tab.2.right" timestamp="1600861583280">
+    <state width="1137" height="188" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1137" height="188" key="GridCell.Tab.2.right" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1600861583280" />
-    <state x="147" y="64" key="MergeDialog" timestamp="1600832412390">
+    <state width="1137" height="188" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state x="147" y="64" key="MergeDialog" timestamp="1600862037831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="147" y="64" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1600832412390" />
-    <state x="520" y="142" key="MultipleFileMergeDialog" timestamp="1600832412400">
+    <state x="147" y="64" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1600862037831" />
+    <state x="520" y="142" key="MultipleFileMergeDialog" timestamp="1600862055579">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="520" y="142" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1600832412400" />
+    <state x="520" y="142" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1600862055579" />
     <state x="408" y="115" key="NewModule_or_Project.wizard" timestamp="1600778947636">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
