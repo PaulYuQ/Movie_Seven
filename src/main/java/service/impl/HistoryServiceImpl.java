@@ -25,8 +25,8 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     @Override
-    public int historyDelete(int id) {
-        return movieDao.historyDelete(id);
+    public int historyEmpty(int id) {
+        return movieDao.historyEmpty(id);
     }
 
     @Override
@@ -63,4 +63,8 @@ public class HistoryServiceImpl implements HistoryService {
         return movieDao.movieList(page, row);
     }
 
+    @Override
+    public int historyAdd(Histories histories) {
+        return movieDao.historyAdd(histories);
+    }
 }

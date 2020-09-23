@@ -5,32 +5,44 @@
       <artifact name="seven_movie:war exploded" />
     </artifacts-to-build>
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="589ce290-7c98-477a-9284-c210c7b3cca0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/collectionBar.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/static/js/jquery-3.2.1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_37__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2020_9_14_10_37__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="43cf9c3e-035c-483b-9e11-d3f0485bc5e3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__c3p0_c3p0_0_9_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_58.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_11_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_dbutils_commons_dbutils_1_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_javax_servlet_jsp_api_2_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_javax_servlet_jsp_api_2_3_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_21.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CollectionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CollectionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pojo/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pojo/Collection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/impl/CollectionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/impl/CollectionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/action.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/action.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/collection.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/collection01.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/collection02.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/comedy.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/comedy.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/documentary.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/documentary.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/horror.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/horror.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/info.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/info.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/introduction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/introduction.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/loginAndRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/loginAndRegister.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/love.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/love.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/navigationBar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/navigationBar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/player.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/player.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/science.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/science.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/search.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/story.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/story.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/HistoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/HistoryServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/HistoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/HistoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/HistoryDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/impl/HistoryDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/HistoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/impl/HistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/impl/HistoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/c3p0-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/c3p0-config.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,13 +57,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="E:\IDEATest\SevenMovie\seven_movie\.idea" />
-      </set>
-    </option>
-  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -59,19 +64,11 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="1hrEF4jLCMhhxKJMlTrLT6CZzWv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -82,6 +79,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/web" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15332031" />
     <property name="project.structure.side.proportion" value="0.39838338" />
@@ -94,8 +97,24 @@
       <recent name="E:\IDEATest\SevenMovie\seven_movie\web\static\js" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Tomcat 9.0.17" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.17" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.HistoryServlet.show">
+    <configuration name="HistoryServlet.show" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="seven_movies" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller" />
+      <option name="MAIN_CLASS_NAME" value="controller.HistoryServlet" />
+      <option name="METHOD_NAME" value="show" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.37" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.37" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=utf-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
@@ -169,29 +188,15 @@
         </option>
       </method>
     </configuration>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
+    <list>
+      <item itemvalue="Tomcat Server.Tomcat 9.0.37" />
+      <item itemvalue="JUnit.HistoryServlet.show" />
+    </list>
+    <recent_temporary>
       <list>
-        <serviceView>
-          <option name="contentProportion" value="0.22267759" />
-          <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-            </expand>
-            <select />
-          </treeState>
-        </serviceView>
+        <item itemvalue="JUnit.HistoryServlet.show" />
       </list>
-    </option>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -271,13 +276,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -296,14 +300,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="452" y="69" key="#Tomcat_9.0.17/0.0.1536.824@0.0.1536.824" timestamp="1600778112764" />
-    <state x="223" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600831395649">
+    <state x="269" y="65" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600867768651">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1600831395649" />
-    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser" timestamp="1600851244811">
+    <state x="269" y="65" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1600867768651" />
+    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser" timestamp="1600872325634">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1600851244811" />
+    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1600872325634" />
     <state x="534" y="327" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath" timestamp="1600787976324">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -328,22 +332,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="445" y="156" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600823303952" />
-    <state width="1137" height="188" key="GridCell.Tab.0.bottom" timestamp="1600865472002">
+    <state width="1493" height="198" key="GridCell.Tab.0.bottom" timestamp="1600873330213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
-    <state width="1137" height="188" key="GridCell.Tab.0.center" timestamp="1600865472001">
+    <state width="1493" height="198" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600873330213" />
+    <state width="1493" height="198" key="GridCell.Tab.0.center" timestamp="1600873330213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600865472001" />
-    <state width="1137" height="188" key="GridCell.Tab.0.left" timestamp="1600865472001">
+    <state width="1493" height="198" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600873330213" />
+    <state width="1493" height="198" key="GridCell.Tab.0.left" timestamp="1600873330213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600865472001" />
-    <state width="1137" height="188" key="GridCell.Tab.0.right" timestamp="1600865472002">
+    <state width="1493" height="198" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600873330213" />
+    <state width="1493" height="198" key="GridCell.Tab.0.right" timestamp="1600873330213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1137" height="188" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
+    <state width="1493" height="198" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600873330213" />
     <state width="1137" height="188" key="GridCell.Tab.1.bottom" timestamp="1600865472002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
