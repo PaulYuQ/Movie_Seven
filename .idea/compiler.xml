@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="seven_movie" />
-        <module name="seven_movies" />
         <module name="seven_movie - 副本" />
+        <module name="seven_movies" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="seven_movie" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
