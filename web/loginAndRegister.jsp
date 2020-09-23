@@ -93,32 +93,38 @@
         $("#phone").blur(function () {
             var phone =  $("#phone").val();
             if(!(/^1[3456789]\d{9}$/.test(phone))){
-                $("#msg").html("电话号码错误！")
+                $("#msg").html("电话号码错误！");
             }else {
                 $("#msg").html("电话号码正确！")
             }
         })
         function register() {
-
-            $.post(
-                "register.users",
-                {"name":$("#name").val(),"password":$("#password").val(),"password1":$("#password1").val(),"phone":$("#phone").val()},
-                function (data) {
-                    let result = data.result;
-                    if (result==3){
-                        $("#msg").html("密码不一致！")
-                    }else if (result==2){
-                        $("#msg").html("用户名已被占用！")
-                    }else if (result==1){
-                        alert("注册成功！");
-                        window.location.replace("${pageContext.request.contextPath}/loginAndRegister.jsp");
-                    }else if (result==4){
-                        $('#msg').html("密码和用户名都错误")
-                    }else if (result==5){
-                        $('#msg').html("注册失败！")
-                    }
-                },"json"
-            )
+            var pwd = $(".mima").val();
+            var phone =  $("#phone").val();
+            var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}$/;
+            if(!(/^1[3456789]\d{9}$/.test(phone))||!reg.test(pwd)){
+                $("#msg").html("请检查密码和手机号是否正确！");
+            }else {
+                $.post(
+                    "register.users",
+                    {"name":$("#name").val(),"password":$("#password").val(),"password1":$("#password1").val(),"phone":$("#phone").val()},
+                    function (data) {
+                        let result = data.result;
+                        if (result==3){
+                            $("#msg").html("密码不一致！")
+                        }else if (result==2){
+                            $("#msg").html("用户名已被占用！")
+                        }else if (result==1){
+                            alert("注册成功！");
+                            window.location.replace("${pageContext.request.contextPath}/loginAndRegister.jsp");
+                        }else if (result==4){
+                            $('#msg').html("密码和用户名都错误")
+                        }else if (result==5){
+                            $('#msg').html("注册失败！")
+                        }
+                    },"json"
+                )
+            }
         }
 
         </script>
