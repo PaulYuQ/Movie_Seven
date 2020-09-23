@@ -159,17 +159,29 @@
                    href="javascript:;"></a>
                 <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">看过<span
                         class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
-                <a id="loginBtn" href="javascript:;" style="display: block">登录</a>
-                <a id="myBtn" href="javascript:;" style="display: none" >我的</a>
+
+                <%
+                    if (session.getAttribute("user") == null){
+                %>
+                <a id="loginBtn" href="${pageContext.request.contextPath}/loginAndRegister.jsp" style="display: block">登录</a>
+                <%
+                }else {
+
+                %>
+                <a id="myBtn" href="javascript:;" style="display: block" >我的</a>
+                <%
+                    }
+                %>
+
             </div>
         </div>
         <div class="fed-pops-user fed-box-shadow fed-back-whits fed-hidden fed-conceal fed-anim fed-anim-upbit" id="myInfo" style="right: -86px;">
             <ul class="fed-pops-list fed-font-size fed-back-whits">
                 <li>
-                    <a href="/user/index.html">游客</a>
+                    <a href="javascript:;">${user.name}</a>
                 </li>
                 <li>
-                    <a href="/user/info.html">修改资料</a>
+                    <a href="/info.jsp">修改资料</a>
                 </li>
                 <li>
                     <a href="/user/favs.html">我的收藏</a>
@@ -178,8 +190,17 @@
                     <a href="/user/plays.html">浏览记录</a>
                 </li>
                 <li>
-                    <a href="/user/logout.html">退出登录</a>
+                    <a href="javascript:;" onclick="logout()">退出登录</a>
                 </li>
+                <script>
+                    function logout() {
+                        if (confirm("请确认是否退出")){
+                            $.post("/logout.users",function () {
+                                window.location.href = "index.jsp";
+                            });
+                        }
+                    }
+                </script>
             </ul>
         </div>
     </div>
@@ -264,24 +285,9 @@
     <div class="fed-part-case">
         <p class="fed-text-center fed-text-black"></p>
         <p class="fed-text-center fed-text-black"></p>
-        <p class="fed-text-center fed-text-black fed-foot-maps fed-font-size">
-            <a class="fed-font-xiv" href="/rss/index.xml" target="_blank">RSS订阅</a>
-            <span class="fed-font-xiv"> - </span>
-            <a class="fed-font-xiv" href="/rss/baidu.xml" target="_blank">百度蜘蛛</a>
-            <span class="fed-font-xiv"> - </span>
-            <a class="fed-font-xiv" href="/rss/google.xml" target="_blank">谷歌地图</a>
-            <span class="fed-font-xiv"> - </span>
-            <a class="fed-font-xiv" href="/rss/sm.xml" target="_blank">神马爬虫</a>
-            <span class="fed-font-xiv fed-hide-xs"> - </span>
-            <a class="fed-font-xiv fed-hide-xs" href="/rss/sogou.xml" target="_blank">搜狗蜘蛛</a>
-            <span class="fed-font-xiv fed-hide-xs"> - </span>
-            <a class="fed-font-xiv fed-hide-xs" href="/rss/so.xml" target="_blank">奇虎地图</a>
-            <span class="fed-font-xiv fed-hide-xs"> - </span>
-            <a class="fed-font-xiv fed-hide-xs" href="/rss/bing.xml" target="_blank">必应爬虫</a>
-        </p>
-        <p class="fed-text-center fed-text-black">本网站内容均收集于互联网，酷云影视不承担任何由于内容的合法性及健康性所引起的争议和法律责任。<br>欢迎大家对网站内容侵犯版权等不合法和不健康行为进行监督和举报。<br>版权投诉邮箱：
-            KuYuntv@My.Com </p>
-        <p class="fed-text-center fed-text-black">Copyright © 2020 <font color="#CC0000">Www.</font><font color="#F60">KuYun</font><font
+        <p class="fed-text-center fed-text-black">本网站内容均收集于互联网，影柒不承担任何由于内容的合法性及健康性所引起的争议和法律责任。<br>欢迎大家对网站内容侵犯版权等不合法和不健康行为进行监督和举报。<br>版权投诉邮箱：
+            SevenMovie@My.Com </p>
+        <p class="fed-text-center fed-text-black">Copyright © 2020 <font color="#CC0000">Www.</font><font color="#F60">SevenMovie</font><font
                 color="#CC0000">.Tv</font> .All Rights Reserved .
         <div style="display:none">
             <script>

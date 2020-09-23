@@ -85,7 +85,7 @@ public class UserServlet extends HttpServlet {
     }
     public void doLogout(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
             req.getSession().removeAttribute("user");
-            resp.sendRedirect("loginAndRegister.jsp");
+            resp.sendRedirect("index.jsp");
     }
     public void doUpdate(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
         User user = userService.findByName("name");
