@@ -151,8 +151,7 @@
                 <a class="fed-navs-route fed-text-black fed-event fed-hidden fed-hide-sm" href="javascript:;"></a>
                 <a class="fed-navs-button fed-text-black fed-event fed-hide-sm fed-icon-font fed-icon-sousuo"
                    href="javascript:;"></a>
-                <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">看过<span
-                        class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
+                <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">${user.name}</a>
 
                 <%
                     if (session.getAttribute("user") == null){
@@ -162,7 +161,8 @@
                 }else {
 
                 %>
-                <a id="myBtn" href="javascript:;" style="display: block" >我的</a>
+                <a id="myBtn" href="javascript:;" style="display: block" >我的<span
+                        class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
                 <%
                     }
                 %>
@@ -181,7 +181,7 @@
                     <a href="/user/favs.html">我的收藏</a>
                 </li>
                 <li>
-                    <a href="/user/plays.html">浏览记录</a>
+                    <a href="/navigationBar.jsp">浏览记录</a>
                 </li>
                 <li>
                     <a href="javascript:;" onclick="logout()">退出登录</a>

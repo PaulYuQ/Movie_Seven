@@ -91,20 +91,22 @@
                 <a class="fed-navs-route fed-text-black fed-event fed-hidden fed-hide-sm" href="javascript:;"></a>
                 <a class="fed-navs-button fed-text-black fed-event fed-hide-sm fed-icon-font fed-icon-sousuo"
                    href="javascript:;"></a>
-                <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">看过<span
-                        class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
+                <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">${user.name}</a>
+
                 <%
-                    if (session.getAttribute("user") == null) {
+                    if (session.getAttribute("user") == null){
                 %>
                 <a id="loginBtn" href="${pageContext.request.contextPath}/loginAndRegister.jsp" style="display: block">登录</a>
                 <%
-                } else {
+                }else {
 
                 %>
-                <a id="myBtn" href="javascript:;" style="display: block">我的</a>
+                <a id="myBtn" href="javascript:;" style="display: block" >我的<span
+                        class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
                 <%
                     }
                 %>
+
             </div>
         </div>
         <div class="fed-pops-user fed-box-shadow fed-back-whits fed-hidden fed-conceal fed-anim fed-anim-upbit"
@@ -120,7 +122,7 @@
                     <a href="/user/favs.html">我的收藏</a>
                 </li>
                 <li>
-                    <a href="/user/plays.html">浏览记录</a>
+                    <a href="/navigationBar.jsp">浏览记录</a>
                 </li>
                 <li>
                     <a href="javascript:;" onclick="logout()">退出登录</a>
@@ -138,12 +140,15 @@
         </div>
     </div>
 </div>
-<style type="text/css">body {
-    padding-bottom: 0
-}</style>
+<style type="text/css">
+    body {
+        padding-bottom: 0;
+
+    }
 
 
-
+</style>
+<iframe src="history.jsp" frameborder="0" style="width: 100%;height: 1500px" scrolling="auto"></iframe>
 
 
 </body>
