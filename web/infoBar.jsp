@@ -145,7 +145,7 @@ function update() {
             if (result){
                 $.post(
                     "modify.users",
-                    {"name":$("#name").val(),"password":$("#password").val(),"phone":$("#phone").val()},
+                    {"id":$("#id").val(),"name":$("#name").val(),"password":$("#password").val(),"phone":$("#phone").val()},
                     function (data) {
                         if (data.result>0){
                             bootbox.alert("修改成功！");
