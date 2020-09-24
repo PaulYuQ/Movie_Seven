@@ -121,7 +121,7 @@ public class AdminServlet extends HttpServlet {
             }
         }else {
             try {
-                req.getRequestDispatcher("404.html").forward(req,resp);
+                req.getRequestDispatcher("404.jsp").forward(req,resp);
             } catch (IOException | ServletException e) {
                 e.printStackTrace();
             }

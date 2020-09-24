@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html >
 
 <head>
@@ -126,17 +126,11 @@
       <a href="admin.jsp" class="list-group-item  waves-effect list-group-item-action">
         <img src="img/svg/admin.svg" width="25px" height="25px" style="margin-right: 20px"> 管理员表
       </a>
-      <a href="user.html" class="list-group-item active list-group-item-action waves-effect">
+      <a href="user.jsp" class="list-group-item active list-group-item-action waves-effect">
         <img src="img/svg/user.svg" width="25px" height="25px" style="margin-right: 20px"> 用户表
       </a>
-      <a href="movie.html" class="list-group-item list-group-item-action waves-effect">
+      <a href="movie.jsp" class="list-group-item list-group-item-action waves-effect">
         <img src="img/svg/movie.svg" width="25px" height="25px" style="margin-right: 20px"> 电影表</a>
-      <a href="comment.html" class="list-group-item list-group-item-action waves-effect">
-        <img src="img/svg/comment.svg" width="25px" height="25px" style="margin-right: 20px"> 评论表</a>
-      <a href="history.html" class="list-group-item list-group-item-action waves-effect">
-        <img src="img/svg/history.svg" width="25px" height="25px" style="margin-right: 20px"> 历史表</a>
-      <a href="collections.html" class="list-group-item list-group-item-action waves-effect">
-        <img src="img/svg/conlection.svg" width="25px" height="25px" style="margin-right: 20px"> 收藏表</a>
     </div>
 
   </div>

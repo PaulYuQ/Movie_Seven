@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html lang="en">
 
 <head>
@@ -100,20 +100,14 @@ position:absolute;
 
 
       <div class="list-group list-group-flush" style="margin-top: 80px">
-        <a href="admin.jsp" class="list-group-item list-group-item-action waves-effect">
+        <a href="admin.jsp" class="list-group-item waves-effect  list-group-item-action">
           <img src="img/svg/admin.svg" width="25px" height="25px" style="margin-right: 20px"> 管理员表
         </a>
-        <a href="user.html" class="list-group-item list-group-item-action waves-effect">
+        <a href="user.jsp" class="list-group-item  list-group-item-action waves-effect">
           <img src="img/svg/user.svg" width="25px" height="25px" style="margin-right: 20px"> 用户表
         </a>
-        <a href="movie.html" class="list-group-item list-group-item-action waves-effect">
+        <a href="movie.jsp" class="list-group-item active list-group-item-action waves-effect">
           <img src="img/svg/movie.svg" width="25px" height="25px" style="margin-right: 20px"> 电影表</a>
-        <a href="comment.html" class="list-group-item list-group-item-action waves-effect">
-          <img src="img/svg/comment.svg" width="25px" height="25px" style="margin-right: 20px"> 评论表</a>
-        <a href="history.html" class="list-group-item list-group-item-action waves-effect">
-          <img src="img/svg/history.svg" width="25px" height="25px" style="margin-right: 20px"> 历史表</a>
-        <a href="#" class="list-group-item list-group-item-action waves-effect active">
-          <img src="img/svg/conlection.svg" width="25px" height="25px" style="margin-right: 20px"> 收藏表</a>
       </div>
 
     </div>
@@ -133,7 +127,7 @@ position:absolute;
         <div class="card-body d-sm-flex justify-content-between">
 
           <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="#" target="_blank">收藏表</a>
+            <a href="#" target="_blank">电影表</a>
           </h4>
 
           <form class="d-flex justify-content-center">
@@ -238,6 +232,7 @@ position:absolute;
         <div align="center" style="padding-bottom: 20px">
 
 
+          <button type="button" class="btn btn-primary" style="margin-left: 30px;">增加电影</button>
 
 
 
