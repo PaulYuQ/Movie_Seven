@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="static/banner/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="static/css/blues.css" id="fed-colo-color"/>
-    <title>导航栏</title>
+    <title>我的收藏</title>
 
     <script src="static/js/jquery-3.2.1.js"></script>
     <script>
@@ -25,7 +25,7 @@
     </script>
     <script src="static/js/common.js"></script>
 </head>
-<body class="fed-min-width">
+<body class="fed-min-width" style="overflow:-Scroll;overflow-y:hidden">
 <div class="fed-head-info fed-back-whits fed-min-width fed-box-shadow">
     <div class="fed-part-case">
         <div class="fed-navs-info">
@@ -150,7 +150,7 @@
 
 </style>
 <div style="background: #ededed;padding-top: 18px;">
-    <iframe src="collectionBar.jsp" frameborder="0" style="width: 100%;height: 600px" scrolling="auto"></iframe>
+    <iframe src="collectionBar.jsp" frameborder="0" style="width: 100%;height: 100%" scrolling="auto"></iframe>
 </div>
 
 </body>
