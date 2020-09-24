@@ -17,8 +17,9 @@
           <element id="library" level="project" name="Maven: commons-dbutils:commons-dbutils:1.7" />
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
-          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.58" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.72" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.12" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="seven_movies/web/Web" />
