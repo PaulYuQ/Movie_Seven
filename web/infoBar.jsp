@@ -29,7 +29,7 @@
             <div class="info-center">
                 <div>
                     <div class="col-lg-3">
-                        <img src="static/user/img/info.svg" alt="" width="227px" height="150px">
+                        <embed src="static/user/img/info.svg" style="display:block;width:250px;height:250px"/>
                     </div>
                     <div class="col-lg-9">
                         <form action="${pageContext.request.contextPath}/modify.users?name=${name}" class="form-info">
