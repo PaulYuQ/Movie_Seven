@@ -78,27 +78,27 @@
                 }
 
                 let user_id = $("#user_id").val();
-                $.post("/queryCollectionStatus.collection", {"userId": user_id, "movieId": movie_id}, function (data) {
-                    if (data == "true") {
-                        $("#collect").text("已收藏");
-                    } else {
-                        $("#collect").text("收藏");
-                    }
-                })
-
-                $("#collect").click(function () {
-                    if (user_id != "") {
-                        if ($("#collect").text() == "收藏") {
-                            $.post("/addCollection.collection", {"userId": user_id, "movieId": movie_id});
+                    $.post("/queryCollectionStatus.collection", {"userId": user_id, "movieId": movie_id}, function (data) {
+                        if (data == "true") {
                             $("#collect").text("已收藏");
                         } else {
-                            $.post("/deleteInPlayer.collection", {"userId": user_id, "movieId": movie_id});
                             $("#collect").text("收藏");
                         }
-                    } else {
-                        alert("请先登录！")
-                        window.location.href = "/loginAndRegister.jsp";
-                    }
+                    })
+
+                    $("#collect").click(function () {
+                        if (user_id != "") {
+                            if ($("#collect").text() == "收藏") {
+                                $.post("/addCollection.collection", {"userId": user_id, "movieId": movie_id});
+                                $("#collect").text("已收藏");
+                            } else {
+                                $.post("/deleteInPlayer.collection", {"userId": user_id, "movieId": movie_id});
+                                $("#collect").text("收藏");
+                            }
+                        } else {
+                            alert("请先登录！")
+                            window.location.href = "/loginAndRegister.jsp";
+                        }
 
                 })
 
