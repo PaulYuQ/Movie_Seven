@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,6 +56,40 @@ public class CollectionServlet extends HttpServlet {
             updateCollection(request, response);
         } else if(path.contains("queryCollectionById.collection")) {
             queryCollectionById(request, response);
+        } else if(path.contains("deleteInPlayer.collection")) {
+            deleteInPlayer(request, response);
+        } else if(path.contains("queryCollectionStatus.collection")) {
+            queryCollectionStatus(request, response);
+        }
+    }
+
+
+
+    private void queryCollectionStatus(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userId = request.getParameter("userId");
+        String movieId = request.getParameter("movieId");
+        int result = 0;
+        if(!"".equals(userId)) {
+            result = collectionService.queryCollectionStatus(Integer.parseInt(userId), Integer.parseInt(movieId));
+        }
+        if(result > 0) {
+            response.getWriter().print("true");
+        } else {
+            response.getWriter().print("false");
+        }
+    }
+
+    private void deleteInPlayer(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userId = request.getParameter("userId");
+        String movieId = request.getParameter("movieId");
+        int result = 0;
+        if(!"".equals(userId)) {
+            result = collectionService.deleteInPlayer(Integer.parseInt(userId), Integer.parseInt(movieId));
+        }
+        if(result > 0) {
+            response.getWriter().print("true");
+        } else {
+            response.getWriter().print("false");
         }
     }
 
@@ -76,7 +111,10 @@ public class CollectionServlet extends HttpServlet {
         Collection collection = new Collection();
         collection.setUser_id(Integer.parseInt(userId));
         collection.setMovie_id(Integer.parseInt(movieId));
-        int insertResult = collectionService.update(collection);
+        int insertResult = 0;
+        if(!"".equals(userId)) {
+            insertResult = collectionService.update(collection);
+        }
         if(insertResult > 0) {
             response.getWriter().print("true");
         } else {

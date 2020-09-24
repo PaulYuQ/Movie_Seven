@@ -55,62 +55,80 @@
                 console.log(type);
                 switch (type) {
                     case "动作片":
-                        $("#fed-more").attr("href","/action.jsp");
+                        $("#fed-more").attr("href", "/action.jsp");
                         break;
                     case "喜剧片":
-                        $("#fed-more").attr("href","/comedy.jsp");
+                        $("#fed-more").attr("href", "/comedy.jsp");
                         break;
                     case "爱情片":
-                        $("#fed-more").attr("href","/love.jsp");
+                        $("#fed-more").attr("href", "/love.jsp");
                         break;
                     case "剧情片":
-                        $("#fed-more").attr("href","/story.jsp");
+                        $("#fed-more").attr("href", "/story.jsp");
                         break;
                     case "恐怖片":
-                        $("#fed-more").attr("href","/horror.jsp");
+                        $("#fed-more").attr("href", "/horror.jsp");
                         break;
                     case "科幻片":
-                        $("#fed-more").attr("href","/science.jsp");
+                        $("#fed-more").attr("href", "/science.jsp");
                         break;
                     case "纪录片":
-                        $("#fed-more").attr("href","/documentary.jsp");
+                        $("#fed-more").attr("href", "/documentary.jsp");
                         break;
                 }
 
-
                 let user_id = $("#user_id").val();
+                $.post("/queryCollectionStatus.collection", {"userId": user_id, "movieId": movie_id}, function (data) {
+                    if (data == "true") {
+                        $("#collect").text("已收藏");
+                    } else {
+                        $("#collect").text("收藏");
+                    }
+                })
+
                 $("#collect").click(function () {
-                    $("#collect").text("已收藏");
-                    $.post("/addCollection.collection",{"userId":user_id,"movieId":movie_id});
+                    if (user_id != "") {
+                        if ($("#collect").text() == "收藏") {
+                            $.post("/addCollection.collection", {"userId": user_id, "movieId": movie_id});
+                            $("#collect").text("已收藏");
+                        } else {
+                            $.post("/deleteInPlayer.collection", {"userId": user_id, "movieId": movie_id});
+                            $("#collect").text("收藏");
+                        }
+                    } else {
+                        alert("请先登录！")
+                        window.location.href = "/loginAndRegister.jsp";
+                    }
 
                 })
 
 
-				//展示相关热播
-				$.post("/movie/getRelevantMovies.do",{"name":movie.type},function (data2) {
-					var dataJson2 = $.parseJSON(data2);
-					console.log(dataJson2);
-					var anyMovies = dataJson2.anyMovies;
-					var str = "";
-					$.each(anyMovies, function (index, movie) {
+                //展示相关热播
+                $.post("/movie/getRelevantMovies.do", {"name": movie.type}, function (data2) {
+                    var dataJson2 = $.parseJSON(data2);
+                    console.log(dataJson2);
+                    var anyMovies = dataJson2.anyMovies;
+                    var str = "";
+                    $.each(anyMovies, function (index, movie) {
 
-						str += "<li class=\"fed-list-item fed-padding fed-col-xs4 fed-col-sm3 fed-col-md2\">\n" +
-								"                    <a class=\"fed-list-pics fed-lazy fed-part-2by3\" href=\"/movie/gotoIntroduction.do?movie_id="+movie.movie_id+"\"\n" +
-								"                       data-original=\"" + movie.image_url + "\"" +
-								"                    style=\"background-image: url(" + movie.image_url + ")\">\n" +
-								"                        <span class=\"fed-list-play fed-hide-xs\"></span>\n" +
-								"                    </a>\n" +
-								"                    <a class=\"fed-list-title fed-font-xiv fed-text-center fed-text-sm-left fed-visible fed-part-eone\"\n" +
-								"                       href=\"/movie/gotoIntroduction.do?movie_id="+movie.movie_id+"\"\n" + "\">" + movie.name + "</a>\n" +
-								"                    <span class=\"fed-list-desc fed-font-xii fed-visible fed-part-eone fed-text-muted fed-hide-xs fed-show-sm-block\">\n" +
-								movie.actor + "</span>\n" +
-								"                </li>";
-					})
-					$("#related-player").empty();
-					$("#related-player").append(str);
-				})
+                        str += "<li class=\"fed-list-item fed-padding fed-col-xs4 fed-col-sm3 fed-col-md2\">\n" +
+                            "                    <a class=\"fed-list-pics fed-lazy fed-part-2by3\" href=\"/movie/gotoIntroduction.do?movie_id=" + movie.movie_id + "\"\n" +
+                            "                       data-original=\"" + movie.image_url + "\"" +
+                            "                    style=\"background-image: url(" + movie.image_url + ")\">\n" +
+                            "                        <span class=\"fed-list-play fed-hide-xs\"></span>\n" +
+                            "                    </a>\n" +
+                            "                    <a class=\"fed-list-title fed-font-xiv fed-text-center fed-text-sm-left fed-visible fed-part-eone\"\n" +
+                            "                       href=\"/movie/gotoIntroduction.do?movie_id=" + movie.movie_id + "\"\n" + "\">" + movie.name + "</a>\n" +
+                            "                    <span class=\"fed-list-desc fed-font-xii fed-visible fed-part-eone fed-text-muted fed-hide-xs fed-show-sm-block\">\n" +
+                            movie.actor + "</span>\n" +
+                            "                </li>";
+                    })
+                    $("#related-player").empty();
+                    $("#related-player").append(str);
+                })
             })
         }
+
         // //搜索框事件
         // function doSearch() {
         //     console.log("doSearch()-----");
@@ -178,25 +196,28 @@
                             <span class="fed-navs-name" data-type="1" data-href="/vod/search.html">视频</span><span
                                 class="fed-part-move fed-edge-info fed-edge-bottom"></span> </a>
                     </div>
-                    <input class="fed-navs-input fed-back-ashen fed-event" id="search-content" type="search" placeholder="请输入关键字"/>
-                    <a class="fed-navs-submit fed-back-ashen" id="searchBtn" href="javascript:;" onclick="doSearch()"><i class="fed-icon-font fed-icon-sousuo"></i></a>
+                    <input class="fed-navs-input fed-back-ashen fed-event" id="search-content" type="search"
+                           placeholder="请输入关键字"/>
+                    <a class="fed-navs-submit fed-back-ashen" id="searchBtn" href="javascript:;" onclick="doSearch()"><i
+                            class="fed-icon-font fed-icon-sousuo"></i></a>
                 </form>
             </div>
             <div class="fed-navs-right">
                 <a class="fed-navs-route fed-text-black fed-event fed-hidden fed-hide-sm" href="javascript:;"></a>
                 <a class="fed-navs-button fed-text-black fed-event fed-hide-sm fed-icon-font fed-icon-sousuo"
                    href="javascript:;"></a>
-                <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">${user.name}</a>
+                <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block"
+                   href="javascript:;">${user.name}</a>
 
                 <%
-                    if (session.getAttribute("user") == null){
+                    if (session.getAttribute("user") == null) {
                 %>
                 <a id="loginBtn" href="${pageContext.request.contextPath}/loginAndRegister.jsp" style="display: block">登录</a>
                 <%
-                }else {
+                } else {
 
                 %>
-                <a id="myBtn" href="javascript:;" style="display: block" >我的<span
+                <a id="myBtn" href="javascript:;" style="display: block">我的<span
                         class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
                 <%
                     }
@@ -204,7 +225,8 @@
 
             </div>
         </div>
-        <div class="fed-pops-user fed-box-shadow fed-back-whits fed-hidden fed-conceal fed-anim fed-anim-upbit" id="myInfo" style="right: -86px;">
+        <div class="fed-pops-user fed-box-shadow fed-back-whits fed-hidden fed-conceal fed-anim fed-anim-upbit"
+             id="myInfo" style="right: -86px;">
             <ul class="fed-pops-list fed-font-size fed-back-whits">
                 <li>
                     <a href="javascript:;">${user.name}</a>
@@ -223,8 +245,8 @@
                 </li>
                 <script>
                     function logout() {
-                        if (confirm("请确认是否退出")){
-                            $.post("/logout.users",function () {
+                        if (confirm("请确认是否退出")) {
+                            $.post("/logout.users", function () {
                                 window.location.href = "index.jsp";
                             });
                         }
@@ -282,7 +304,8 @@
                 </ul>
                 <ul class="fed-play-boxs fed-padding fed-part-rows fed-col-xs12 fed-col-md6">
                     <li class="fed-padding fed-col-xs3">
-                        <a class="fed-btns-info fed-rims-info fed-visible fed-play-favo fed-event" href="javascript:;" id="collect">收藏</a>
+                        <a class="fed-btns-info fed-rims-info fed-visible fed-play-favo fed-event" href="javascript:;"
+                           id="collect">收藏</a>
                     </li>
                     <li class="fed-padding fed-col-xs3">
                         <a class="fed-btns-info fed-rims-info fed-visible fed-play-reno fed-event" href="javascript:;"
@@ -293,7 +316,7 @@
         </div>
         <%--静态导入--%>
         <div>
-            <%@include file="comment.jsp"%>
+            <%@include file="comment.jsp" %>
         </div>
         <div class="fed-part-layout fed-back-whits">
             <div class="fed-list-head fed-part-rows fed-padding">

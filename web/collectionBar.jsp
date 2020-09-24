@@ -41,7 +41,7 @@
                             + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id="+ obj.movie_id +"'><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
                             + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id="+ obj.movie_id +"' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
                             + "<p style='color: #0e90d2;font-size: small'>收藏于：<br/>" + obj.date + "</p>"
-                            + "<p><a class=\"btn btn-primary btn-large\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'><label>移出</label></a></p>"
+                            + "<p class='pword'><a class=\"btn btn-primary btn-large button10\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'><label>移出</label></a></p>"
                             + "</div>" + "</div>";
                     });
                     $("#list").empty();
@@ -185,7 +185,7 @@
                                     + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id="+ obj.movie_id +"'><img src=\"" + obj.image_url + "\" style=\"width: 100%\"></a>"
                                     + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id="+ obj.movie_id +"' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
                                     + "<p style='color: #0e90d2;font-size: small'>收藏于：<br/>" + obj.date + "</p>"
-                                    + "<p><a class=\"btn btn-primary btn-large\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'>移出</a></p>"
+                                    + "<p class='pword'><a class=\"btn btn-primary btn-large button10\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'>移出</a></p>"
                                     + "</div>" + "</div>";
                             });
                             $("#list").empty();
@@ -219,6 +219,7 @@
             clickA(0,6);
         }
 
+
     </script>
     <style type="text/css">
         /*背景模糊*/
@@ -241,6 +242,25 @@
             height: 413px;
             width: 160px;
             border: 0px;
+            line-height: 17px;
+        }
+        #car {
+            background:rgba(0,0,0,0);
+        }
+        .button10 {
+            padding: 4px 20px;
+            border-radius: 16px;
+        }
+        #keyword {
+            border: .0625rem solid #eee;
+            border-radius: 1.875rem;
+            width: 200px;
+            height: 30px;
+            background-color: #f7f7f7 !important;
+            margin-left: 764px;
+        }
+        #list {
+            margin-left: -21px;
         }
         body::-webkit-scrollbar {
             display: none;
@@ -258,8 +278,8 @@
             <div class="carousel slide" id="carousel-956640">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="" src="static/collection/img/haha.png"/>
-                        <div class="carousel-caption">
+                        <img alt="" src="static/collection/img/haha.png" style="width: 100%"/>
+                        <div class="carousel-caption" id="car">
                             <p style="font-weight: bold;font-size: 20px">
                                 ${user.name}
                             </p>
@@ -271,15 +291,15 @@
     </div>
     <div class="row-fluid">
         <div class="span12">
-                <input class="input-medium search-query" id="keyword" type="text" value=""/>
-                <button class="btn" onclick="doQuerylike()">查找</button>
-                <button style="display: none" id="button4" class="btn" onclick="returnindex()">返回</button>
+            <p class="form-inline" style="font-size: 30px;">我的收藏</p>
+            <input class="input-medium search-query" id="keyword" type="text" value=""/>
+            <button class="btn" onclick="doQuerylike()">查找</button>
+            <button style="display: none" id="button4" class="btn" onclick="returnindex()">返回</button>
             <button class="btn" onclick="oper()">批量操作</button>
             <button style="display: none" id="button1" class="btn" onClick="batch_del()">批量删除</button>
             <button style="display: none" id="button2" class="btn" onClick="doChooseAll()">全选</button>
             <button style="display: none" id="button3" class="btn" onClick="doChooseReverse()">反选</button>
-            <p class="form-inline">
-            </p>
+            <p class="form-inline"></p>
         </div>
     </div>
     <div class="row-fluid" id="list">
