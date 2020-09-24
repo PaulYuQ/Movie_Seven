@@ -105,6 +105,21 @@ public interface CollectionDao {
     Long calCollectionCount();
 
     /**
+     *  获取收藏数量
+     * @param userId
+     * @return
+     */
+    long getCollectionCountByUserId(int userId);
+
+    /**
+     * 模糊查询收藏数量
+     * @param userId
+     * @param keyWord
+     * @return
+     */
+    long getCollectionCountByKeyWord(int userId, String keyWord);
+
+    /**
     Long getCollectionCountByUserId(int userId);
 
     /**
@@ -130,4 +145,5 @@ public interface CollectionDao {
      * @return
      */
     int queryCollectionStatus(int userId, int movieId);
+
 }

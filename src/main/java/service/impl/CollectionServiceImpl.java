@@ -190,4 +190,27 @@ public class CollectionServiceImpl implements CollectionService {
     public int queryCollectionStatus(int userId, int movieId) {
         return collectionDao.queryCollectionStatus(userId, movieId);
     }
+
+    /**
+     * 获取收藏数量
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public long getCollectionCountByUserId(int userId) {
+        return collectionDao.getCollectionCountByUserId(userId);
+    }
+
+    /**
+     * 模糊查询收藏数量
+     *
+     * @param userId
+     * @param keyWord
+     * @return
+     */
+    @Override
+    public long getCollectionCountByKeyWord(int userId, String keyWord) {
+        return collectionDao.getCollectionCountByKeyWord(userId, keyWord);
+    }
 }

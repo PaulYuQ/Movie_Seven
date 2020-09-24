@@ -6,8 +6,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>收藏页面</title>
     <link href="static/collection/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/collection/css/pagination.css">
     <script src="static/collection/js/jquery-3.2.1.js"></script>
     <script src="static/collection/js/bootstrap.min.js"></script>
+    <script src="static/collection/js/pagination.js"></script>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
@@ -22,83 +24,86 @@
                 <p><a class="btn btn-primary btn-large" href="#" onclick="doDelete(collection.id, this)">移出收藏夹</a></p>
             </div>
         </div>*/
-        
-        function clickA(key,num){
+
+        let page;
+
+        $.post("/getCollectionCountByUserId.collection", function (data) {
+            console.log(data);
+            new Pagination({
+                element: '#historyPage', // 元素
+                type: 1, // 样式类型，可选[1,2]
+                pageIndex: 1, // 初始页码
+                pageSize: 6, // 每页数量
+                pageCount: 5, // 页码数量
+                total: data, // 数据总条数
+                jumper: false, // 显示输入框跳转
+                singlePageHide: false, // 只有一页时不显示分页
+                prevText: '上一页', // 上一页文字
+                nextText: '下一页', // 下一页文字
+                disabled: true, // 是否显示禁用
+                currentChange: function (index) {
+                    // 页码改变时回调
+                    console.log(index);
+                    doShow(index);
+                }
+            });
+            doShow(1);
+        });
+
+        function doShow(page) {
             $.ajax({
-                type : "post",
-                async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                url : "/queryAll.collection",    //请求发送到/collection/queryAll.do处
-                data : {'key':key,'num':num},
-                dataType : "json",        //返回数据形式为json
-                success : function(data) {
+                type: "post",
+                async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                url: "/queryAll.collection",    //请求发送到/collection/queryAll.do处
+                data: {'page': page},
+                dataType: "json",        //返回数据形式为json
+                success: function (data) {
                     console.log(data);
                     console.log(data.length);
-                    let str= "";
+                    let str = "";
                     $.each(data, function (index, obj) {
                         console.log(obj.name);
-                        str +="<div class=\"span2 divbg\">" + "<div class=\"hero-unit well chbg\">"
+                        str += "<div class=\"span2 divbg\">" + "<div class=\"hero-unit well chbg\">"
                             + "<input type=\"hidden\" class=\"hinput\" value=\"" + obj.collection_id + "\"/>"
-                            + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id="+ obj.movie_id +"'><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
-                            + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id="+ obj.movie_id +"' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
+                            + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + obj.movie_id + "'><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
+                            + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + obj.movie_id + "' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
                             + "<p style='color: #0e90d2;font-size: small'>收藏于：<br/>" + obj.date + "</p>"
                             + "<p class='pword'><a class=\"btn btn-primary btn-large button10\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'><label>移出</label></a></p>"
                             + "</div>" + "</div>";
                     });
                     $("#list").empty();
                     $("#list").append(str);
-                    $("#prev").attr("href","javascript:prevpage("+key+","+num+")");
-                    $("#next").attr("href","javascript:nextpage("+key+","+num+")");
                 },
-                error : function(XMLHttpRequest, textStatus,errorMsg) {
+                error: function (XMLHttpRequest, textStatus, errorMsg) {
                     //请求失败时执行该函数
-                    alert("错误码:"+XMLHttpRequest.status);
-                    alert("错误状态:"+XMLHttpRequest.readyState);
-                    alert("数据请求数据失败!"+errorMsg);
+                    alert("错误码:" + XMLHttpRequest.status);
+                    alert("错误状态:" + XMLHttpRequest.readyState);
+                    alert("数据请求数据失败!" + errorMsg);
                 }
             });
         }//函数结束
-        //实现下一页功能,一、获取a的key，二、将获得的key+3
-        function nextpage(key,num){
-            if(key == 24) {
-                clickA(24,6);
-            } else {
-                key=key+num;
-                clickA(key,num);
-            }
-        }
-        //翻页，上一页,由于在clickA中实现动态改变a标签的属性，所以这里就不需要担心其不会跟着next等变化了
-        function prevpage(key,num){
-            if(key==0||key<=num) {
-                clickA(0,num);
-            }else{
-                key = key-num;
-                clickA(key,num);
-            }
-        }
-        //默认加载第一页，每页三条数据
-        clickA(0,6);
 
         function doDelete(id) {
-                $.ajax({
-                    type : "post",
-                    async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                    url : "/delete.collection",    //请求发送到/collection/delete.do处
-                    data : {'collectionId':id},
-                    dataType : "json",        //返回数据形式为json
-                    success : function(data) {
-                        console.log(data);
-                        let res = data.res;
-                        if(res > 0) {
-                            clickA(0,6);
-                        }
-                    },
-                    error : function(XMLHttpRequest, textStatus,errorMsg) {
-                        //请求失败时执行该函数
-                        alert("错误码:"+XMLHttpRequest.status);
-                        alert("错误状态:"+XMLHttpRequest.readyState);
-                        alert("数据请求数据失败!"+errorMsg);
+            $.ajax({
+                type: "post",
+                async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                url: "/delete.collection",    //请求发送到/collection/delete.do处
+                data: {'collectionId': id},
+                dataType: "json",        //返回数据形式为json
+                success: function (data) {
+                    console.log(data);
+                    let res = data.res;
+                    if (res > 0) {
+                        doShow(1);
                     }
-                });
+                },
+                error: function (XMLHttpRequest, textStatus, errorMsg) {
+                    //请求失败时执行该函数
+                    alert("错误码:" + XMLHttpRequest.status);
+                    alert("错误状态:" + XMLHttpRequest.readyState);
+                    alert("数据请求数据失败!" + errorMsg);
+                }
+            });
         }
 
         function oper() {
@@ -106,38 +111,38 @@
             let id1 = document.getElementById("button1");
             let id2 = document.getElementById("button2");
             let id3 = document.getElementById("button3");
-            if(la == "hidden") {
-                $(".hinput").attr('type','checkbox');
-                if(id1.style.display == "none") {
-                    id1.style.display="inline-block";
+            if (la == "hidden") {
+                $(".hinput").attr('type', 'checkbox');
+                if (id1.style.display == "none") {
+                    id1.style.display = "inline-block";
                 }
-                if(id2.style.display == "none") {
-                    id2.style.display="inline-block";
+                if (id2.style.display == "none") {
+                    id2.style.display = "inline-block";
                 }
-                if(id3.style.display == "none") {
-                    id3.style.display="inline-block";
+                if (id3.style.display == "none") {
+                    id3.style.display = "inline-block";
                 }
             } else {
-                $(".hinput").attr('type','hidden');
-                if(id1.style.display == "inline-block") {
-                    id1.style.display="none";
+                $(".hinput").attr('type', 'hidden');
+                if (id1.style.display == "inline-block") {
+                    id1.style.display = "none";
                 }
-                if(id2.style.display == "inline-block") {
-                    id2.style.display="none";
+                if (id2.style.display == "inline-block") {
+                    id2.style.display = "none";
                 }
-                if(id3.style.display == "inline-block") {
-                    id3.style.display="none";
+                if (id3.style.display == "inline-block") {
+                    id3.style.display = "none";
                 }
             }
         }
 
         function doChooseAll() {
-            $(".hinput").prop("checked",true);
+            $(".hinput").prop("checked", true);
         }
 
         function doChooseReverse() {
             $(".hinput").each(function () {
-                if($(this).prop("checked")==true) {
+                if ($(this).prop("checked") == true) {
                     $(this).prop("checked", false);
                 } else {
                     $(this).prop("checked", true);
@@ -146,8 +151,8 @@
         }
 
         function batch_del() {
-            $(".hinput").each(function(){
-                if($(this).prop("checked") == true){
+            $(".hinput").each(function () {
+                if ($(this).prop("checked") == true) {
                     doDelete($(this).val());
                 }
             });
@@ -161,62 +166,76 @@
                 id4.style.display="none";
             }*/
             let keyword = $("#keyword").val();
-            if(keyword=="") {
-                id4.style.display="none";
+            if (keyword == "") {
+                id4.style.display = "none";
                 bootbox.alert("关键字 <b>不能为空</b>");
-                clickA(0,6);
+                doShow(1);
             } else {
-                id4.style.display="inline-block";
-                function clickA(key,num){
+                id4.style.display = "inline-block";
+
+                let page;
+
+                $.post("/getCollectionCountByKeyWord.collection",{'keyword':keyword} ,function (data) {
+                    console.log(data);
+                    new Pagination({
+                        element: '#historyPage', // 元素
+                        type: 1, // 样式类型，可选[1,2]
+                        pageIndex: 1, // 初始页码
+                        pageSize: 6, // 每页数量
+                        pageCount: 5, // 页码数量
+                        total: data, // 数据总条数
+                        jumper: false, // 显示输入框跳转
+                        singlePageHide: false, // 只有一页时不显示分页
+                        prevText: '上一页', // 上一页文字
+                        nextText: '下一页', // 下一页文字
+                        disabled: true, // 是否显示禁用
+                        currentChange: function (index) {
+                            // 页码改变时回调
+                            console.log(index);
+                            doShow(index);
+                        }
+                    });
+                    doShow(1);
+                });
+
+                function doShow(page) {
                     $.ajax({
-                        type : "post",
-                        async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                        url : "/queryAlllike.collection",    //请求发送到/collection/queryAll.do处
-                        data : {'keyword':keyword,'key':key,'num':num},
-                        dataType : "json",        //返回数据形式为json
-                        success : function(data) {
+                        type: "post",
+                        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                        url: "/queryAlllike.collection",    //请求发送到/collection/queryAll.do处
+                        data: {'page': page,'keyword':keyword},
+                        dataType: "json",        //返回数据形式为json
+                        success: function (data) {
                             console.log(data);
                             console.log(data.length);
-                            let str= "";
+                            let str = "";
                             $.each(data, function (index, obj) {
                                 console.log(obj.name);
-                                str +="<div class=\"span2 divbg\">" + "<div class=\"hero-unit well chbg\">"
+                                str += "<div class=\"span2 divbg\">" + "<div class=\"hero-unit well chbg\">"
                                     + "<input type=\"hidden\" class=\"hinput\" value=\"" + obj.collection_id + "\"/>"
-                                    + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id="+ obj.movie_id +"'><img src=\"" + obj.image_url + "\" style=\"width: 100%\"></a>"
-                                    + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id="+ obj.movie_id +"' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
+                                    + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + obj.movie_id + "'><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
+                                    + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + obj.movie_id + "' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
                                     + "<p style='color: #0e90d2;font-size: small'>收藏于：<br/>" + obj.date + "</p>"
-                                    + "<p class='pword'><a class=\"btn btn-primary btn-large button10\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'>移出</a></p>"
+                                    + "<p class='pword'><a class=\"btn btn-primary btn-large button10\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'><label>移出</label></a></p>"
                                     + "</div>" + "</div>";
                             });
                             $("#list").empty();
                             $("#list").append(str);
-                            $("#prev").attr("href","javascript:prevpage("+key+","+num+")");
-                            $("#next").attr("href","javascript:nextpage("+key+","+num+")");
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorMsg) {
+                            //请求失败时执行该函数
+                            alert("错误码:" + XMLHttpRequest.status);
+                            alert("错误状态:" + XMLHttpRequest.readyState);
+                            alert("数据请求数据失败!" + errorMsg);
                         }
                     });
                 }//函数结束
-                //实现下一页功能,一、获取a的key，二、将获得的key+3
-                function nextpage(key,num){
-                    key=key+num;
-                    clickA(key,num);
-                }
-                //翻页，上一页,由于在clickA中实现动态改变a标签的属性，所以这里就不需要担心其不会跟着next等变化了
-                function prevpage(key,num){
-                    if(key==0||key<=num) {
-                        clickA(0,num);
-                    }else{
-                        key = key-num;
-                        clickA(key,num);
-                    }
-                }
-                //默认加载第一页，每页三条数据
-                clickA(0,6);
             }
         }
 
         function returnindex() {
-            document.getElementById("button4").style.display="none";
-            clickA(0,6);
+            document.getElementById("button4").style.display = "none";
+            doShow(1);
         }
 
 
@@ -233,35 +252,41 @@
             z-index: -1;
         }*/
         .divbg {
-            background:rgba(0,0,0,0);
+            background: rgba(0, 0, 0, 0);
             height: 420px;
         }
+
         .chbg {
-            background:rgba(0,0,0,0);
+            background: rgba(0, 0, 0, 0);
             padding: 40px;
             height: 413px;
             width: 160px;
             border: 0px;
             line-height: 17px;
         }
+
         #car {
-            background:rgba(0,0,0,0);
+            background: rgba(0, 0, 0, 0);
         }
+
         .button10 {
             padding: 4px 20px;
             border-radius: 16px;
         }
+
         #keyword {
             border: .0625rem solid #eee;
             border-radius: 1.875rem;
             width: 200px;
             height: 30px;
             background-color: #f7f7f7 !important;
-            margin-left: 764px;
+            margin-left: 707px;
         }
+
         #list {
             margin-left: -21px;
         }
+
         body::-webkit-scrollbar {
             display: none;
         }
@@ -346,30 +371,8 @@
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <div class="pagination pagination-centered">
-                <ul>
-                    <li>
-                        <a id="prev" href="javascript:prevpage(0,0);">上一页</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(0,6);">1</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(6,6);">2</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(12,6);">3</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(18,6);">4</a>
-                    </li>
-                    <li>
-                        <a href="javascript:clickA(24,6);">5</a>
-                    </li>
-                    <li class="a1">
-                        <a id="next" href="javascript:nextpage(0,0);">下一页</a>
-                    </li>
-                </ul>
+            <div id="historyPage">
+
             </div>
         </div>
     </div>
