@@ -24,6 +24,15 @@ public interface HistoryDao {
 
     /**
      * create by: sky
+     * create time: 22:43 2020/9/23
+     * 增加历史记录
+     * @Param: histories
+     * @return int
+     */
+    public int historyAdd(Histories histories);
+
+    /**
+     * create by: sky
      * create time: 11:11 2020/9/15
      *返回查询结果
      * @Param:
@@ -38,7 +47,7 @@ public interface HistoryDao {
      * @Param: id
      * @return int
      */
-    public int historyDelete(int id);
+    public int historyEmpty(int id);
 
 
     /**

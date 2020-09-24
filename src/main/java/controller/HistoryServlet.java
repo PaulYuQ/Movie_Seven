@@ -2,6 +2,8 @@ package controller;
 
 import com.google.gson.Gson;
 import factory.BeanFactory;
+import org.apache.log4j.Logger;
+import org.junit.Test;
 import pojo.Histories;
 import pojo.ShowHistory;
 import pojo.User;
@@ -27,6 +29,7 @@ public class HistoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
+        Logger lo=null;
     }
 
     @Override
@@ -45,6 +48,8 @@ public class HistoryServlet extends HttpServlet {
             deleteHistoryByIds(request, response);
         } else if (servletPath.contains("doEmpty")) {
             emptyHistoryByUserId(request, response);
+        }else if (servletPath.contains("doAdd")) {
+            historyAdd(request, response);
         }
         /**
          * 对Histories表操作
@@ -57,7 +62,7 @@ public class HistoryServlet extends HttpServlet {
             updateHistories(request, response);
         } else if (servletPath.contains("doFindHistoriy")) {
             findHistory(request, response);
-        } else if (servletPath.contains("doListHistories")) {
+        } else if (servletPath.contains("doNumberHistories")) {
             numberHistories(request, response);
         } else if (servletPath.contains("doListHistories")) {
             listHistories(request, response);
@@ -164,12 +169,37 @@ public class HistoryServlet extends HttpServlet {
             response.getWriter().print("false");
             return;
         }
-//        int id = (int) request.getSession().getAttribute("user");
         User user = (User) request.getSession().getAttribute("user");
         response.getWriter().print(historyService.historyNumber(user.getUser_id()));
     }
 
 
+    /**
+     * create by: sky
+     * create time: 21:40 2020/9/23
+     * 播放界面添加历史记录
+     * 去除旧的历史记录
+     * @Param: request
+     * @Param: response
+     * @return void
+     */
+    protected void historyAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("user_id") == null || request.getParameter("movie_id") == null) {
+            return;
+        }
+        User user = (User) request.getSession().getAttribute("user");
+        int userId = user.getUser_id();;
+        int movieId = Integer.parseInt(request.getParameter("movie_id"));
+        int progress = (int)(Math.random()*4000+1000);
+
+        Histories histories = new Histories(userId, movieId, progress);
+        int i = historyService.historyAdd(histories);
+        if (i > 0) {
+            response.getWriter().print("true");
+        } else {
+            response.getWriter().print("false");
+        }
+    }
     /**
      * create by: sky
      * create time: 19:24 2020/9/16
@@ -182,7 +212,7 @@ public class HistoryServlet extends HttpServlet {
     protected void emptyHistoryByUserId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
         int id = user.getUser_id();
-        int i = historyService.historyDelete(id);
+        int i = historyService.historyEmpty(id);
         if (i > 0) {
             response.getWriter().print("true");
         } else {
@@ -210,11 +240,8 @@ public class HistoryServlet extends HttpServlet {
             return;
         }
         int userId = Integer.parseInt(request.getParameter("user_id"));
-        System.out.println("userID===" + userId);
         int movieId = Integer.parseInt(request.getParameter("movie_id"));
-        System.out.println("movieId===" + movieId);
-//        int progress = Integer.parseInt(request.getParameter("progress"));
-        int progress = 1000;
+        int progress = Integer.parseInt(request.getParameter("progress"));
         Histories histories = new Histories(userId, movieId, progress);
         int i = historyService.movieAdd(histories);
         if (i > 0) {

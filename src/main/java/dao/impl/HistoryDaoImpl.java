@@ -35,6 +35,23 @@ public class HistoryDaoImpl implements HistoryDao {
 
 
 
+    @Override
+    public int historyAdd(Histories histories) {
+        String mysqlFind="SELECT * FROM histories WHERE movie_id=?";
+        String mysqlAdd = "INSERT INTO histories(user_id,movie_id,progress) VALUES (?,?,?)";
+        String mysqlDelete="DELETE FROM histories WHERE movie_id=?";
+        try {
+            if(queryRunner.query(mysqlFind,new BeanHandler<Histories>(Histories.class),histories.getMovie_id())==null){
+                return queryRunner.update(mysqlAdd, histories.getUser_id(), histories.getMovie_id(), histories.getProgress());
+            }else {
+                queryRunner.update(mysqlDelete,histories.getMovie_id());
+                return queryRunner.update(mysqlAdd, histories.getUser_id(), histories.getMovie_id(), histories.getProgress());
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return 0;
+        }
+    }
     /**
      * create by: sky
      * create time: 8:45 2020/9/15
@@ -59,6 +76,7 @@ public class HistoryDaoImpl implements HistoryDao {
      * create by: sky
      * create time: 8:48 2020/9/15
      * 个人浏览记录的分页展示
+     * 根据id倒序排序
      * @Param: id
      * @Param: page :当前页数
      * @Param: row :一页展示的行数
@@ -67,7 +85,7 @@ public class HistoryDaoImpl implements HistoryDao {
     @Override
     public List<ShowHistory> historyList(int id,int page,int row) {
         String mysqlFind = "SELECT movies.movie_id,movies.type,movies.name,movies.image_url,movies.actor,histories.progress,histories.history_id " +
-                "FROM histories,movies WHERE  histories.movie_id=movies.movie_id AND histories.user_id=? LIMIT ?,?";
+                "FROM histories,movies WHERE  histories.movie_id=movies.movie_id AND histories.user_id=? ORDER BY history_id DESC LIMIT ?,?";
         int number=(page-1)*row;
         try {
             return queryRunner.query(mysqlFind, new BeanListHandler<ShowHistory>(ShowHistory.class), id,number,row);
@@ -86,7 +104,7 @@ public class HistoryDaoImpl implements HistoryDao {
      * @return int
      */
     @Override
-    public int historyDelete(int id){
+    public int historyEmpty(int id){
         String mysqlDelete="DELETE FROM histories WHERE user_id=?";
         try {
             return queryRunner.update(mysqlDelete,id);
