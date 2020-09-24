@@ -149,7 +149,7 @@
     /*}*/
 
 </style>
-<iframe src="infoBar.jsp" frameborder="0" style="width: 100%;height: 600px" scrolling="auto"></iframe>
+<iframe src="infoBar.jsp" frameborder="0" style="width: 100%;height: 100%" scrolling="auto"></iframe>
 
 
 </body>
