@@ -35,6 +35,9 @@
     <div id="historyPage">
 
     </div>
+    <div id="nohistory">
+        <img src="https://s1.ax1x.com/2020/09/24/wzAaRA.png" width="700px">
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->

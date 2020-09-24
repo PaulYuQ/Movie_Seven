@@ -35,12 +35,17 @@ function doShow(page) {
         if (data == "false") {
             alert("错误");
         }
+        console.log(data);
+        if(data=="[]"){
+            $("#nohistory").css("display","inline");
+        }else{
+            $("#nohistory").css("display","none");
+        }
         $("#historyBody").empty();
         $.each($.parseJSON(data), function (i, obj) {
             var hour = parseInt(obj.progress / 3600);
             var min = parseInt((obj.progress % 3600) / 60);
             var sec = (obj.progress % 3600) % 60;
-            console.log("movieid"+obj.movie_id);
             var movie_id = obj.movie_id;
             $("#historyBody").append(
                 "<li class='historyLi'>" +
