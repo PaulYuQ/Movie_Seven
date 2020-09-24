@@ -99,7 +99,7 @@
           <li class="nav-item">
             <a href="https://gitee.com/misskunstudy/seven_movie" class="nav-link border border-light rounded waves-effect"
                target="_blank" style="font-weight: bold">
-              <img src="img/svg/logo-black.svg" width="30px" height="20px">
+              <img src="https://s1.ax1x.com/2020/09/24/0SN3zn.png" width="30px" height="30px">
               SevenMovie Gitee
             </a>
           </li>
@@ -125,13 +125,13 @@
 
     <div class="list-group list-group-flush" style="margin-top: 80px">
       <a href="admin.jsp" class="list-group-item  waves-effect list-group-item-action">
-        <img  src="img/svg/admin.svg" width="25px" height="25px" style="margin-right: 20px"> 管理员表
+        <img src="https://s1.ax1x.com/2020/09/24/0St5rV.png" width="25px" height="25px" style="margin-right: 20px"> 管理员表
       </a>
-      <a href="user.jsp" class="list-group-item  list-group-item-action waves-effect">
-        <img  src="img/svg/user.svg" width="25px" height="25px" style="margin-right: 20px"> 用户表
+      <a href="user.jsp" class="list-group-item list-group-item-action waves-effect">
+        <img src="https://s1.ax1x.com/2020/09/24/0SYh7D.png" width="25px" height="25px" style="margin-right: 20px"> 用户表
       </a>
       <a href="movie.jsp" class="list-group-item active list-group-item-action waves-effect">
-        <img  src="img/svg/movie.svg" width="25px" height="25px" style="margin-right: 20px"> 电影表</a>
+        <img src="https://s1.ax1x.com/2020/09/24/0StUCd.png" width="25px" height="25px" style="margin-right: 20px"> 电影表</a>
     </div>
 
   </div>
@@ -163,7 +163,7 @@
           <!-- Default input -->
           <input type="text" placeholder="你要查询的电影名" aria-label="Search" class="form-control" id="search">
           <button class="btn btn-primary btn-sm my-0 p" type="button" onclick="getMovie()">
-            <img src="img/svg/find.svg" width="25px" height="25px">
+            <img src="https://s1.ax1x.com/2020/09/24/0SJk2q.png" width="25px" height="25px">
           </button>
 
         </form>
