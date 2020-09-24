@@ -253,7 +253,7 @@
         }*/
         .divbg {
             background: rgba(0, 0, 0, 0);
-            height: 420px;
+            height: 310px;
         }
 
         .chbg {
