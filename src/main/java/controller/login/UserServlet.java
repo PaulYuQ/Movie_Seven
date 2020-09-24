@@ -110,10 +110,11 @@ public class UserServlet extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         resp.setHeader("Content-Type", "text/html;charset=utf-8");
         User user;
+        Integer id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         String pwd = req.getParameter("password");
         String phone = req.getParameter("phone");
-        user=new User(name,pwd,phone);
+        user=new User(id,name,pwd,phone);
         if (userService.updateUser(user)>0){
             req.getSession().setAttribute("user",user);
             JSONObject jsonObject = new JSONObject();
