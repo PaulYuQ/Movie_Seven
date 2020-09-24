@@ -148,7 +148,6 @@ public class CommentServlet extends HttpServlet {
             }
         }
     }
-
     /**
      * 判断评论是否为空
      * @param content

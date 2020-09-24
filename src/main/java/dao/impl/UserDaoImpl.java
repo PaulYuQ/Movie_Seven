@@ -43,6 +43,7 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
+    @Override
     public User findByName(String name){
         String sql = "select *from users where name =?";
         User user = null;

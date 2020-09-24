@@ -18,6 +18,7 @@ import java.util.List;
  * @date 2020/9/15 8:44
  */
 public class AdminDaoImpl implements AdminDao {
+
     private QueryRunner qr;
 
     public AdminDaoImpl(){

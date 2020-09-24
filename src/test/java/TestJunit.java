@@ -7,6 +7,8 @@ import pojo.Comment;
 import service.CommentService;
 import service.impl.CommentServiceImpl;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,15 +32,27 @@ public class TestJunit{
     public void testComments(){
         CommentService commentService = BeanFactory.getInstance("CommentService", CommentServiceImpl.class);
         CommentDaoImpl commentDao = BeanFactory.getInstance("CommentDao",CommentDaoImpl.class);
-        List<Comment> comments = commentService.getComments(1,0);
+        List<Comment> comments = commentService.getComments(518,0);
+        Comment comment1 = comments.get(0);
+        System.out.println(comment1.getDate().getTime());
+        System.out.println(doDate(comment1.getDate()));
+
 
         //List<Comment> comments = commentDao.findCommentsByMovieId(1);
-        System.out.println("打印信息！！");
+       /* System.out.println("打印信息！！");
         for (Comment comment : comments){
             System.out.println(comment+"\n");
-        }
-        String string = JSON.toJSONString("\n\n\n"+comments);
-        System.out.println(string);
+        }*/
+        /*String string = JSON.toJSONString("\n\n\n"+comments);
+        System.out.println(string);*/
+    }
+
+
+    public Date doDate(Date date){
+        long time = date.getTime()-2800000;
+        System.out.println(time);
+        Date afterDate = new Date(time);
+        return afterDate;
     }
 
     /**
@@ -105,5 +119,18 @@ public class TestJunit{
             }
         }
         return true;
+    }
+    @Test
+    public void test1(){
+        Object o1 = true ? new Integer(1) : new Double(2.0);
+        Object o2;
+        if (true) {
+            o2 = new Integer(1);
+        } else {
+            o2 = new Double(2.0);
+        }
+        System.out.print(o1);
+        System.out.print(" ");
+        System.out.print(o2);
     }
 }
