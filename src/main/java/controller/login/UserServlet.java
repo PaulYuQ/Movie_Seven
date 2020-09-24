@@ -125,14 +125,14 @@ public class UserServlet extends HttpServlet {
     }
     @Override
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String name = req.getParameter("name");
-        int res = userService.deleteByName(name);
+       Integer  id = Integer.parseInt(req.getParameter("id"));
+        int res = userService.deleteById(id);
         if (res>0){
+            System.out.println(res);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("result",res);
             resp.getWriter().print(jsonObject.toJSONString());
         }
-
     }
 
 

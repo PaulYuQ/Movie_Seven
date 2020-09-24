@@ -33,6 +33,7 @@
                     </div>
                     <div class="col-lg-9">
                         <form action="${pageContext.request.contextPath}/modify.users?name=${name}" class="form-info">
+                            <input type="hidden" class="form-control" name="id" id="id"  value="${user.user_id}">
                             <div class="form-group row ">
                                 <label for="name" class="col-sm-2 col-form-label" >用户名</label>
                                 <div class="col-sm-10">
@@ -115,11 +116,12 @@ function remove() {
             if (result){
                 $.post(
                     "delete.users",
-                    {"name":$("#name").val(),},
+                    {"id":$("#id").val(),},
                     function (data) {
                         bootbox.alert("删除成功！");
                         setTimeout(function () {
-                            window.location.replace("loginAndRegister.jsp")
+                            $.post("logout.users");
+                            window.parent.location.href="index.jsp";
                         },2000)
                     },"json"
                 )
