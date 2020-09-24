@@ -123,7 +123,7 @@ public class MovieDaoImpl implements MovieDao {
 
     @Override
     public List<Movie> getLimitMoviesByType(String type, Integer num) {
-        String sql = "select * from movies where type=? limit ?";
+        String sql = "select * from movies where type=? limit 24,?";
         List<Movie> movies = null;
 
         try {
