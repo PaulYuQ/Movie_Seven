@@ -55,7 +55,7 @@ public interface MovieService {
      *  获取电影的数量
      * @return      返回电影数量
      */
-    Long getMoviesCount();
+    long getMoviesCount();
 
     /**
      * 获取指定数量的电影集合
@@ -87,4 +87,12 @@ public interface MovieService {
      * @return
      */
     List<Movie> getPageMoviesByType(String type,Integer currentPage,Integer pageSize);
+
+    /**
+     * 返回指定类型的一页电影信息
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    List<Movie> getPageMovies(Integer currentPage,Integer pageSize);
 }

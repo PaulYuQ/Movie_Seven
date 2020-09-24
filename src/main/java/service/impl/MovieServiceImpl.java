@@ -52,7 +52,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Long getMoviesCount() {
+    public long getMoviesCount() {
         return movieDao.getMoviesCount();
     }
 
@@ -74,5 +74,10 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> getPageMoviesByType(String type, Integer currentPage, Integer pageSize) {
         return movieDao.getPageMoviesByType(type,currentPage,pageSize);
+    }
+
+    @Override
+    public List<Movie> getPageMovies(Integer currentPage, Integer pageSize) {
+        return movieDao.getPageMovies(currentPage,pageSize);
     }
 }

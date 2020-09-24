@@ -1,4 +1,5 @@
 import dao.impl.CommentDaoImpl;
+import dao.impl.MovieDaoImpl;
 import factory.BeanFactory;
 import org.junit.Test;
 import pojo.Comment;
@@ -74,6 +75,9 @@ public class TestJunit{
     //测试输出Comments(评论集合)
     @Test
     public void testComments(){
-
+        MovieDaoImpl movieDao=new MovieDaoImpl();
+        System.out.println(movieDao.getMovieById(2));
     }
+
+
 }

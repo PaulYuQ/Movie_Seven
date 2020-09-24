@@ -2,7 +2,7 @@ package controller;
 
 import com.google.gson.Gson;
 import factory.BeanFactory;
-import org.apache.log4j.Logger;
+
 import org.junit.Test;
 import pojo.Histories;
 import pojo.ShowHistory;
@@ -29,7 +29,7 @@ public class HistoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
-        Logger lo=null;
+
     }
 
     @Override
