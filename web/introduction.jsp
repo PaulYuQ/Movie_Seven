@@ -58,6 +58,14 @@
                 $("#movieType").attr("href","#");
                 $("#movieInfo").text(movie.introduction);
                 $("#playBtn").attr("href","/movie/gotoPlayer.do?movie_id="+movie_id);
+                let user_id = $("#user_id").val();
+                $("#playBtn").click(function () {
+                    $.post("doAddHistories.histories",{"movie_id":movie_id,"user_id":user_id});
+                });
+                $("#bgImg").click(function () {
+                    $.post("doAddHistories.histories",{"movie_id":movie_id,"user_id":user_id});
+                });
+
 
                 //根据类型判断更多链接跳转
                 var type = movie.type;
@@ -111,18 +119,12 @@
                 })
             })
         }
-        // //搜索框事件
-        // function doSearch() {
-        //     console.log("doSearch()-----");
-        //     console.log($("#search-content").val());
-        //     var name = $("#search-content").val();
-        //     console.log(name);
-        //     $("#searchBtn").attr("href","/movie/gotoSearch.do?name="+name);
-        // }
+
     </script>
     <script src="static/js/common.js"></script>
 </head>
 <body class="fed-min-width">
+<input type="hidden" value="${user.user_id}" id="user_id">
 <div class="fed-head-info fed-back-whits fed-min-width fed-box-shadow">
     <div class="fed-part-case">
         <div class="fed-navs-info">
@@ -185,8 +187,7 @@
                 <a class="fed-navs-route fed-text-black fed-event fed-hidden fed-hide-sm" href="javascript:;"></a>
                 <a class="fed-navs-button fed-text-black fed-event fed-hide-sm fed-icon-font fed-icon-sousuo"
                    href="javascript:;"></a>
-                <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">看过<span
-                        class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
+                <a class="fed-navs-record fed-text-black fed-event fed-hide-xs fed-show-sm-block" href="javascript:;">${user.name}</a>
 
                 <%
                     if (session.getAttribute("user") == null){
@@ -196,7 +197,8 @@
                 }else {
 
                 %>
-                <a id="myBtn" href="javascript:;" style="display: block" >我的</a>
+                <a id="myBtn" href="javascript:;" style="display: block" >我的<span
+                        class="fed-part-move fed-edge-info fed-edge-bottom"></span></a>
                 <%
                     }
                 %>
@@ -212,10 +214,10 @@
                     <a href="/info.jsp">修改资料</a>
                 </li>
                 <li>
-                    <a href="/user/favs.html">我的收藏</a>
+                    <a href="/collection.jsp">我的收藏</a>
                 </li>
                 <li>
-                    <a href="/user/plays.html">浏览记录</a>
+                    <a href="/navigationBar.jsp">浏览记录</a>
                 </li>
                 <li>
                     <a href="javascript:;" onclick="logout()">退出登录</a>

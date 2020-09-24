@@ -11,6 +11,8 @@
         <module name="seven_movie" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="seven_movie" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
