@@ -60,10 +60,10 @@
                 $("#playBtn").attr("href","/movie/gotoPlayer.do?movie_id="+movie_id);
                 let user_id = $("#user_id").val();
                 $("#playBtn").click(function () {
-                    $.post("doAddHistories.histories",{"movie_id":movie_id,"user_id":user_id});
+                    $.post("doAdd.histories",{"movie_id":movie_id,"user_id":user_id});
                 });
                 $("#bgImg").click(function () {
-                    $.post("doAddHistories.histories",{"movie_id":movie_id,"user_id":user_id});
+                    $.post("doAdd.histories",{"movie_id":movie_id,"user_id":user_id});
                 });
 
 

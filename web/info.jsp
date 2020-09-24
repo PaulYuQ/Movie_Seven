@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="static/banner/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="static/css/blues.css" id="fed-colo-color"/>
-    <title>导航栏</title>
+    <title>修改资料</title>
 
     <script src="static/js/jquery-3.2.1.js"></script>
     <script>
@@ -149,7 +149,7 @@
     /*}*/
 
 </style>
-<iframe src="infoBar.jsp" frameborder="0" style="width: 100%;height: 600px" scrolling="auto"></iframe>
+<iframe src="infoBar.jsp" frameborder="0" style="width: 100%;height: 100%" scrolling="auto"></iframe>
 
 
 </body>

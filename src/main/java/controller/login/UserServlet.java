@@ -4,12 +4,9 @@ package controller.login;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.mysql.cj.xdevapi.JsonArray;
 import factory.BeanFactory;
 import pojo.User;
 import service.UserService;
-import service.impl.UserServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,7 +22,7 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     private UserService userService;
     public UserServlet(){
-        userService = BeanFactory.getInstance("UserLoginService", UserServiceImpl.class);
+        userService = BeanFactory.getInstance("UserLoginService", UserService.class);
     }
 
     public void doLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -125,14 +123,14 @@ public class UserServlet extends HttpServlet {
     }
     @Override
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String name = req.getParameter("name");
-        int res = userService.deleteByName(name);
+       Integer  id = Integer.parseInt(req.getParameter("id"));
+        int res = userService.deleteById(id);
         if (res>0){
+            System.out.println(res);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("result",res);
             resp.getWriter().print(jsonObject.toJSONString());
         }
-
     }
 
 
@@ -141,9 +139,7 @@ public class UserServlet extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         resp.setHeader("Content-Type", "text/html;charset=utf-8");
         long count = userService.calCount();
-        JSONObject json = new JSONObject();
-        json.put("count",count);
-        resp.getWriter().print(json.toJSONString());
+        resp.getWriter().print((int)count);
 
     }
     public void queryPage(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
@@ -195,10 +191,14 @@ public class UserServlet extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         resp.setHeader("Content-Type", "text/html;charset=utf-8");
         Integer id = Integer.parseInt(req.getParameter("id"));
+        System.out.println(id);
         User user = userService.findById(id);
-        JSONObject jsonObject =new JSONObject();
-        jsonObject.put("user",user);
-        resp.getWriter().print(jsonObject.toJSONString());
+        if(user!=null) {
+            ArrayList<User> users=new ArrayList<>();
+            users.add(user);
+            String s = JSON.toJSONString(users);
+            resp.getWriter().print(s);
+        }
     }
 
 
@@ -225,7 +225,7 @@ public class UserServlet extends HttpServlet {
             addUser(req,resp);
         }else if (path.contains("deleteById.users")){
             deleteById(req,resp);
-        }else if (path.contains("updateUser.uers")){
+        }else if (path.contains("updateUser.users")){
             updateUser(req,resp);
         }else if (path.contains("search.users")){
             searchById(req,resp);

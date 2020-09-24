@@ -4,8 +4,10 @@ import dao.impl.UserDaoImpl;
 import factory.BeanFactory;
 import org.junit.Test;
 import pojo.Comment;
+import pojo.User;
 import service.CommentService;
 import service.impl.CommentServiceImpl;
+import service.impl.UserServiceImpl;
 
 import java.util.List;
 
@@ -16,6 +18,43 @@ import java.util.List;
  */
 public class TestJunit{
     public CommentService commentService = null;
+    UserServiceImpl userService = BeanFactory.getInstance("UserLoginService", UserServiceImpl.class);
+
+    @Test
+    public void findAllUsers(){
+        System.out.println(userService.findAllUsers());
+    }
+
+    @Test
+    public void calCount(){
+        System.out.println(userService.calCount());
+    }
+    @Test
+    public void findPageUsers(){
+        System.out.println(userService.findPageUsers(2, 2));
+    };
+
+    @Test
+    public void findById(){
+        System.out.println(userService.findById(2));
+    }
+    @Test
+    public void addUsers(){
+        for (int i = 0;i<12;i++){
+            System.out.println(userService.addUser("刘逼熊", "123", "15800000000"));
+        }
+    }
+    @Test
+    public void deleteById(){
+        System.out.println(userService.deleteById(15));
+    }
+    @Test
+    public void updateUser(){
+        System.out.println(userService.updateUser(new User("余强22","1233","12345678901")));
+    }
+
+
+
     //测试工厂类
     @Test
     public void testFactory(){

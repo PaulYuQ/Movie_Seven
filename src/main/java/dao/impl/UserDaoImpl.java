@@ -43,6 +43,7 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
+    @Override
     public User findByName(String name){
         String sql = "select *from users where name =?";
         User user = null;
@@ -92,9 +93,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int deleteById(Integer id) {
-        String sql = "delete from users where User_id=?";
+        String sql1 = "delete from comments where user_id=?";
+        String sql = "delete from users where user_id=?";
         try {
-            return qr.update(sql,new Object[]{id});
+            int u1 = qr.update(sql1,new Object[]{id});
+            int update = qr.update(sql, new Object[]{id});
+            return u1+update;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -119,7 +123,9 @@ public class UserDaoImpl implements UserDao {
         String sql = "insert into users(name,password,phone) values(?,?,?)";
         try {
             res = qr.update(sql,new Object[]{name,pwd,phone});
-            if (res>0)return true;
+            if (res>0){
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -48,7 +48,7 @@
 
 ._page_container ._pages {
   display: inline-block;
-  margin-top: 40px;
+  margin: 100px auto;
 }
 
 ._page_container ._pages li {

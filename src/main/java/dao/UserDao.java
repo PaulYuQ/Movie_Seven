@@ -12,14 +12,15 @@ import java.util.List;
 public interface UserDao {
     boolean dologin(String name,String pwd);
     boolean addUser(String name,String pwd,String phone);
-    User findByName(String name);
     int updateUser(User user);
     User findById(int id);
     int deleteByName(String name);
     int deleteById(Integer id);
+    User findByName(String name);
     long calCount();
     List<User> findAllUsers();
     List<User> findPageUsers(Integer page,Integer pageAmount);
+
 
 }
 

@@ -1,7 +1,10 @@
 package controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import factory.BeanFactory;
+import pojo.Admin;
 import pojo.Movie;
 import service.MovieService;
 import service.impl.MovieServiceImpl;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,11 +62,132 @@ public class MovieServlet extends HttpServlet {
             getMoviesCount(request, response);
         } else if (requestURI.contains("getRelevantMovies.do")){
             getRelevantMovies(request,response);
-        }/*else {
-            System.out.println("错误++++++++++");
-        }*/
+        }else if (requestURI.contains("getMovies.do")) {
+            getMovies(request, response);
+        }else if (requestURI.contains("getcount.do")) {
+            getCount(request, response);
+        }else if (requestURI.contains("getmoviebyid.do")) {
+            getOneMovie(request, response);
+        }else if (requestURI.contains("delmoviebyid.do")) {
+            delMovie(request, response);
+        }else if (requestURI.contains("updatemoviebyid.do")) {
+            updateMovie(request, response);
+        }else if (requestURI.contains("searchbyname.do")) {
+            getByName(request, response);
+        }else if (requestURI.contains("addmovie.do")) {
+            addmovie(request, response);
+        }
     }
 
+    private void  addmovie(HttpServletRequest request, HttpServletResponse response) {
+        String name=request.getParameter("name");
+        String type=request.getParameter("type");
+        String actor=request.getParameter("actor");
+        String image_url=request.getParameter("image_url");
+        String banner_url=request.getParameter("banner_url");
+        String introduction=request.getParameter("introduction");
+        String url=request.getParameter("url");
+        Movie movie=new Movie(name,type,actor,image_url,banner_url,introduction,url);
+        int i = movieService.insertMovie(movie);
+        if(i==1){
+            try {
+                System.out.println("修改成功");
+                response.getWriter().print("true");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                System.out.println("修改失败");
+                response.getWriter().print("false");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void  getByName(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        List<Movie> movies = movieService.getMoviesByName(name);
+        if(movies!=null) {
+            JSONArray jsonArray=JSONArray.parseArray(JSON.toJSONString(movies));
+            try {
+                response.getWriter().print(jsonArray.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(jsonArray.toString());
+        }
+
+    }
+
+
+    private void updateMovie(HttpServletRequest request, HttpServletResponse response) {
+        String id=request.getParameter("id");
+        String name=request.getParameter("name");
+        String type=request.getParameter("type");
+        String actor=request.getParameter("actor");
+        String image_url=request.getParameter("image_url");
+        String banner_url=request.getParameter("banner_url");
+        String introduction=request.getParameter("introduction");
+        String url=request.getParameter("url");
+        Movie movie=new Movie(Integer.parseInt(id),name,type,actor,image_url,banner_url,introduction,url);
+        int i = movieService.updateMovie(movie);
+        if(i==1){
+            try {
+                System.out.println("修改成功");
+                response.getWriter().print("true");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try {
+                System.out.println("修改失败");
+                response.getWriter().print("false");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void delMovie(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String id=request.getParameter("id");
+        int i= movieService.deleteMovie(Integer.parseInt(id));
+        if(i==1){
+            response.getWriter().print("true");
+        }else {
+            response.getWriter().print("false");
+        }
+
+    }
+
+    private void getOneMovie(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String id=request.getParameter("id");
+        Movie movieById = movieService.getMovieById(Integer.parseInt(id));
+        ArrayList<Movie> movies=new ArrayList<>();
+        movies.add(movieById);
+        if(movieById!=null) {
+            String s = JSON.toJSONString(movies);
+            response.getWriter().print(s);
+        }
+
+    }
+
+    private void getCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        long count=movieService.getMoviesCount();
+        response.getWriter().print((int)count);
+    }
+
+    private void getMovies(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String page=request.getParameter("page");
+        String pageAmount=request.getParameter("pageAmount");
+        List<Movie> anyMovies = movieService.getPageMovies(Integer.parseInt(page),Integer.parseInt(pageAmount));
+        if(anyMovies!=null) {
+            JSONArray jsonArray=JSONArray.parseArray(JSON.toJSONString(anyMovies));
+            response.getWriter().print(jsonArray.toString());
+            System.out.println(jsonArray.toString());
+        }
+    }
 
 
     private void getMoviesCount(HttpServletRequest request, HttpServletResponse response) throws IOException {

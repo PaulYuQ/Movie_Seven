@@ -99,9 +99,9 @@ public class MovieDaoImpl implements MovieDao {
     }
 
     @Override
-    public Long getMoviesCount() {
+    public long getMoviesCount() {
         try {
-            String sql = "select count(1) from movies";
+            String sql = "select count(*) from movies";
             return (Long) qr.query(sql,new ScalarHandler());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -153,6 +153,19 @@ public class MovieDaoImpl implements MovieDao {
 
         try {
             movies = qr.query(sql, new BeanListHandler<Movie>(Movie.class), type,currentPage,pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
+    @Override
+    public List<Movie> getPageMovies(Integer currentPage, Integer pageSize) {
+        String sql = "select * from movies limit ?,?";
+        List<Movie> movies = null;
+
+        try {
+            movies = qr.query(sql, new BeanListHandler<Movie>(Movie.class), (currentPage-1)*pageSize,pageSize);
         } catch (SQLException e) {
             e.printStackTrace();
         }

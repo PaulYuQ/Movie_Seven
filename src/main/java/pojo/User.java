@@ -74,6 +74,10 @@ public class User{
         this.phone = phone;
     }
 
-
-
+    public User(int user_id, String name, String password, String phone) {
+        this.user_id = user_id;
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+    }
 }
