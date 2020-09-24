@@ -43,6 +43,7 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
+    @Override
     public User findByName(String name){
         String sql = "select *from users where name =?";
         User user = null;
@@ -122,7 +123,9 @@ public class UserDaoImpl implements UserDao {
         String sql = "insert into users(name,password,phone) values(?,?,?)";
         try {
             res = qr.update(sql,new Object[]{name,pwd,phone});
-            if (res>0)return true;
+            if (res>0){
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

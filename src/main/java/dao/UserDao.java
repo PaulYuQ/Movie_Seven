@@ -21,5 +21,6 @@ public interface UserDao {
     List<User> findAllUsers();
     List<User> findPageUsers(Integer page,Integer pageAmount);
 
+
 }
 

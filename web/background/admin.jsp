@@ -10,9 +10,7 @@
   <link rel="stylesheet" href="css/all.css">
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-<%--  <link href="css/mdb.min.css" rel="stylesheet">--%>
-  <!-- Your custom styles (optional) -->
+
   <link href="css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/pagination.css">
 
@@ -32,6 +30,9 @@
     .navbar-collapse{
       background: white;
     }
+    .form-control{
+      margin-right: 20px;
+    }
 
 
 
@@ -48,6 +49,7 @@ height:100%;
 width:100%;
 position:absolute;
 }
+
 
 
   </style>
@@ -96,7 +98,7 @@ position:absolute;
             <li class="nav-item">
               <a href="https://gitee.com/misskunstudy/seven_movie" class="nav-link border border-light rounded waves-effect"
                 target="_blank" style="font-weight: bold">
-                <img src="img/svg/logo-black.svg" width="30px" height="20px">
+                <img src="https://s1.ax1x.com/2020/09/24/0SN3zn.png" width="30px" height="30px">
                 SevenMovie Gitee
               </a>
             </li>
@@ -122,19 +124,13 @@ position:absolute;
 
       <div class="list-group list-group-flush" style="margin-top: 80px">
         <a href="admin.jsp" class="list-group-item active waves-effect list-group-item-action">
-          <img src="img/svg/admin.svg" width="25px" height="25px" style="margin-right: 20px"> 管理员表
+          <img src="https://s1.ax1x.com/2020/09/24/0St5rV.png" width="25px" height="25px" style="margin-right: 20px"> 管理员表
         </a>
-        <a href="user.html" class="list-group-item list-group-item-action waves-effect">
-          <img src="img/svg/user.svg" width="25px" height="25px" style="margin-right: 20px"> 用户表
+        <a href="user.jsp" class="list-group-item list-group-item-action waves-effect">
+          <img src="https://s1.ax1x.com/2020/09/24/0SYh7D.png" width="25px" height="25px" style="margin-right: 20px"> 用户表
         </a>
-        <a href="movie.html" class="list-group-item list-group-item-action waves-effect">
-          <img src="img/svg/movie.svg" width="25px" height="25px" style="margin-right: 20px"> 电影表</a>
-        <a href="comment.html" class="list-group-item list-group-item-action waves-effect">
-          <img src="img/svg/comment.svg" width="25px" height="25px" style="margin-right: 20px"> 评论表</a>
-        <a href="history.html" class="list-group-item list-group-item-action waves-effect">
-          <img src="img/svg/history.svg" width="25px" height="25px" style="margin-right: 20px"> 历史表</a>
-        <a href="collections.html" class="list-group-item list-group-item-action waves-effect">
-          <img src="img/svg/conlection.svg" width="25px" height="25px" style="margin-right: 20px"> 收藏表</a>
+        <a href="movie.jsp" class="list-group-item list-group-item-action waves-effect">
+          <img src="https://s1.ax1x.com/2020/09/24/0StUCd.png" width="25px" height="25px" style="margin-right: 20px"> 电影表</a>
       </div>
 
     </div>
@@ -154,7 +150,7 @@ position:absolute;
         <div class="card-body d-sm-flex justify-content-between">
 
           <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="#" target="_blank">管理员表</a>
+            <a href="#" target="_blank" id="count">管理员表</a>
           </h4>
             <button class="btn btn-primary"  onclick="getEndpage()">显示全部管理员</button>
 
@@ -170,7 +166,7 @@ position:absolute;
             <!-- Default input -->
             <input type="number" placeholder="你要查询的管理员ID" aria-label="Search" class="form-control" id="search">
             <button class="btn btn-primary btn-sm my-0 p" type="button" onclick="getAdmin()">
-              <img src="img/svg/find.svg" width="25px" height="25px">
+              <img src="https://s1.ax1x.com/2020/09/24/0SJk2q.png" width="25px" height="25px">
             </button>
 
           </form>
@@ -188,7 +184,6 @@ position:absolute;
           <tr style="background: #007bff">
             <th style="color: white">ID</th>
             <th style="color: white">用户名</th>
-            <th style="color: white">密码</th>
             <th style="color: white">电话号码</th>
             <th style="color: white">权限</th>
             <%
@@ -226,8 +221,9 @@ position:absolute;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
           <h4 class="modal-title" id="myModalLabel">新增管理员</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
         </div>
         <div class="modal-body">
 
@@ -259,8 +255,9 @@ position:absolute;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
           <h4 class="modal-title" id="myModalLabel1">修改管理员</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
         </div>
         <div class="modal-body">
           <div class="form-group">
@@ -271,10 +268,6 @@ position:absolute;
           <div class="form-group">
             <label for="txt_name1">账户名</label>
             <input type="text"  class="form-control" id="txt_name1" >
-          </div>
-          <div class="form-group">
-            <label for="txt_password1">密码</label>
-            <input type="text"  class="form-control" id="txt_password1">
           </div>
           <div class="form-group">
             <label for="txt_phone1">电话号码</label>
@@ -304,14 +297,12 @@ position:absolute;
 
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!--  &lt;!&ndash; MDB core JavaScript &ndash;&gt;-->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
   <script src="js/pagination.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization
 
     let pageAmount=7;
-    new WOW().init();
 
     var s=${control};
 
@@ -327,6 +318,7 @@ position:absolute;
 
     function getEndpage() {
       $.post("queryallcount.admin",{},function (data) {
+        $("#count").html("管理员(共"+data+"条记录)");
        page=new Pagination({
          element: '#pages', // 元素
          type: 1, // 样式类型，可选[1,2]
@@ -433,7 +425,6 @@ position:absolute;
         $.each(data, function (index, obj){
           $("#txt_ID1").val(id);
             $("#txt_name1").val(obj.name);
-          $("#txt_password1").val(obj.password);
           $("#txt_phone1").val(obj.phone);
           $("#txt_control").val(obj.control);
         });
@@ -447,14 +438,13 @@ position:absolute;
         str += "<tr>" +
                 "<td>" + obj.id + "</td>"
                 + "<td>" + obj.name+ "</td>"
-                + "<td>" + obj.password + "</td>"
                 + "<td>" + obj.phone + "</td>"
                 + "<td>" + obj.control + "</td>" ;
         if(s==1){
-          str=str+"<td> <a href=\"javascript:void(0);\" onclick='doDel("+ obj.id + ",this)'> <img src=\"img/svg/delete.svg\" style=\"width: 30px;height: 30px;margin-right: 20px\"></a>" +
+          str=str+"<td> <a href=\"javascript:void(0);\" onclick='doDel("+ obj.id + ",this)'> <img src=\"https://s1.ax1x.com/2020/09/24/0S8f0g.png\" style=\"width: 30px;height: 30px;margin-right: 20px\"></a>" +
                 "<a href=\"javascript:void(0);\" value='编辑' " +
                   "onclick='doEdit("
-                + obj.id +",this)'> <img src=\"img/svg/xiugai.svg\" style=\"width: 30px;height: 30px;\"></a>" +
+                + obj.id +",this)'> <img src=\"https://s1.ax1x.com/2020/09/24/0SGqPA.png\" style=\"width: 30px;height: 30px;\"></a>" +
                 "</td>"
                 ;
         }
