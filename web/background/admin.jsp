@@ -10,9 +10,7 @@
   <link rel="stylesheet" href="css/all.css">
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-<%--  <link href="css/mdb.min.css" rel="stylesheet">--%>
-  <!-- Your custom styles (optional) -->
+
   <link href="css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/pagination.css">
 
@@ -152,7 +150,7 @@ position:absolute;
         <div class="card-body d-sm-flex justify-content-between">
 
           <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="#" target="_blank">管理员表</a>
+            <a href="#" target="_blank" id="count">管理员表</a>
           </h4>
             <button class="btn btn-primary"  onclick="getEndpage()">显示全部管理员</button>
 
@@ -320,6 +318,7 @@ position:absolute;
 
     function getEndpage() {
       $.post("queryallcount.admin",{},function (data) {
+        $("#count").html("管理员(共"+data+"条记录)");
        page=new Pagination({
          element: '#pages', // 元素
          type: 1, // 样式类型，可选[1,2]

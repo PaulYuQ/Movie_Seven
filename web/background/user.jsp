@@ -150,7 +150,7 @@
       <div class="card-body d-sm-flex justify-content-between">
 
         <h4 class="mb-2 mb-sm-0 pt-1">
-          <a href="#" target="_blank">用户表</a>
+          <a href="#" target="_blank" id="count">用户表</a>
         </h4>
         <button class="btn btn-primary"  onclick="getEndpage()">显示全部用户</button>
 
@@ -311,6 +311,7 @@
   function getEndpage() {
     $.post("queryUsers.users",{},function (data) {
       console.log(data);
+      $("#count").html("用户(共"+data+"条记录)");
       page=new Pagination({
         element: '#pages', // 元素
         type: 1, // 样式类型，可选[1,2]
@@ -436,7 +437,7 @@
               + "<td>" + obj.phone + "</td>"
               + "<td>" + obj.date + "</td>" ;
       if(s==1){
-        str=str+"<td> <a href=\"javascript:void(0);\" onclick='doDel("+ obj.user_id + ",this)'> <img src=\"img/svg/delete.svg\" style=\"width: 30px;height: 30px;margin-right: 20px\"></a>" +
+        str=str+"<td> <a href=\"javascript:void(0);\" onclick='doDel("+ obj.user_id + ",this)'> <img src=\"img/delete.svg\" style=\"width: 30px;height: 30px;margin-right: 20px\"></a>" +
                 "<a href=\"javascript:void(0);\" value='编辑' " +
                 "onclick='doEdit("
                 + obj.user_id +",this)'> <img src=\"img/svg/xiugai.svg\" style=\"width: 30px;height: 30px;\"></a>" +

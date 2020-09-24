@@ -19,9 +19,6 @@
 
 
   <style>
-    .form-control{
-      margin-right: 20px;
-    }
     img{
 
     }
@@ -33,6 +30,9 @@
     }
     .navbar-collapse{
       background: white;
+    }
+    .form-control{
+      margin-right: 20px;
     }
 
 
