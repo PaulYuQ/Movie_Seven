@@ -11,3 +11,4 @@
     <property name="minPoolSize">10</property>
   </default-config>
 </c3p0-config>
+<!--serverTimezone=GMT%2B8-->

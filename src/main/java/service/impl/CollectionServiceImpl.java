@@ -1,6 +1,7 @@
 package service.impl;
 
 import dao.CollectionDao;
+import dao.impl.CollectionDaoImpl;
 import factory.BeanFactory;
 import pojo.Collection;
 import pojo.Movie;
@@ -16,7 +17,7 @@ public class CollectionServiceImpl implements CollectionService {
     private CollectionDao collectionDao;
 
     public CollectionServiceImpl() {
-        collectionDao = BeanFactory.getInstance("CollectionDao");
+        collectionDao = BeanFactory.getInstance("CollectionDao", CollectionDaoImpl.class);
     }
 
     /**
@@ -153,6 +154,7 @@ public class CollectionServiceImpl implements CollectionService {
         return collectionDao.calCollectionCount();
     }
 
+
     /**
      * 实现分页
      *
@@ -163,5 +165,29 @@ public class CollectionServiceImpl implements CollectionService {
     @Override
     public List<Collection> getUserCollectionByPage(int currentPage, int pageSize) {
         return collectionDao.getUserCollectionByPage(currentPage, pageSize);
+    }
+
+    /**
+     * 根据userId和movieId在播放页面移除收藏
+     *
+     * @param userId
+     * @param movieId
+     * @return
+     */
+    @Override
+    public int deleteInPlayer(int userId, int movieId) {
+        return collectionDao.deleteInPlayer(userId, movieId);
+    }
+
+    /**
+     * 查询播放页面的收藏状态
+     *
+     * @param userId
+     * @param movieId
+     * @return
+     */
+    @Override
+    public int queryCollectionStatus(int userId, int movieId) {
+        return collectionDao.queryCollectionStatus(userId, movieId);
     }
 }

@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import factory.BeanFactory;
 import pojo.Collection;
+import pojo.User;
 import service.CollectionService;
+import service.impl.CollectionServiceImpl;
 import vo.CollectionVo;
 
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +26,7 @@ public class CollectionServlet extends HttpServlet {
     private CollectionService collectionService;
 
     public CollectionServlet() {
-        collectionService = BeanFactory.getInstance("CollectionService");
+        collectionService = BeanFactory.getInstance("CollectionService", CollectionServiceImpl.class);
     }
 
     @Override
@@ -53,6 +56,40 @@ public class CollectionServlet extends HttpServlet {
             updateCollection(request, response);
         } else if(path.contains("queryCollectionById.collection")) {
             queryCollectionById(request, response);
+        } else if(path.contains("deleteInPlayer.collection")) {
+            deleteInPlayer(request, response);
+        } else if(path.contains("queryCollectionStatus.collection")) {
+            queryCollectionStatus(request, response);
+        }
+    }
+
+
+
+    private void queryCollectionStatus(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userId = request.getParameter("userId");
+        String movieId = request.getParameter("movieId");
+        int result = 0;
+        if(!"".equals(userId)) {
+            result = collectionService.queryCollectionStatus(Integer.parseInt(userId), Integer.parseInt(movieId));
+        }
+        if(result > 0) {
+            response.getWriter().print("true");
+        } else {
+            response.getWriter().print("false");
+        }
+    }
+
+    private void deleteInPlayer(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userId = request.getParameter("userId");
+        String movieId = request.getParameter("movieId");
+        int result = 0;
+        if(!"".equals(userId)) {
+            result = collectionService.deleteInPlayer(Integer.parseInt(userId), Integer.parseInt(movieId));
+        }
+        if(result > 0) {
+            response.getWriter().print("true");
+        } else {
+            response.getWriter().print("false");
         }
     }
 
@@ -74,7 +111,10 @@ public class CollectionServlet extends HttpServlet {
         Collection collection = new Collection();
         collection.setUser_id(Integer.parseInt(userId));
         collection.setMovie_id(Integer.parseInt(movieId));
-        int insertResult = collectionService.update(collection);
+        int insertResult = 0;
+        if(!"".equals(userId)) {
+            insertResult = collectionService.update(collection);
+        }
         if(insertResult > 0) {
             response.getWriter().print("true");
         } else {
@@ -134,6 +174,8 @@ public class CollectionServlet extends HttpServlet {
         String key = request.getParameter("key");
         String num = request.getParameter("num");
         //String userId = request.getAttribute()
+        User user = (User) request.getSession().getAttribute("user");
+        int user_id = user.getUser_id();
         if(num == null || num.equals("")) {
             num = "6";
         }
@@ -143,7 +185,7 @@ public class CollectionServlet extends HttpServlet {
         if(keyword.equals("")) {
             response.getWriter().print("没有找到收藏！");
         }
-        List<CollectionVo> listLike = collectionService.getAllCollectionByKeyWord(keyword, 3, Integer.parseInt(key), Integer.parseInt(num));
+        List<CollectionVo> listLike = collectionService.getAllCollectionByKeyWord(keyword, user_id, Integer.parseInt(key), Integer.parseInt(num));
         String json= JSON.toJSONString(listLike);
         response.getWriter().print(json);
         System.out.println(json);
@@ -168,7 +210,8 @@ public class CollectionServlet extends HttpServlet {
         String key = request.getParameter("key");
         String num = request.getParameter("num");
         //String userId = request.getAttribute()
-
+        User user = (User) request.getSession().getAttribute("user");
+        int user_id = user.getUser_id();
         if(num == null || num.equals("")) {
             num = "6";
         }
@@ -176,7 +219,7 @@ public class CollectionServlet extends HttpServlet {
             key = "0";
         }
 
-        List<CollectionVo> list = collectionService.getAllCollection(3, Integer.parseInt(key), Integer.parseInt(num));
+        List<CollectionVo> list = collectionService.getAllCollection(user_id, Integer.parseInt(key), Integer.parseInt(num));
         String json= JSON.toJSONString(list);
         response.getWriter().print(json);
         System.out.println(json);

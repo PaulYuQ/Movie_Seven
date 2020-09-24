@@ -105,10 +105,29 @@ public interface CollectionDao {
     Long calCollectionCount();
 
     /**
+    Long getCollectionCountByUserId(int userId);
+
+    /**
      * 实现分页
      * @param currentPage
      * @param pageSize
      * @return
      */
     List<Collection> getUserCollectionByPage(int currentPage, int pageSize);
+
+    /**
+     * 根据userId和movieId在播放页面移除收藏
+     * @param userId
+     * @param movieId
+     * @return
+     */
+    int deleteInPlayer(int userId, int movieId);
+
+    /**
+     * 查询播放页面的收藏状态
+     * @param userId
+     * @param movieId
+     * @return
+     */
+    int queryCollectionStatus(int userId, int movieId);
 }

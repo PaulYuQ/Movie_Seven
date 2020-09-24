@@ -1,7 +1,9 @@
 package pojo;
 
 /**
- * @author 小强子大大
+ * @Author: acer
+ * @Date: 2020/9/14 14:17
+ * @Description:
  */
 public class Movie {
     /**

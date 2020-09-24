@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 
+
 #忽略target文件
 target/ 
 
@@ -17,7 +18,6 @@ out/
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear

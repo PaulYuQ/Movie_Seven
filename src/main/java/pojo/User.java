@@ -7,58 +7,73 @@ package pojo;
  * user类
  */
 public class User{
-    /**
-     * 自增
-     */
-    private int id ;
-    /**
-     * user_id
-     */
-    private String user_id;
-    /**
-     * user_psw
-     */
-    private String user_psw;
+    //自增
+    private int user_id;
+    private String name;
+    private String password;
+    private String date;
+    private String phone;
 
     public User() {
-    }
-
-    public User(int id, String user_id, String user_psw) {
-        this.id = id;
-        this.user_id = user_id;
-        this.user_psw = user_psw;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getUser_psw() {
-        return user_psw;
-    }
-
-    public void setUser_psw(String user_psw) {
-        this.user_psw = user_psw;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", user_id='" + user_id + '\'' +
-                ", user_psw='" + user_psw + '\'' +
+                "user_id=" + user_id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", date='" + date + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public User(String name, String password, String phone) {
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+    }
+
+
+
 }
