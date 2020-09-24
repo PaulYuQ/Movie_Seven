@@ -1,13 +1,16 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="seven_movie:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/seven_movie_war_exploded</output-path>
+  <artifact type="exploded-war" name="seven_movies:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/seven_movies_Web_exploded</output-path>
     <root id="root">
+      <element id="javaee-facet-resources" facet="seven_movies/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="seven_movie" />
+          <element id="module-output" name="seven_movies" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="ValidateCode" />
+          <element id="library" level="project" name="ValidateCode (2)" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.12" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.58" />
           <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.2" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.21" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
@@ -16,11 +19,9 @@
           <element id="library" level="project" name="Maven: commons-dbutils:commons-dbutils:1.7" />
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
-          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.58" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="seven_movie/web/Web" />
     </root>
   </artifact>
 </component>
