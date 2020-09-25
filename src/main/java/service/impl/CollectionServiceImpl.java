@@ -1,7 +1,6 @@
 package service.impl;
 
 import dao.CollectionDao;
-import dao.impl.CollectionDaoImpl;
 import factory.BeanFactory;
 import pojo.Collection;
 import pojo.Movie;
@@ -17,7 +16,7 @@ public class CollectionServiceImpl implements CollectionService {
     private CollectionDao collectionDao;
 
     public CollectionServiceImpl() {
-        collectionDao = BeanFactory.getInstance("CollectionDao", CollectionDaoImpl.class);
+        collectionDao = BeanFactory.getInstance("CollectionDao", CollectionDao.class);
     }
 
     /**
