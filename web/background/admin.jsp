@@ -270,6 +270,10 @@ position:absolute;
             <input type="text"  class="form-control" id="txt_name1" >
           </div>
           <div class="form-group">
+            <label for="txt_password1">密码</label>
+            <input type="password"  class="form-control" id="txt_password1" disabled="false" >
+          </div>
+          <div class="form-group">
             <label for="txt_phone1">电话号码</label>
             <input type="number" class="form-control" id="txt_phone1" >
           </div>
@@ -425,6 +429,7 @@ position:absolute;
         $.each(data, function (index, obj){
           $("#txt_ID1").val(id);
             $("#txt_name1").val(obj.name);
+          $("#txt_password1").val(obj.password);
           $("#txt_phone1").val(obj.phone);
           $("#txt_control").val(obj.control);
         });
