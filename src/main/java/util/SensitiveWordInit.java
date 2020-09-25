@@ -95,6 +95,7 @@ public class SensitiveWordInit {
 
 		//File file = new File("resource\\filter.txt");
 		String filePath =SensitiveWordInit.class.getClassLoader().getResource("filter.txt").getFile();
+		filePath=filePath.replaceAll("%20"," ");
 		System.out.println(filePath);
 		File file = new File(filePath);
 		InputStreamReader read = new InputStreamReader(new FileInputStream(file),ENCODING);

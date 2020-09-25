@@ -89,7 +89,7 @@ public class UserServlet extends HttpServlet {
         } else if (!pwd.equals(pwd1)) {
             jsonObject.put("result", 3);
             resp.getWriter().print(jsonObject.toJSONString());
-            System.out.println(jsonObject);
+
         }
     }
 
@@ -127,7 +127,7 @@ public class UserServlet extends HttpServlet {
        Integer  id = Integer.parseInt(req.getParameter("id"));
         int res = userService.deleteById(id);
         if (res>0){
-            System.out.println(res);
+
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("result",res);
             resp.getWriter().print(jsonObject.toJSONString());
@@ -192,7 +192,6 @@ public class UserServlet extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         resp.setHeader("Content-Type", "text/html;charset=utf-8");
         Integer id = Integer.parseInt(req.getParameter("id"));
-        System.out.println(id);
         User user = userService.findById(id);
         if(user!=null) {
             ArrayList<User> users=new ArrayList<>();

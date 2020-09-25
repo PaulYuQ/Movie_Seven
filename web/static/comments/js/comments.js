@@ -43,7 +43,7 @@ document.onclick = function () {
  */
 function getCount() {
     $.post(
-        "/comment/getAllCount.do",
+        "getAllCount.comment",
         {'movie_id': getQueryVariable("movie_id")},
         function (date) {
             console.log("总评论为：" + date);
@@ -60,7 +60,7 @@ function addComments(comment_id, flag) {
             $('.comment-reply').css("display", "none");
             var content = $(".ipt-txte").val();
             $.post(
-                "/comment/addComment.do",
+                "addComment.comment",
                 {'movie_id': movie_id, 'parent_id': comment_id, 'content': content, 'user_id': user_id},
                 function (data) {
                     if (data.toString() == "true") {
@@ -89,7 +89,7 @@ function addComments(comment_id, flag) {
                 alert("你还没有评论！");
             }
             $.post(
-                "/comment/addComment.do",
+                "addComment.comment",
                 {'movie_id': movie_id, 'parent_id': -1, 'content': content, 'user_id': user_id},
                 function (data) {
                     if (data.toString() == "true") {
@@ -117,7 +117,7 @@ function getAllComments(flag) {
     var movie_id = getQueryVariable("movie_id");
     $('.comment-list').empty();
     $.post(
-        "/comment/getAllComments.do",
+        "getAllComments.comment",
         {'movie_id': movie_id, 'flag': flag},
         /*返回comments集合*/
         function (data) {
@@ -303,7 +303,7 @@ function deleteComment(e, id) {
         alert("请登录！");
     } else {
         $.post(
-            "/comment/delComment.do",
+            "delComment.comment",
             {'comment_id': id},
             function (data) {
                 if (data.toString() == "true") {

@@ -24,7 +24,7 @@
             load(1);
             myBtn();
             var moviesCount;
-            $.post("/movie/getMoviesCount.do", {"name": "喜剧片"}, function (data) {
+            $.post("getMoviesCount.movie", {"name": "喜剧片"}, function (data) {
                 console.log("data" + data);
                 var dataJson = $.parseJSON(data);
                 moviesCount = dataJson;
@@ -52,7 +52,7 @@
         });
 
         function load(currentPage) {
-            $.get("/movie/initAnyMovies.do", {"name": "喜剧片", "currentPage": currentPage}, function (data) {
+            $.get("initAnyMovies.movie", {"name": "喜剧片", "currentPage": currentPage}, function (data) {
                 var dataJson = $.parseJSON(data);
                 var anyMovies = dataJson.anyMovies;
                 var movieSum = dataJson.movieSum;
@@ -63,13 +63,13 @@
                 $.each(anyMovies, function (index, movie) {
 
                     str += "<li class=\"fed-list-item fed-padding fed-col-xs4 fed-col-sm3 fed-col-md2\">\n" +
-                        "                    <a class=\"fed-list-pics fed-lazy fed-part-2by3\" href=\"/movie/gotoIntroduction.do?movie_id=" + movie.movie_id + "\"\n" +
+                        "                    <a class=\"fed-list-pics fed-lazy fed-part-2by3\" href=\"gotoIntroduction.movie?movie_id=" + movie.movie_id + "\"\n" +
                         "                       data-original=\"" + movie.image_url + "\"" +
                         "                    style=\"background-image: url(" + movie.image_url + ")\">\n" +
                         "                        <span class=\"fed-list-play fed-hide-xs\"></span>\n" +
                         "                    </a>\n" +
                         "                    <a class=\"fed-list-title fed-font-xiv fed-text-center fed-text-sm-left fed-visible fed-part-eone\"\n" +
-                        "                       href=\"/movie/gotoIntroduction.do?movie_id=" + movie.movie_id + "\"\n" + "\">" + movie.name + "</a>\n" +
+                        "                       href=\"gotoIntroduction.movie?movie_id=" + movie.movie_id + "\"\n" + "\">" + movie.name + "</a>\n" +
                         "                    <span class=\"fed-list-desc fed-font-xii fed-visible fed-part-eone fed-text-muted fed-hide-xs fed-show-sm-block\">\n" +
                         movie.actor + "</span>\n" +
                         "                </li>";
@@ -86,7 +86,7 @@
         //     console.log($("#search-content").val());
         //     var name = $("#search-content").val();
         //     console.log(name);
-        //     $("#searchBtn").attr("href", "/movie/gotoSearch.do?name=" + name);
+        //     $("#searchBtn").attr("href", "gotoSearch.movie?name=" + name);
         // }
     </script>
     <script src="static/js/common.js"></script>
@@ -220,20 +220,20 @@
         <div class="c-banner">
             <div class="banner">
                 <ul>
-                    <li><a href="/movie/gotoIntroduction.do?movie_id=1680"><img
+                    <li><a href="gotoIntroduction.movie?movie_id=1680"><img
                             src="http://liangcang-material.alicdn.com/prod/upload/3c9e9bb2035a49df8cee94a573a88690.jpg"></a>
                     </li>
-                    <li><a href="/movie/gotoIntroduction.do?movie_id=518"><img
+                    <li><a href="gotoIntroduction.movie?movie_id=518"><img
                             src="https://kuyun.tv/upload/vod/20190901-1/091.jpg"></a>
                     </li>
                     <li>
-                        <a href="/movie/gotoIntroduction.do?movie_id=1676"><img src="static/images/banner_3.jpg"></a>
+                        <a href="gotoIntroduction.movie?movie_id=1676"><img src="static/images/banner_3.jpg"></a>
                     </li>
                     <li>
-                        <a href="/movie/gotoIntroduction.do?movie_id=203"><img src="https://3img.hitv.com/preview/cms_icon/2020/7/6/07/20200706000711426.jpg"></a>
+                        <a href="gotoIntroduction.movie?movie_id=203"><img src="https://3img.hitv.com/preview/cms_icon/2020/7/6/07/20200706000711426.jpg"></a>
                     </li>
                     <li>
-                        <a href="/movie/gotoIntroduction.do?movie_id=1681"><img
+                        <a href="gotoIntroduction.movie?movie_id=1681"><img
                                 src="http://liangcang-material.alicdn.com/prod/upload/5bdc4e3e3ff54c38805435504bf3fae6.jpg"></a>
                     </li>
                 </ul>

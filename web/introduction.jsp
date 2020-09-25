@@ -41,7 +41,7 @@
                 movie_id = url.substr(url.indexOf("=") + 1);
             }
             console.log(movie_id);
-            $.post("/movie/showIntroduction.do", {"movie_id": movie_id}, function (data) {
+            $.post("showIntroduction.movie", {"movie_id": movie_id}, function (data) {
                 var dataJson = $.parseJSON(data);
                 console.log(dataJson);
                 var movie = dataJson.movie;
@@ -50,14 +50,14 @@
                 console.log(movie.actor);
                 var str = "url(" + movie.image_url + ")";
                 $("#bgImg").css("background-image",str);
-                $("#bgImg").attr("href","/movie/gotoPlayer.do?movie_id="+movie_id);
+                $("#bgImg").attr("href","gotoPlayer.movie?movie_id="+movie_id);
                 $("#movieName").text(movie.name);
                 $("#movieName").attr("href","#");
                 $("#protagonists").text(movie.actor);
                 $("#movieType").text(movie.type);
                 $("#movieType").attr("href","#");
                 $("#movieInfo").text(movie.introduction);
-                $("#playBtn").attr("href","/movie/gotoPlayer.do?movie_id="+movie_id);
+                $("#playBtn").attr("href","gotoPlayer.movie?movie_id="+movie_id);
                 let user_id = $("#user_id").val();
                 $("#playBtn").click(function () {
                     $.post("doAdd.histories",{"movie_id":movie_id,"user_id":user_id});
@@ -95,7 +95,7 @@
                 }
 
                 //展示相关热播
-                $.post("/movie/getRelevantMovies.do",{"name":movie.type},function (data2) {
+                $.post("getRelevantMovies.movie",{"name":movie.type},function (data2) {
                     var dataJson2 = $.parseJSON(data2);
                     console.log(dataJson2);
                     var anyMovies = dataJson2.anyMovies;
@@ -103,13 +103,13 @@
                     $.each(anyMovies, function (index, movie) {
 
                         str += "<li class=\"fed-list-item fed-padding fed-col-xs4 fed-col-sm3 fed-col-md2\">\n" +
-                            "                    <a class=\"fed-list-pics fed-lazy fed-part-2by3\" href=\"/movie/gotoIntroduction.do?movie_id="+movie.movie_id+"\"\n" +
+                            "                    <a class=\"fed-list-pics fed-lazy fed-part-2by3\" href=\"gotoIntroduction.movie?movie_id="+movie.movie_id+"\"\n" +
                             "                       data-original=\"" + movie.image_url + "\"" +
                             "                    style=\"background-image: url(" + movie.image_url + ")\">\n" +
                             "                        <span class=\"fed-list-play fed-hide-xs\"></span>\n" +
                             "                    </a>\n" +
                             "                    <a class=\"fed-list-title fed-font-xiv fed-text-center fed-text-sm-left fed-visible fed-part-eone\"\n" +
-                            "                       href=\"/movie/gotoIntroduction.do?movie_id="+movie.movie_id+"\"\n" + "\">" + movie.name + "</a>\n" +
+                            "                       href=\"gotoIntroduction.movie?movie_id="+movie.movie_id+"\"\n" + "\">" + movie.name + "</a>\n" +
                             "                    <span class=\"fed-list-desc fed-font-xii fed-visible fed-part-eone fed-text-muted fed-hide-xs fed-show-sm-block\">\n" +
                             movie.actor + "</span>\n" +
                             "                </li>";

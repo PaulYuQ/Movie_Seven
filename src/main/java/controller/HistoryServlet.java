@@ -184,11 +184,13 @@ public class HistoryServlet extends HttpServlet {
      * @return void
      */
     protected void historyAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getParameter("user_id") == null || request.getParameter("movie_id") == null) {
+
+        if (request.getSession().getAttribute("user") == null) {
+            response.getWriter().print("false");
             return;
         }
         User user = (User) request.getSession().getAttribute("user");
-        int userId = user.getUser_id();;
+        int userId = user.getUser_id();
         int movieId = Integer.parseInt(request.getParameter("movie_id"));
         int progress = (int)(Math.random()*4000+1000);
 

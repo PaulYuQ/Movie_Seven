@@ -150,7 +150,7 @@ function update() {
                         if (data.result>0){
                             bootbox.alert("修改成功！");
                             setTimeout(function () {
-                                location.reload();
+                                window.location.reload();
                             },2000)
                         }else {
                             bootbox.alert("修改失败！")

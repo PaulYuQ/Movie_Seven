@@ -41,7 +41,7 @@
                 name = url.substr(url.indexOf("=") + 1);
             }
             console.log(name);
-            $.post("/movie/showSearch.do", {"name": name}, function (data) {
+            $.post("showSearch.movie", {"name": name}, function (data) {
                 var dataJson = $.parseJSON(data);
                 console.log(dataJson);
                 var movies = dataJson.movies;
@@ -58,13 +58,13 @@
 					$.each(movies, function (index, movie) {
 
 						str += "<li class=\"fed-list-item fed-padding fed-col-xs4 fed-col-sm3 fed-col-md2\">\n" +
-								"                    <a class=\"fed-list-pics fed-lazy fed-part-2by3\" href=\"/movie/gotoIntroduction.do?movie_id="+movie.movie_id+"\"\n" +
+								"                    <a class=\"fed-list-pics fed-lazy fed-part-2by3\" href=\"gotoIntroduction.movie?movie_id="+movie.movie_id+"\"\n" +
 								"                       data-original=\"" + movie.image_url + "\"" +
 								"                    style=\"background-image: url(" + movie.image_url + ")\">\n" +
 								"                        <span class=\"fed-list-play fed-hide-xs\"></span>\n" +
 								"                    </a>\n" +
 								"                    <a class=\"fed-list-title fed-font-xiv fed-text-center fed-text-sm-left fed-visible fed-part-eone\"\n" +
-								"                       href=\"/movie/gotoIntroduction.do?movie_id="+movie.movie_id+"\"\n" + "\">" + movie.name + "</a>\n" +
+								"                       href=\"gotoIntroduction.movie?movie_id="+movie.movie_id+"\"\n" + "\">" + movie.name + "</a>\n" +
 								"                    <span class=\"fed-list-desc fed-font-xii fed-visible fed-part-eone fed-text-muted fed-hide-xs fed-show-sm-block\">\n" +
 								movie.actor + "</span>\n" +
 								"                </li>";
@@ -80,7 +80,7 @@
         //     console.log($("#search-content").val());
         //     var name = $("#search-content").val();
         //     console.log(name);
-        //     $("#searchBtn").attr("href","/movie/gotoSearch.do?name="+name);
+        //     $("#searchBtn").attr("href","gotoSearch.movie?name="+name);
         // }
     </script>
     <script src="static/js/common.js"></script>

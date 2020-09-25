@@ -51,7 +51,7 @@ function doShow(page) {
                 "<li class='historyLi'>" +
                 "<div class='historyDiv'>" +
                 "<div class='historyImg'>" +
-                "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + movie_id + "'><img src=" + obj.image_url + " onerror='imgError(this)'></a>" +
+                "<a target='_parent' href='gotoIntroduction.movie?movie_id=" + movie_id + "'><img src=" + obj.image_url + " onerror='imgError(this)'></a>" +
                 "</div>" +
                 "<div class='historyInfo'>" +
                 "<div class='historyName'>" +

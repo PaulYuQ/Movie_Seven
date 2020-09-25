@@ -54,7 +54,7 @@
             $.ajax({
                 type: "post",
                 async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                url: "/queryAll.collection",    //请求发送到/collection/queryAll.do处
+                url: "/queryAll.collection",    //请求发送到/collection/queryAll.movie处
                 data: {'page': page},
                 dataType: "json",        //返回数据形式为json
                 success: function (data) {
@@ -65,8 +65,8 @@
                         console.log(obj.name);
                         str += "<div class=\"span2 divbg\">" + "<div class=\"hero-unit well chbg\">"
                             + "<input type=\"hidden\" class=\"hinput\" value=\"" + obj.collection_id + "\"/>"
-                            + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + obj.movie_id + "'><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
-                            + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + obj.movie_id + "' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
+                            + "<a target='_parent' href='gotoIntroduction.movie?movie_id=" + obj.movie_id + "'><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
+                            + "<a target='_parent' href='gotoIntroduction.movie?movie_id=" + obj.movie_id + "' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
                             + "<p style='color: #0e90d2;font-size: small'>收藏于：<br/>" + obj.date + "</p>"
                             + "<p class='pword'><a class=\"btn btn-primary btn-large button10\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'><label>移出</label></a></p>"
                             + "</div>" + "</div>";
@@ -87,7 +87,7 @@
             $.ajax({
                 type: "post",
                 async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                url: "/delete.collection",    //请求发送到/collection/delete.do处
+                url: "/delete.collection",    //请求发送到/collection/delete.movie处
                 data: {'collectionId': id},
                 dataType: "json",        //返回数据形式为json
                 success: function (data) {
@@ -202,7 +202,7 @@
                     $.ajax({
                         type: "post",
                         async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                        url: "/queryAlllike.collection",    //请求发送到/collection/queryAll.do处
+                        url: "/queryAlllike.collection",    //请求发送到/collection/queryAll.movie处
                         data: {'page': page,'keyword':keyword},
                         dataType: "json",        //返回数据形式为json
                         success: function (data) {
@@ -213,8 +213,8 @@
                                 console.log(obj.name);
                                 str += "<div class=\"span2 divbg\">" + "<div class=\"hero-unit well chbg\">"
                                     + "<input type=\"hidden\" class=\"hinput\" value=\"" + obj.collection_id + "\"/>"
-                                    + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + obj.movie_id + "'><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
-                                    + "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + obj.movie_id + "' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
+                                    + "<a target='_parent' href='gotoIntroduction.movie?movie_id=" + obj.movie_id + "'><img src=\"" + obj.image_url + "\" style=\"width: 100%;height:222px\"></a>"
+                                    + "<a target='_parent' href='gotoIntroduction.movie?movie_id=" + obj.movie_id + "' style=\"text-decoration:none;\"><p><label>" + obj.name + "</label></p></a>"
                                     + "<p style='color: #0e90d2;font-size: small'>收藏于：<br/>" + obj.date + "</p>"
                                     + "<p class='pword'><a class=\"btn btn-primary btn-large button10\" href=\"#\" onclick=\'doDelete(" + obj.collection_id + ",this)'><label>移出</label></a></p>"
                                     + "</div>" + "</div>";
@@ -303,7 +303,7 @@
             <div class="carousel slide" id="carousel-956640">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="" src="static/collection/img/haha.png" style="width: 100%"/>
+                        <img alt="" src="https://s1.ax1x.com/2020/09/24/0p8ev6.jpg" style="width: 100%"/>
                         <div class="carousel-caption" id="car">
                             <p style="font-weight: bold;font-size: 20px">
                                 ${user.name}

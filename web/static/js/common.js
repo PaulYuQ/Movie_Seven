@@ -4,8 +4,8 @@ function doSearch() {
     console.log($("#search-content").val());
     var name = $("#search-content").val();
     console.log(name);
-    // $.post("/movie/gotoSearch.do",{"name":name})
-    $("#searchBtn").attr("href", "/movie/gotoSearch.do?name=" + name);
+    // $.post("gotoSearch.movie",{"name":name})
+    $("#searchBtn").attr("href", "gotoSearch.movie?name=" + name);
 }
 
 
