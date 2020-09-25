@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="movie">
-    <output-path>$PROJECT_DIR$/out/artifacts/movie</output-path>
-    <root id="archive" name="movie.war">
+  <artifact type="exploded-war" name="seven_movie:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/seven_movie_war_exploded</output-path>
+    <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="seven_movies" />
+          <element id="module-output" name="seven_movie" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="ValidateCode" />
@@ -21,7 +21,7 @@
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="seven_movies/web/Web" />
+      <element id="javaee-facet-resources" facet="seven_movie/web/Web" />
     </root>
   </artifact>
 </component>
