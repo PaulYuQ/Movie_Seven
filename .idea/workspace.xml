@@ -332,11 +332,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="170" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1600763715254" />
-    <state x="295" y="0" key="CommitChangelistDialog2" timestamp="1600927865695">
+    <state x="295" y="0" key="CommitChangelistDialog2" timestamp="1600996050690">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="295" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1600788968349" />
-    <state x="295" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1600927865695" />
+    <state x="295" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1600996050690" />
     <state x="147" y="65" key="DiffContextDialog" timestamp="1600787555081">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -406,14 +406,16 @@
     </state>
     <state width="1137" height="188" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1600865472002" />
     <state width="1024" height="213" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1600949712389" />
-    <state x="147" y="64" key="MergeDialog" timestamp="1600862037831">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="147" y="65" key="MergeDialog" timestamp="1600995996134">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="147" y="64" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1600862037831" />
-    <state x="520" y="142" key="MultipleFileMergeDialog" timestamp="1600862055579">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="147" y="65" key="MergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1600995996134" />
+    <state x="520" y="144" key="MultipleFileMergeDialog" timestamp="1600995996139">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="520" y="142" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1600862055579" />
+    <state x="520" y="144" key="MultipleFileMergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1600995996139" />
     <state x="408" y="115" key="NewModule_or_Project.wizard" timestamp="1600778947636">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
