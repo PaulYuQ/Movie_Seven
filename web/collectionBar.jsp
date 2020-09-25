@@ -303,7 +303,7 @@
             <div class="carousel slide" id="carousel-956640">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img alt="" src="static/collection/img/haha.png" style="width: 100%"/>
+                        <img alt="" src="https://s1.ax1x.com/2020/09/24/0p8ev6.jpg" style="width: 100%"/>
                         <div class="carousel-caption" id="car">
                             <p style="font-weight: bold;font-size: 20px">
                                 ${user.name}

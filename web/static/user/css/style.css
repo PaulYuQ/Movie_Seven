@@ -91,7 +91,8 @@ button {
     top: 0;
     width: 900px;
     height: 100%;
-    background-image: url(../img/bg.jpg);
+    /*background-image: url(../img/bg.jpg);*/
+    background-image: url("https://s1.ax1x.com/2020/09/24/0p3110.jpg");
     background-size: cover;
     transition: -webkit-transform 0.6s ease-in-out;
     transition: transform 0.6s ease-in-out;
