@@ -332,7 +332,7 @@
   let page;
 
   function getEndpage() {
-    $.post("/movie/getcount.do",{},function (data) {
+    $.post("getcount.movie",{},function (data) {
       console.log(data);
       $("#count").html("电影(共"+data+"条记录)");
       page=new Pagination({
@@ -365,7 +365,7 @@
 
 
   function doShow(page) {
-    $.post("/movie/getMovies.do", {"page": page,"pageAmount":pageAmount}, function (data) {
+    $.post("getMovies.movie", {"page": page,"pageAmount":pageAmount}, function (data) {
       if (data == "false") {
         alert("错误");
       }
@@ -377,7 +377,7 @@
                 "<li class='historyLi' onclick=edit("+movie_id+")>" +
                 "<div class='historyDiv'>" +
                 "<div class='historyImg'>" +
-                "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + movie_id + "'><img src=" + obj.image_url + " onerror='imgError(this)'></a>" +
+                "<a target='_parent' href='gotoIntroduction.movie?movie_id=" + movie_id + "'><img src=" + obj.image_url + " onerror='imgError(this)'></a>" +
                 "</div>" +
                 "<div class='historyInfo'>" +
                 "<div class='historyName'>" +
@@ -415,7 +415,7 @@
       "url":$("#txt_url").val()
     };
 
-    $.post("/movie/addmovie.do",da,function (data) {
+    $.post("addmovie.movie",da,function (data) {
       console.log("修改结果"+data);
       if(data=='true') {
         alert("添加成功");
@@ -427,7 +427,7 @@
   }
 
  function edit(id){
-   $.post("/movie/getmoviebyid.do",{"id":id},function (data) {
+   $.post("getmoviebyid.movie",{"id":id},function (data) {
      console.log(data);
      $("#myModal_1").modal();
      $.each(data, function (index, obj){
@@ -446,7 +446,7 @@
   function del() {
    let id= $("#txt_ID1").val();
     if (window.confirm("确认删除该行数据吗?")) {
-      $.post("/movie/delmoviebyid.do",{"id":id},function (data) {
+      $.post("delmoviebyid.movie",{"id":id},function (data) {
         if(!data){alert("删除失败");return;}
         getEndpage();
       });
@@ -466,7 +466,7 @@
       "url":$("#txt_url1").val()
     };
 
-    $.post("/movie/updatemoviebyid.do",da,function (data) {
+    $.post("updatemoviebyid.movie",da,function (data) {
       console.log("修改结果"+data);
       if(data=='true') {
         alert("修改成功");
@@ -480,7 +480,7 @@
 
   function getMovie() {
     let text=$("#search").val();
-    $.post("/movie/searchbyname.do",{"name":text},function (data) {
+    $.post("searchbyname.movie",{"name":text},function (data) {
       console.log(data);
 
       $("#historyBody").empty();
@@ -490,7 +490,7 @@
                 "<li class='historyLi' onclick=edit("+movie_id+")>" +
                 "<div class='historyDiv'>" +
                 "<div class='historyImg'>" +
-                "<a target='_parent' href='/movie/gotoIntroduction.do?movie_id=" + movie_id + "'><img src=" + obj.image_url + " onerror='imgError(this)'></a>" +
+                "<a target='_parent' href='gotoIntroduction.movie?movie_id=" + movie_id + "'><img src=" + obj.image_url + " onerror='imgError(this)'></a>" +
                 "</div>" +
                 "<div class='historyInfo'>" +
                 "<div class='historyName'>" +

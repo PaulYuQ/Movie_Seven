@@ -72,7 +72,7 @@ public class AdminServlet extends HttpServlet {
         if(allAdmin!=null) {
             JSONArray jsonArray=JSONArray.parseArray(JSON.toJSONString(allAdmin));
             resp.getWriter().print(jsonArray.toString());
-            System.out.println(jsonArray.toString());
+
         }
     }
 
@@ -102,14 +102,14 @@ public class AdminServlet extends HttpServlet {
         String name=req.getParameter("username");
         String password=req.getParameter("password");
         String remember=req.getParameter("check");
-        System.out.println("是否记住密码"+remember);
+
         Admin admin=adminService.findAdminByNamePassword(name,password);
         if(admin!=null){
             try {
                 req.getSession().setAttribute("name",admin.getName());
                 req.getSession().setAttribute("password",admin.getPassword());
                 req.getSession().setAttribute("control",admin.getControl());
-                if(remember.equals("on")){
+                if(remember!=null&&remember.equals("on")){
                     Cookie cookie=new Cookie("name",admin.getName());
                     Cookie cookie1=new Cookie("password",admin.getPassword());
                     resp.addCookie(cookie);
@@ -170,14 +170,14 @@ public class AdminServlet extends HttpServlet {
         int i = adminService.updateAdmin(new Admin(Integer.parseInt(id), name, password, phone, Integer.parseInt(control)));
         if(i==1){
             try {
-                System.out.println("修改成功");
+
                 resp.getWriter().print("true");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else {
             try {
-                System.out.println("修改失败");
+
                 resp.getWriter().print("false");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -198,14 +198,14 @@ public class AdminServlet extends HttpServlet {
 
         if(i==1){
             try {
-                System.out.println("添加成功");
+
                 resp.getWriter().print("true");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else {
             try {
-                System.out.println("添加失败");
+
                 resp.getWriter().print("false");
             } catch (IOException e) {
                 e.printStackTrace();

@@ -21,7 +21,7 @@ import java.util.List;
  * @Version 1.0
  * 对评论的请求进行处理的控制器
  */
-@WebServlet(name = "CommentServlet" ,urlPatterns = {"/comment/*"})
+@WebServlet(name = "CommentServlet" ,urlPatterns = {"*.comment"})
 public class CommentServlet extends HttpServlet {
     /**
      * 定义业务层对象
@@ -128,13 +128,13 @@ public class CommentServlet extends HttpServlet {
         String content = request.getParameter("content");
         //判断获取的评论是否为空
         if (!substringContent(content)){
-            System.out.println("评论信息为空！！");
+
             response.getWriter().print("你还没有评论！！");
         }else {
             //判断是否包含铭感词汇，
             boolean flag = filter.isContaintSensitiveWord(content, 1);
             if (flag){
-                System.out.println("包含敏感词汇，同时返回到前端页面");
+
                 response.getWriter().print("false");
             }else {
                 Integer userId = Integer.valueOf(request.getParameter("user_id"));
@@ -155,7 +155,7 @@ public class CommentServlet extends HttpServlet {
      * @return
      */
     public boolean substringContent(String content){
-        System.out.println("输出content:"+content);
+
         if (content.equals("")){
             return false;
         }else {

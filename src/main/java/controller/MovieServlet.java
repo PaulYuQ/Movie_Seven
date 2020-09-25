@@ -24,7 +24,7 @@ import java.util.List;
  * @Date 2020/9/12 15:23
  * @Version 1.0
  */
-@WebServlet(name = "MovieServlet", urlPatterns = {"/movie/*"})
+@WebServlet(name = "MovieServlet", urlPatterns = {"*.movie"})
 public class MovieServlet extends HttpServlet {
     public MovieService movieService;
 
@@ -41,40 +41,39 @@ public class MovieServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
-        System.out.println(request.getRequestURI());
-        if (requestURI.contains("initAllData.do")) {
+        if (requestURI.contains("initAllData.movie")) {
             initAllData(request, response);
-        } else if (requestURI.contains("initAnyMovies.do")) {
+        } else if (requestURI.contains("initAnyMovies.movie")) {
             initAnyMovies(request, response);
-        } else if (requestURI.contains("gotoIntroduction.do")) {
+        } else if (requestURI.contains("gotoIntroduction.movie")) {
             gotoIntroduction(request, response);
-        } else if (requestURI.contains("showIntroduction.do")) {
+        } else if (requestURI.contains("showIntroduction.movie")) {
             showIntroduction(request, response);
-        } else if (requestURI.contains("gotoPlayer.do")) {
+        } else if (requestURI.contains("gotoPlayer.movie")) {
             gotoPlayer(request, response);
-        } else if (requestURI.contains("showPlayer.do")) {
+        } else if (requestURI.contains("showPlayer.movie")) {
             showPlayer(request, response);
-        } else if (requestURI.contains("gotoSearch.do")) {
+        } else if (requestURI.contains("gotoSearch.movie")) {
             gotoSearch(request, response);
-        } else if (requestURI.contains("showSearch.do")) {
+        } else if (requestURI.contains("showSearch.movie")) {
             showSearch(request, response);
-        } else if (requestURI.contains("getMoviesCount.do")) {
+        } else if (requestURI.contains("getMoviesCount.movie")) {
             getMoviesCount(request, response);
-        } else if (requestURI.contains("getRelevantMovies.do")){
+        } else if (requestURI.contains("getRelevantMovies.movie")){
             getRelevantMovies(request,response);
-        }else if (requestURI.contains("getMovies.do")) {
+        }else if (requestURI.contains("getMovies.movie")) {
             getMovies(request, response);
-        }else if (requestURI.contains("getcount.do")) {
+        }else if (requestURI.contains("getcount.movie")) {
             getCount(request, response);
-        }else if (requestURI.contains("getmoviebyid.do")) {
+        }else if (requestURI.contains("getmoviebyid.movie")) {
             getOneMovie(request, response);
-        }else if (requestURI.contains("delmoviebyid.do")) {
+        }else if (requestURI.contains("delmoviebyid.movie")) {
             delMovie(request, response);
-        }else if (requestURI.contains("updatemoviebyid.do")) {
+        }else if (requestURI.contains("updatemoviebyid.movie")) {
             updateMovie(request, response);
-        }else if (requestURI.contains("searchbyname.do")) {
+        }else if (requestURI.contains("searchbyname.movie")) {
             getByName(request, response);
-        }else if (requestURI.contains("addmovie.do")) {
+        }else if (requestURI.contains("addmovie.movie")) {
             addmovie(request, response);
         }
     }
@@ -91,14 +90,14 @@ public class MovieServlet extends HttpServlet {
         int i = movieService.insertMovie(movie);
         if(i==1){
             try {
-                System.out.println("修改成功");
+
                 response.getWriter().print("true");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else {
             try {
-                System.out.println("修改失败");
+
                 response.getWriter().print("false");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -116,7 +115,7 @@ public class MovieServlet extends HttpServlet {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(jsonArray.toString());
+
         }
 
     }
@@ -135,14 +134,14 @@ public class MovieServlet extends HttpServlet {
         int i = movieService.updateMovie(movie);
         if(i==1){
             try {
-                System.out.println("修改成功");
+
                 response.getWriter().print("true");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else {
             try {
-                System.out.println("修改失败");
+
                 response.getWriter().print("false");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -185,7 +184,7 @@ public class MovieServlet extends HttpServlet {
         if(anyMovies!=null) {
             JSONArray jsonArray=JSONArray.parseArray(JSON.toJSONString(anyMovies));
             response.getWriter().print(jsonArray.toString());
-            System.out.println(jsonArray.toString());
+
         }
     }
 
@@ -245,7 +244,7 @@ public class MovieServlet extends HttpServlet {
 
     private void gotoIntroduction(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String movie_id = request.getParameter("movie_id");
-        System.out.println("movie_id"+movie_id);
+
         response.sendRedirect("/introduction.jsp?movie_id=" + movie_id);
     }
 
@@ -295,9 +294,9 @@ public class MovieServlet extends HttpServlet {
             jsonObject.put("scienceMovies", scienceMovies);
             jsonObject.put("documentaryMovies", documentaryMovies);
             response.getWriter().print(jsonObject.toJSONString());
-            System.out.println("JsonObject:" + jsonObject);
+
         } else {
-            System.out.println("电影数量为0");
+
         }
     }
 }

@@ -37,7 +37,7 @@ public class CollectionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getRequestURI();
-        System.out.println(path);
+
         if(path.contains("queryAll.collection")) {
             queryAll(request, response);
         } else if(path.contains("delete.collection")) {
@@ -80,7 +80,7 @@ public class CollectionServlet extends HttpServlet {
         int userId = user.getUser_id();
         long result = 0;
         result = collectionService.getCollectionCountByUserId(userId);
-        System.out.println(result);
+
         response.getWriter().print(result);
     }
 
@@ -201,14 +201,14 @@ public class CollectionServlet extends HttpServlet {
         List<CollectionVo> listLike = collectionService.getAllCollectionByKeyWord(keyword, user_id, Integer.parseInt(page), 6);
         String json= JSON.toJSONString(listLike);
         response.getWriter().print(json);
-        System.out.println(json);
+
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
         String collectionId = request.getParameter("collectionId");
         int result = collectionService.delete(Integer.parseInt(collectionId));
-        System.out.println(result);
+
         if(result > 0) {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("res", result);
@@ -230,6 +230,6 @@ public class CollectionServlet extends HttpServlet {
         List<CollectionVo> list = collectionService.getAllCollection(user_id, Integer.parseInt(page), 6);
         String json= JSON.toJSONString(list);
         response.getWriter().print(json);
-        System.out.println(json);
+
     }
 }
