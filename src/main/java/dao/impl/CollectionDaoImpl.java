@@ -14,6 +14,7 @@ import vo.CollectionVo;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,10 +35,10 @@ public class CollectionDaoImpl implements CollectionDao {
      */
     @Override
     public int insert(Collection collection) {
-        String insert = "insert into collections(user_id,movie_id,date) values(?,?,?)";
+        String insert = "insert into collections(user_id,movie_id) values(?,?)";
         int result = 0;
         try {
-            result = queryRunner.update(insert, new Object[]{collection.getUser_id(), collection.getMovie_id(), collection.getDate()});
+            result = queryRunner.update(insert, new Object[]{collection.getUser_id(), collection.getMovie_id()});
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,10 +71,10 @@ public class CollectionDaoImpl implements CollectionDao {
      */
     @Override
     public int update(Collection collection) {
-        String update = "update collections set user_id=?,movie_id=?,date=? where collection_id=?";
+        String update = "update collections set user_id=?,movie_id=? where collection_id=?";
         int result = 0;
         try {
-            result = queryRunner.update(update, new Object[]{collection.getUser_id(), collection.getMovie_id(), collection.getDate(), collection.getCollection_id()});
+            result = queryRunner.update(update, new Object[]{collection.getUser_id(), collection.getMovie_id(), collection.getCollection_id()});
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -125,10 +126,10 @@ public class CollectionDaoImpl implements CollectionDao {
     @Override
     public List<Collection> getMovieIdByKeyWord(String keyWord, int userId, int currentPage, int pageSize) {
         //select * from collections where user_id=3 and movie_id in (select movie_id from movies where name like '%"+ keyWord +"%') limit 0,6;
-        String getMovieIdByKeyWord = "select * from collections where user_id=? and movie_id in (select movie_id from movies where name like '%"+ keyWord +"%') limit ?,?";
-        List<Collection> list = null;
+        String getMovieIdByKeyWord = "select * from collections where user_id=? and movie_id in (select movie_id from movies where name like '%"+ keyWord +"%') order by date desc limit ?,?";
+        List<Collection> list = new ArrayList<>();
         try {
-            list = queryRunner.query(getMovieIdByKeyWord, new BeanListHandler<>(Collection.class), new Object[]{userId, currentPage, pageSize});
+            list = queryRunner.query(getMovieIdByKeyWord, new BeanListHandler<>(Collection.class), new Object[]{userId, (currentPage-1)*pageSize, pageSize});
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -144,7 +145,7 @@ public class CollectionDaoImpl implements CollectionDao {
             collectionVo.setCollection_id(c.getCollection_id());
             collectionVo.setUser_id(c.getUser_id());
             collectionVo.setMovie_id(c.getMovie_id());
-            collectionVo.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(c.getDate()));
+            collectionVo.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(doDate(c.getDate())));
             //根据collection的电影id获取电影的name和img_url
             Movie movie = getMovieByMovieId(c.getMovie_id());
             collectionVo.setName(movie.getName());
@@ -153,6 +154,7 @@ public class CollectionDaoImpl implements CollectionDao {
         }
         return list;
     }
+
 
     /**
      * 根据要查询的页返回对应页的数据
@@ -186,7 +188,7 @@ public class CollectionDaoImpl implements CollectionDao {
             collectionVo.setCollection_id(c.getCollection_id());
             collectionVo.setUser_id(c.getUser_id());
             collectionVo.setMovie_id(c.getMovie_id());
-            collectionVo.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(c.getDate()));
+            collectionVo.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(doDate(c.getDate())));
             //根据collection的电影id获取电影的name和img_url
             Movie movie = getMovieByMovieId(c.getMovie_id());
             collectionVo.setName(movie.getName());
@@ -195,6 +197,14 @@ public class CollectionDaoImpl implements CollectionDao {
         }
         return list;
     }
+
+    public Date doDate(Date date){
+        long time = date.getTime()-28800000;
+        System.out.println(time);
+        Date afterDate = new Date(time);
+        return afterDate;
+    }
+
 
     /**
      * 根据collection的电影id获取电影的name和img_url
@@ -221,10 +231,10 @@ public class CollectionDaoImpl implements CollectionDao {
      */
     @Override
     public List<Collection> getAllCollectByUser(int userId, int currentPage, int pageSize) {
-        String getAllCollect = "select * from collections where user_id=? limit ?,?";
+        String getAllCollect = "select * from collections where user_id=? order by date desc limit ?,?";
         List<Collection> list = null;
         try {
-            list = queryRunner.query(getAllCollect, new BeanListHandler<>(Collection.class), new Object[]{userId, currentPage, pageSize});
+            list = queryRunner.query(getAllCollect, new BeanListHandler<>(Collection.class), new Object[]{userId, (currentPage-1)*pageSize, pageSize});
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -265,5 +275,84 @@ public class CollectionDaoImpl implements CollectionDao {
             e.printStackTrace();
         }
         return collections;
+    }
+
+    /**
+     * 根据userId和movieId在播放页面移除收藏
+     *
+     * @param userId
+     * @param movieId
+     * @return
+     */
+    @Override
+    public int deleteInPlayer(int userId, int movieId) {
+        String deleteInPlayer = "delete from collections where user_id=? and movie_id=?";
+        int result = 0;
+        try {
+            queryRunner.update(deleteInPlayer, new Object[]{userId, movieId});
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 查询播放页面的收藏状态
+     *
+     * @param userId
+     * @param movieId
+     * @return
+     */
+    @Override
+    public int queryCollectionStatus(int userId, int movieId) {
+        String queryCollectionStatus = "select * from collections where user_id=? and movie_id=?";
+        int result = 0;
+        try {
+            if(queryRunner.query(queryCollectionStatus, new BeanHandler<>(Collection.class), new Object[]{userId, movieId}) != null) {
+                result = 1;
+            } else {
+                result = 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 获取收藏数量
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public long getCollectionCountByUserId(int userId) {
+        String getCollectionCountByUserId = "select count(*) from collections where user_id="+ userId +"";
+        long result = 0;
+        try {
+            result = queryRunner.query(getCollectionCountByUserId, new ScalarHandler<>());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 模糊查询收藏数量
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public long getCollectionCountByKeyWord(int userId, String keyWord) {
+        //select * from collections where user_id=? and movie_id in (select movie_id from movies where name like '%"+ keyWord +"%') order by date desc limit ?,?
+        String getCollectionCountByKeyWord = "select count(*) from collections where user_id=? and movie_id in (select movie_id from movies where name like '%" + keyWord + "%')";
+        long result = 0;
+        try {
+            result = queryRunner.query(getCollectionCountByKeyWord, new ScalarHandler<>(), new Object[]{userId});
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

@@ -145,12 +145,12 @@ function update() {
             if (result){
                 $.post(
                     "modify.users",
-                    {"name":$("#name").val(),"password":$("#password").val(),"phone":$("#phone").val()},
+                    {"id":$("#id").val(),"name":$("#name").val(),"password":$("#password").val(),"phone":$("#phone").val()},
                     function (data) {
                         if (data.result>0){
                             bootbox.alert("修改成功！");
                             setTimeout(function () {
-                                location.reload();
+                                window.location.reload();
                             },2000)
                         }else {
                             bootbox.alert("修改失败！")

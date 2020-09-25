@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="static/banner/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="static/css/blues.css" id="fed-colo-color"/>
-    <title>观看历史</title>
+    <title>浏览记录</title>
 
     <script src="static/js/jquery-3.2.1.js"></script>
     <script>
