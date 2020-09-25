@@ -4,10 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import factory.BeanFactory;
-import pojo.Admin;
 import pojo.Movie;
 import service.MovieService;
-import service.impl.MovieServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +27,7 @@ public class MovieServlet extends HttpServlet {
     public MovieService movieService;
 
     public MovieServlet() {
-        movieService = BeanFactory.getInstance("MovieService", MovieServiceImpl.class);
+        movieService = BeanFactory.getInstance("MovieService", MovieService.class);
     }
 
     @Override
