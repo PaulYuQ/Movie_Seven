@@ -175,7 +175,7 @@ create table  comments
 
 登陆注册页面采用了简单CSS动画，来实现登陆和注册的二者切换。采用ajax对前端用户输入的数据进行处理，由后台进行处理，进行判断和持久化操作以JSON数据的格式传入前端。同时实现了对非用户登陆执行收藏，评论的拦截。
 
-![登陆注册](https://gitee.com/misskunstudy/seven_movie/blob/master/images/登录注册.png)
+![登陆注册](https://gitee.com/misskunstudy/seven_movie/blob/master/images/1.png)
 
 #### 首页
 
